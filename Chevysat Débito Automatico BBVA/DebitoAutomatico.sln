@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebitoAutomatico.PS", "DebitoAutomatico.PS\DebitoAutomatico.PS.csproj", "{998AE1EF-A8F2-4F5E-A086-DDBB608DD937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebitoAutomatico.LN", "DebitoAutomatico.LN\DebitoAutomatico.LN.csproj", "{46B6C133-2F28-4DB5-93CA-1B909C2681E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebitoAutomatico.EN", "DebitoAutomatico.EN\DebitoAutomatico.EN.csproj", "{19BA7866-3141-4718-AB9F-3F4DD5C2710B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebitoAutomatico.AD", "DebitoAutomatico.AD\DebitoAutomatico.AD.csproj", "{9A507298-C918-4CAE-A7DC-BC71C19C1D57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{998AE1EF-A8F2-4F5E-A086-DDBB608DD937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{998AE1EF-A8F2-4F5E-A086-DDBB608DD937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{998AE1EF-A8F2-4F5E-A086-DDBB608DD937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{998AE1EF-A8F2-4F5E-A086-DDBB608DD937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46B6C133-2F28-4DB5-93CA-1B909C2681E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B6C133-2F28-4DB5-93CA-1B909C2681E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46B6C133-2F28-4DB5-93CA-1B909C2681E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B6C133-2F28-4DB5-93CA-1B909C2681E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19BA7866-3141-4718-AB9F-3F4DD5C2710B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19BA7866-3141-4718-AB9F-3F4DD5C2710B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19BA7866-3141-4718-AB9F-3F4DD5C2710B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19BA7866-3141-4718-AB9F-3F4DD5C2710B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A507298-C918-4CAE-A7DC-BC71C19C1D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A507298-C918-4CAE-A7DC-BC71C19C1D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A507298-C918-4CAE-A7DC-BC71C19C1D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A507298-C918-4CAE-A7DC-BC71C19C1D57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

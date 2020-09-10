@@ -1,0 +1,438 @@
+﻿body
+{
+    margin: 0px 0px 0px 0px;
+    font-family: Arial, Verdana;
+    font-size: 8pt;
+    background-color: #C2DAF3;
+}
+
+a:link
+{
+    text-decoration: none;
+    color: Black;
+}
+
+a:visited
+{
+    text-decoration: none;
+    color: Black;
+}
+
+a:hover
+{
+    text-decoration: none;
+    color: #2C4586;
+}
+
+.AlturaPanelDatos
+{
+    height: 626px;
+}
+
+.EstiloTextoMultilinea
+{
+    font-family: Arial, Verdana;
+    font-size: 8pt;
+    border: 1px Solid #B0BFDB;
+}
+
+.EstiloTexto
+{
+    font-family: Arial, Verdana;
+    font-size: 8pt;
+}
+
+.EstiloEtiquetas80
+{
+    font-size: 9pt;
+    text-align: left;
+    vertical-align: middle;
+    }
+
+.EstiloEtiquetas81
+{
+    font-size: 8pt;
+    text-align: center;
+    vertical-align: middle;
+    width: 150px;
+}
+
+
+.EstiloEtiquetas88
+{
+    font-size: 9pt;
+    text-align: right;
+    vertical-align: middle;
+    width: 150px;
+}
+
+.EstiloEtiquetas100
+{
+    font-size: 8pt;
+    text-align: left;
+    vertical-align: middle;
+    width: 100px;
+}
+
+.EstiloEtiquetas125
+{
+    font-size: 8pt;
+    text-align: left;
+    vertical-align: middle;
+    width: 125px;
+}
+
+.EstiloEtiquetas125Right
+{
+    font-size: 8pt;
+    text-align: right;
+    vertical-align: middle;
+    width: 125px;
+}
+
+.EstiloEtiquetas175
+{
+    font-size: 8pt;
+    text-align: right;
+    vertical-align: text-top;
+    width: 175px;
+}
+
+.EstiloEtiquetasMiddle
+{
+    font-size: 8pt;
+    text-align: right;
+    vertical-align: middle;
+    width: 125px;
+}
+
+.EspaciadoCeldaControl
+{    margin-left: 40px;
+}
+
+.EstiloInformacion
+{
+    font-size: 8pt;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.EspaciadoInicial
+{
+    width: 20px;
+}
+
+.EspaciadoIntermedio
+{
+    width: 5px;
+}
+
+.EspaciadoFinal
+{
+    width: 15px;
+}
+
+.FondoBarraHerramientas
+{
+    background-image: url('../imagenes/fondo_barra_herramientas.png');
+    width: 100%;
+    height: 20px;
+}
+
+.BarraEstado
+{
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+}
+
+.EstiloBarraEstado
+{
+    width: 100%;
+    height: 23px;
+    background-image: url('../imagenes/barra_estado.png');
+    border-top: 2px solid #6492CD;
+    border-bottom: 1px solid #6492CD;
+    vertical-align: middle;
+    font-size: 8pt;
+}
+
+.TablaContenido
+{
+    width: 100%;
+    height: 100%;
+}
+
+.MenuLateral
+{
+    width: 300px;
+    height: 100%;
+    vertical-align: top;
+}
+
+.EstiloMenuLateral
+{
+    width: 100%;
+    height: 100%;
+}
+
+.EstiloCabezoteMenu
+{
+    width: 100%;
+    height: 30px;
+    background-image: url('../imagenes/base_menu.png');
+    border-top: 1px solid #6492CD;
+    border-bottom: 1px solid #6492CD;
+    vertical-align: middle;
+    font-size: 11pt;
+    font-weight: bold;
+    text-align: center;
+    color: #1E3A6C;
+}
+
+.ContenidoMenu
+{
+    height: 100%;
+    background-color: #DFE9F5;
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.SeparadorContenido
+{
+    height:100%;
+    width: 3px;
+    background-color: #95B5E0;
+    border-left: 1px solid #6492CD;
+    border-right: 1px solid #6492CD;
+}
+
+.SeparadorHorizontal
+{
+    height: 3px;
+    background-color: #95B5E0;
+    border-top: 1px solid #6492CD;
+    border-bottom: 1px solid #6492CD;
+}
+
+.EstiloMenuBase
+{
+    width: 100%;
+    height: 30px;
+    background-image: url('../imagenes/base_menu.png');
+    background-repeat: repeat-x;
+    border-top: 2px solid #6492CD;
+    vertical-align: middle;
+    font-size: 11pt;
+    text-align: center;
+    color: #1E3A6C;
+    text-align: right;
+}
+
+.LetraColorNegro
+{
+    color: #000;
+}
+
+.LetraLeyendaColor
+{
+    font-size: 8pt;
+    color: #2C4586;
+}
+
+.LetraLeyendaColor10
+{
+    font-size: 10pt;
+    color: #2C4586;
+}
+
+.CuadranteBotonImagen
+{
+    width: 30px;
+    text-align: center;
+}
+
+.ContenedorDatos
+{
+    width: 100%;
+    height: 100%;
+    background-color: #E8F3FD;
+    vertical-align: middle;
+}
+
+.ColorContenedorDatos
+{
+    background-color: #E8F3FD;
+}
+
+.PanelBordesRedondos
+{
+    font-family: Arial, Verdana;
+    font-size: 9pt;    
+    background-color: #D8E9F6;
+    background-image: url('../imagenes/fondo_panel.png');
+    background-repeat: repeat-x;
+}
+
+.BordeControles
+{
+    font-family: Arial, Verdana;
+    font-size: 8pt;
+    border: 1px Solid #B0BFDB;
+}
+
+.RadioButtonControles
+{
+    font-family: Arial, Verdana;
+    font-size: 8pt;    
+    vertical-align: baseline;
+}
+
+.CheckBoxControles
+{
+    font-family: Arial, Verdana;
+    font-size: 8pt;    
+    vertical-align: baseline;
+}
+
+.Bordes
+{
+    font-family: Arial, Verdana;
+    font-size: 8pt;
+    border: 1px Solid #B0BFDB;
+}
+
+.BordeListas
+{
+    font-family: Arial, Verdana;
+    font-size: 8pt;
+    border: 1px Solid #B0BFDB;
+}
+
+.BordeListas200
+{
+    font-family: Arial, Verdana;
+    font-size: 8pt;
+    border: 1px Solid #B0BFDB;
+    width: 200px;
+}
+
+.BarraSubTitulo
+{
+    padding-left: 5px;
+    height: 15px;
+    width: 100%;
+    background-color: #88AADA;
+    font-size: small ;
+}
+
+.SeparadorSubTitulo
+{
+    height: 1px;
+    background-color: White;
+}
+
+Input
+{
+    font-family: Arial, Verdana;
+    font-size: 8pt;
+}
+
+.VentanaModal
+{
+    background-color: #000000;
+    filter: alpha(opacity=50); /*opacity: 0.5;*/
+}
+
+.VentanaModalSinPermisos
+{
+    background-color: #000000;
+    filter: alpha(opacity=70);
+}
+
+.OcultarControles
+{
+    display: none;
+}
+
+.Resaltar
+{
+    background-color: #FFFACD;
+}
+
+.MarcaAgua
+{
+    color: GrayText;
+}
+
+.EstiloComboBox .ajax__combobox_textboxcontainer input
+{
+    background-color: #ADD8E6;
+    border: solid 1px Blue;
+    border-right: 0px none;
+}
+
+.EstiloComboBox .ajax__combobox_buttoncontainer button
+{
+    background-color: #ADD8E6;
+    border: solid 1px Blue;
+}
+
+.updatePanelStyle
+{
+    border: thin solid Gray;
+    position: absolute;
+    left: 50%;
+    top: -2147483648px;
+    visibility: visible;
+    vertical-align: middle;
+    background-color: #ffffff;
+    z-index: 40;
+    height: 46px;
+    width: 196px;
+    right: 459px;
+}
+
+.contenedor
+{
+    top: -217;
+    left: 0;
+    width: 100%;
+    height: 63%;
+    background: #000000;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    margin: 0px;
+    position: absolute;
+    right: 0px;
+    z-index: 1000;
+    cursor: wait;
+    margin: 0px;
+    padding: 0px;
+}
+.contenedor[class]
+{
+    position: fixed;
+    display: table;
+}
+.centrado
+{
+    position: absolute;
+    top: 50%;
+}
+.centrado[class]
+{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    position: static;
+}
+.contenido
+{
+    width: 110px;
+    height: 110px;
+    border: 1px solid #000;
+    margin: 0 auto;
+    position: relative;
+    top: -50%;
+}

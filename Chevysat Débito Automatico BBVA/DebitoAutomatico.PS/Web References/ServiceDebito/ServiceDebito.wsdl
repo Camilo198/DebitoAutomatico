@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceDebito" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://sbogche010f:8087/ServiceDebito.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://sbogche010f:8087/ServiceDebito.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioDebito_IdBanco_InputMessage">
+    <wsdl:part name="parameters" element="tns:IdBanco" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_IdBanco_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IdBancoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_TipoCuenta_InputMessage">
+    <wsdl:part name="parameters" element="tns:TipoCuenta" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_TipoCuenta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TipoCuentaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_FechaDebito_InputMessage">
+    <wsdl:part name="parameters" element="tns:FechaDebito" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_FechaDebito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FechaDebitoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_CanalIngreso_InputMessage">
+    <wsdl:part name="parameters" element="tns:CanalIngreso" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_CanalIngreso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CanalIngresoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_ConsultaCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaCliente" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_ConsultaCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_GuardarCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarCliente" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_GuardarCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_ModificarDatos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarDatos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_ModificarDatos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarDatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_ConsultaClientePrenota_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaClientePrenota" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_ConsultaClientePrenota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaClientePrenotaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioDebito">
+    <wsdl:operation name="IdBanco">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/IdBanco" message="tns:IServicioDebito_IdBanco_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/IdBancoResponse" message="tns:IServicioDebito_IdBanco_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TipoCuenta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/TipoCuenta" message="tns:IServicioDebito_TipoCuenta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/TipoCuentaResponse" message="tns:IServicioDebito_TipoCuenta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FechaDebito">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/FechaDebito" message="tns:IServicioDebito_FechaDebito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/FechaDebitoResponse" message="tns:IServicioDebito_FechaDebito_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CanalIngreso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/CanalIngreso" message="tns:IServicioDebito_CanalIngreso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/CanalIngresoResponse" message="tns:IServicioDebito_CanalIngreso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/ConsultaCliente" message="tns:IServicioDebito_ConsultaCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/ConsultaClienteResponse" message="tns:IServicioDebito_ConsultaCliente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/GuardarCliente" message="tns:IServicioDebito_GuardarCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/GuardarClienteResponse" message="tns:IServicioDebito_GuardarCliente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDatos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/ModificarDatos" message="tns:IServicioDebito_ModificarDatos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/ModificarDatosResponse" message="tns:IServicioDebito_ModificarDatos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaClientePrenota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/ConsultaClientePrenota" message="tns:IServicioDebito_ConsultaClientePrenota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/ConsultaClientePrenotaResponse" message="tns:IServicioDebito_ConsultaClientePrenota_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicioDebito" type="tns:IServicioDebito">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IdBanco">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/IdBanco" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCuenta">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/TipoCuenta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FechaDebito">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/FechaDebito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanalIngreso">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/CanalIngreso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaCliente">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/ConsultaCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarCliente">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/GuardarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDatos">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/ModificarDatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaClientePrenota">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/ConsultaClientePrenota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceDebito">
+    <wsdl:port name="BasicHttpBinding_IServicioDebito" binding="tns:BasicHttpBinding_IServicioDebito">
+      <soap:address location="http://sbogche010f:8087/ServiceDebito.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

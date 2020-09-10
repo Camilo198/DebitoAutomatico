@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{19BA7866-3141-4718-AB9F-3F4DD5C2710B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DebitoAutomatico.EN</RootNamespace>
+    <AssemblyName>DebitoAutomatico.EN</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net20\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CamposXML.cs" />
+    <Compile Include="Definicion\ActualizaClienteDEF.cs" />
+    <Compile Include="Definicion\ArchivoManualDEF.cs" />
+    <Compile Include="Definicion\BancoDEF.cs" />
+    <Compile Include="Definicion\CalendarioDEF.cs" />
+    <Compile Include="Definicion\CamposEquivalenciasDEF.cs" />
+    <Compile Include="Definicion\ChevyplanDEF.cs" />
+    <Compile Include="Definicion\ClienteSicoDEF.cs" />
+    <Compile Include="Definicion\DebitoParcialDEF.cs" />
+    <Compile Include="Definicion\ConfiguracionDEF.cs" />
+    <Compile Include="Definicion\ConvenioDEF.cs" />
+    <Compile Include="Definicion\DatosDebitoDEF.cs" />
+    <Compile Include="Definicion\DatosDebitoInconsistenteDEF.cs" />
+    <Compile Include="Definicion\DevolucionesDEF.cs" />
+    <Compile Include="Definicion\EquivalenciasDEF.cs" />
+    <Compile Include="Definicion\EstadosClientesDEF.cs" />
+    <Compile Include="Definicion\EstructuraArchivoDEF.cs" />
+    <Compile Include="Definicion\FechasDEF.cs" />
+    <Compile Include="Definicion\FiduciasDEF.cs" />
+    <Compile Include="Definicion\HistorialArchivosDEF.cs" />
+    <Compile Include="Definicion\HistorialProcesoUsuarioDEF.cs" />
+    <Compile Include="Definicion\LogsDEF.cs" />
+    <Compile Include="Definicion\LogsParametrosDEF.cs" />
+    <Compile Include="Definicion\LogsUsuarioDEF.cs" />
+    <Compile Include="Definicion\MensajesDEF.cs" />
+    <Compile Include="Definicion\PagoParcialDEF.cs" />
+    <Compile Include="Definicion\PerfilDEF.cs" />
+    <Compile Include="Definicion\ReanudacionDEF.cs" />
+    <Compile Include="Definicion\RespuestaTransaccionDEF.cs" />
+    <Compile Include="Definicion\RutasDEF.cs" />
+    <Compile Include="Definicion\TablasEquivalenciasDEF.cs" />
+    <Compile Include="Definicion\TipoArchivoDEF.cs" />
+    <Compile Include="Definicion\TipoCausalesDEF.cs" />
+    <Compile Include="Definicion\TipoDatoDEF.cs" />
+    <Compile Include="Definicion\TipoFormatoDEF.cs" />
+    <Compile Include="Definicion\TipoInconsistenciaDEF.cs" />
+    <Compile Include="Definicion\TipoLineaDEF.cs" />
+    <Compile Include="Definicion\TitularCuentaDEF.cs" />
+    <Compile Include="Definicion\TipoCuentaDEF.cs" />
+    <Compile Include="Definicion\TipoDocumentoDEF.cs" />
+    <Compile Include="Definicion\TitularCuentaInconsistenteDEF.cs" />
+    <Compile Include="Definicion\UsuarioDEF.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tablas\ActualizaCliente.cs" />
+    <Compile Include="Tablas\ArchivoManual.cs" />
+    <Compile Include="Tablas\Banco.cs" />
+    <Compile Include="Tablas\Calendario.cs" />
+    <Compile Include="Tablas\CamposEquivalencias.cs" />
+    <Compile Include="Tablas\Chevyplan.cs" />
+    <Compile Include="Tablas\ClienteSico.cs" />
+    <Compile Include="Tablas\Correos.cs" />
+    <Compile Include="Tablas\DebitoParcial.cs" />
+    <Compile Include="Tablas\ConfiguracionEst.cs" />
+    <Compile Include="Tablas\Convenio.cs" />
+    <Compile Include="Tablas\DatosDebito.cs" />
+    <Compile Include="Tablas\DatosDebitoInconsistente.cs" />
+    <Compile Include="Tablas\Devoluciones.cs" />
+    <Compile Include="Tablas\Equivalencias.cs" />
+    <Compile Include="Tablas\EstadosClientes.cs" />
+    <Compile Include="Tablas\EstructuraArchivo.cs" />
+    <Compile Include="Tablas\Fechas.cs" />
+    <Compile Include="Tablas\Fiducias.cs" />
+    <Compile Include="Tablas\HistorialArchivos.cs" />
+    <Compile Include="Tablas\HistorialProcesoUsuario.cs" />
+    <Compile Include="Tablas\Logs.cs" />
+    <Compile Include="Tablas\LogsParametros.cs" />
+    <Compile Include="Tablas\LogsUsuario.cs" />
+    <Compile Include="Tablas\Mensajes.cs" />
+    <Compile Include="Tablas\PagoParcial.cs" />
+    <Compile Include="Tablas\Perfil.cs" />
+    <Compile Include="Tablas\Reanudacion.cs" />
+    <Compile Include="Tablas\RespuestaTransaccion.cs" />
+    <Compile Include="Tablas\Rutas.cs" />
+    <Compile Include="Tablas\TablasEquivalencias.cs" />
+    <Compile Include="Tablas\TipoArchivo.cs" />
+    <Compile Include="Tablas\TipoCausales.cs" />
+    <Compile Include="Tablas\TipoDato.cs" />
+    <Compile Include="Tablas\TipoFormato.cs" />
+    <Compile Include="Tablas\TipoInconsistencia.cs" />
+    <Compile Include="Tablas\TipoLinea.cs" />
+    <Compile Include="Tablas\TitularCuenta.cs" />
+    <Compile Include="Tablas\TipoCuenta.cs" />
+    <Compile Include="Tablas\TipoDocumento.cs" />
+    <Compile Include="Tablas\TitularCuentaInconsistente.cs" />
+    <Compile Include="Tablas\Usuario.cs" />
+    <Compile Include="TipoMensaje.cs" />
+    <Compile Include="TiposConsultas.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

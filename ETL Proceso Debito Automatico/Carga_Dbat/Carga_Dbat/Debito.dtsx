@@ -1,0 +1,836 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/14/2018 9:32:01 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="SBOGCHE037V"
+  DTS:CreatorName="CHEVYPLAN\bdadmin"
+  DTS:DTSID="{DBB57ECB-7209-41F1-BF33-5657713DF7C8}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Debito"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{5F81F4B2-D7C6-4B4C-BB94-50FAA38EF2FC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SBOGCHE009V.PaginaWeb]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BD8607CB-F39D-474A-A5FC-85EDBF68164A}"
+      DTS:ObjectName="SBOGCHE009V.PaginaWeb">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SBOGCHE009V;User ID=usuario_chevy;Initial Catalog=CHEVYPLAN;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAndanrhRxcE6OBd6PKLvTegAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADKI08Qyrsc44M2T79eHJ6UAAAAAASAAACgAAAAEAAAAO1YcxrYj9xCDYT9uBsCiP4YAAAAvjnb3sk0A0GIM9l6ILlqqZ1ktuPwDNK1FAAAAOX2JO2U2FA8J45CVP76m7C7yIwL</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SBOGCHE009V.PaginaWeb1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{85E10700-37E9-4070-A8DC-8FC8A5801EFD}"
+      DTS:ObjectName="SBOGCHE009V.PaginaWeb1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SBOGCHE009V;User ID=usuario_chevy;Initial Catalog=CHEVYPLAN;Persist Security Info=True;Application Name=&quot;SSIS-Package-{85E10700-37E9-4070-A8DC-8FC8A5801EFD}SBOGCHE015V.PaginaWebpruebaDebito 1&quot;;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAndanrhRxcE6OBd6PKLvTegAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABobc2C4OpVIws4ZBiz1FqtAAAAAASAAACgAAAAEAAAAKhLF++o/ZBqZd+XRla/3m8YAAAA4UdbuXBZAhnAi8My4P4bG6BMBxMiJ0zwFAAAAOlLps+vSoEi/jaHr6dwb92cL0Ok</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SICO]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{667C4B07-EA07-4EBD-8DA8-BD7756A47956}"
+      DTS:ObjectName="SICO">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Dsn=Sico;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{5FF17E02-CE80-4A48-B715-90DF517727FE}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Data Flow Task"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{006B4FCF-EBEC-46AB-B5DD-A0392A0D04A0}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task\ADO NET Destination"
+                  componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+                  contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+                  name="ADO NET Destination"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">"dbo"."TEMP_DBAD"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SBOGCHE009V.PaginaWeb1]"
+                      connectionManagerRefId="Package.ConnectionManagers[SBOGCHE009V.PaginaWeb1]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="ADO NET Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadFecha]"
+                          cachedDataType="i8"
+                          cachedName="DbadFecha"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadFecha]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadFecha]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadCupo]"
+                          cachedDataType="numeric"
+                          cachedName="DbadCupo"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadCupo]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadCupo]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadValProx]"
+                          cachedDataType="i4"
+                          cachedName="DbadValProx"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadValProx]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadValProx]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadFecProx]"
+                          cachedDataType="i8"
+                          cachedName="DbadFecProx"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadFecProx]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadFecProx]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadNumCuoMor]"
+                          cachedDataType="numeric"
+                          cachedName="DbadNumCuoMor"
+                          cachedPrecision="12"
+                          cachedScale="9"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadNumCuoMor]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadNumCuoMor]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadTipo]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="DbadTipo"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadTipo]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadTipo]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadEstado]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="DbadEstado"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadEstado]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadEstado]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadValMora]"
+                          cachedDataType="i4"
+                          cachedName="DbadValMora"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadValMora]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadValMora]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadValCuota]"
+                          cachedDataType="i4"
+                          cachedName="DbadValCuota"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadValCuota]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadValCuota]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DbadContrato1]"
+                          cachedDataType="i4"
+                          cachedName="DbadContrato1"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadContrato]"
+                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DbadContrato1]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadContrato]"
+                          dataType="i4"
+                          name="DbadContrato" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadFecha]"
+                          dataType="wstr"
+                          length="6"
+                          name="DbadFecha" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadCupo]"
+                          dataType="wstr"
+                          length="11"
+                          name="DbadCupo" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadValProx]"
+                          dataType="i8"
+                          name="DbadValProx" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadFecProx]"
+                          dataType="wstr"
+                          length="6"
+                          name="DbadFecProx" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadNumCuoMor]"
+                          dataType="wstr"
+                          length="20"
+                          name="DbadNumCuoMor" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadTipo]"
+                          dataType="wstr"
+                          length="1"
+                          name="DbadTipo" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadEstado]"
+                          dataType="wstr"
+                          length="1"
+                          name="DbadEstado" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadValMora]"
+                          dataType="wstr"
+                          length="10"
+                          name="DbadValMora" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DbadValCuota]"
+                          dataType="wstr"
+                          length="10"
+                          name="DbadValCuota" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="ADO NET Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task\ADO NET Source"
+                  componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+                  contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+                  name="ADO NET Source"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DbadContrato,DbadFecha,DbadCupo,DbadValProx,DbadFecProx,
+DbadNumCuoMor,DbadTipo,DbadEstado,DbadValMora,DbadValCuota FROM DBAD</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Source database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">2</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SICO]"
+                      connectionManagerRefId="Package.ConnectionManagers[SICO]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadContrato]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadContrato]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadContrato]"
+                          name="DbadContrato"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadFecha]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadFecha]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadFecha]"
+                          name="DbadFecha"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadCupo]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadCupo]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadCupo]"
+                          name="DbadCupo"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadValProx]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadValProx]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadValProx]"
+                          name="DbadValProx"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadFecProx]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadFecProx]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadFecProx]"
+                          name="DbadFecProx"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadNumCuoMor]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadNumCuoMor]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadNumCuoMor]"
+                          name="DbadNumCuoMor"
+                          precision="12"
+                          scale="9"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadTipo]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadTipo]"
+                          length="1"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadTipo]"
+                          name="DbadTipo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadEstado]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadEstado]"
+                          length="1"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadEstado]"
+                          name="DbadEstado"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadValMora]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadValMora]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadValMora]"
+                          name="DbadValMora"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadValCuota]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadValCuota]"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadValCuota]"
+                          name="DbadValCuota"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadContrato]"
+                          dataType="i8"
+                          name="DbadContrato" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadFecha]"
+                          dataType="i8"
+                          name="DbadFecha" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadCupo]"
+                          dataType="numeric"
+                          name="DbadCupo"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadValProx]"
+                          dataType="i4"
+                          name="DbadValProx" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadFecProx]"
+                          dataType="i8"
+                          name="DbadFecProx" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadNumCuoMor]"
+                          dataType="numeric"
+                          name="DbadNumCuoMor"
+                          precision="12"
+                          scale="9" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadTipo]"
+                          dataType="wstr"
+                          length="1"
+                          name="DbadTipo" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadEstado]"
+                          dataType="wstr"
+                          length="1"
+                          name="DbadEstado" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadValMora]"
+                          dataType="i4"
+                          name="DbadValMora" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DbadValCuota]"
+                          dataType="i4"
+                          name="DbadValCuota" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadContrato]"
+                          dataType="i8"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadContrato]"
+                          name="DbadContrato" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadFecha]"
+                          dataType="i8"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadFecha]"
+                          name="DbadFecha" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadCupo]"
+                          dataType="numeric"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadCupo]"
+                          name="DbadCupo"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadValProx]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadValProx]"
+                          name="DbadValProx" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadFecProx]"
+                          dataType="i8"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadFecProx]"
+                          name="DbadFecProx" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadNumCuoMor]"
+                          dataType="numeric"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadNumCuoMor]"
+                          name="DbadNumCuoMor"
+                          precision="12"
+                          scale="9" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadTipo]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadTipo]"
+                          name="DbadTipo" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadEstado]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadEstado]"
+                          name="DbadEstado" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadValMora]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadValMora]"
+                          name="DbadValMora" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadValCuota]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DbadValCuota]"
+                          name="DbadValCuota" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task\Derived Column"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[DbadContrato]"
+                          cachedDataType="i8"
+                          cachedName="DbadContrato"
+                          lineageId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadContrato]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DbadContrato1]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DbadContrato1]"
+                          name="DbadContrato1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_I4)#{Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DbadContrato]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_I4)DbadContrato</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\Data Flow Task.Paths[ADO NET Source Output]"
+                  endId="Package\Sequence Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\Sequence Container\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\Sequence Container\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Execute SQL Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7111603D-C415-46D9-8B78-E6E88AC4FFCA}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BD8607CB-F39D-474A-A5FC-85EDBF68164A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE TEMP_DBAD" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0761ED36-2EAD-4F74-AB5C-6C7AAF7FD72F}"
+          DTS:From="Package\Sequence Container\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Data Flow Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Sequence Container\Data Flow Task"
+          TopLeft="260,71" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Sequence Container\Execute SQL Task"
+          TopLeft="45,67" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="208,90">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52,0"
+              Start="0,0"
+              End="44.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="489,211"
+          Size="489,254"
+          Id="Package\Sequence Container"
+          TopLeft="233,161" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container\Data Flow Task\Derived Column"
+          TopLeft="474,158" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Sequence Container\Data Flow Task\ADO NET Source"
+          TopLeft="213,89" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Sequence Container\Data Flow Task\ADO NET Destination"
+          TopLeft="209,224" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="551,200">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-264,24"
+              Start="0,0"
+              End="-264,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8"
+                    Point2="0,12"
+                    Point3="-4,12" />
+                  <mssgle:LineSegment
+                    End="-260,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-260,12"
+                    Point2="-264,12"
+                    Point3="-264,16" />
+                  <mssgle:LineSegment
+                    End="-264,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="292,131">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="259,27"
+              Start="0,0"
+              End="259,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.5"
+                    Point2="0,13.5"
+                    Point3="4,13.5" />
+                  <mssgle:LineSegment
+                    End="255,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="255,13.5"
+                    Point2="259,13.5"
+                    Point3="259,17.5" />
+                  <mssgle:LineSegment
+                    End="259,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Data Flow Task\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Data Flow Task\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

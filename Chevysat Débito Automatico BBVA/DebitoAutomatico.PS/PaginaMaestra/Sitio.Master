@@ -1,0 +1,77 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Sitio.master.cs" Inherits="DebitoAutomatico.PS.PaginaMaestra.Sitio" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="cphCabecera" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="~/MarcaVisual/estilos/estilos.css" rel="stylesheet" type="text/css" />
+<%--    <script type="text/javascript" src="<%=ResolveClientUrl("~/Librerias/es/Validaciones.js")%>"></script>--%>
+    <script type="text/javascript">
+        function capturarTecla(e) {
+            var evento = window.event || elEvento;
+            //if (evento.keyCode == 17)
+            //    alert('Favor Soltar la Tecla "Ctrl"');
+            //else if (evento.keyCode == 16)
+            //    alert('Favor Soltar la Tecla "Shift"');
+        }
+    </script>
+</head>
+<body onkeydown="capturarTecla(this)">
+    <form id="form1" runat="server">
+     <asp:ToolkitScriptManager ID="tsmAdminCodigo" runat="server" ScriptMode="Release"
+        EnableScriptGlobalization="true" EnableScriptLocalization="true">
+    </asp:ToolkitScriptManager>
+
+    <table class="TablaContenido" cellpadding="0" cellspacing="0">
+        <tr style="height: 20px">
+            <td>
+                <asp:ContentPlaceHolder ID="cphBarraHerramientas" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+        <tr class="ColorContenedorDatos" style="height: 100%">
+            <%--<td valign="top" style="width: 300px; height: 100%">
+                <table class="EstiloMenuLateral" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="EstiloCabezoteMenu">
+                            Débito Automático
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ContenidoMenu">
+                            <asp:Panel ID="pnlMenuArbol" BackColor="White" runat="server" Width="100%" Height="100%">
+                                <asp:TreeView ID="tvMenu" runat="server" Width="100%" Height="100%" ExpandDepth="1"
+                                    CollapseImageUrl="~/MarcaVisual/iconos/subnodo16.png" ExpandImageUrl="~/MarcaVisual/iconos/nodo_abierto.png"
+                                    NoExpandImageUrl="~/MarcaVisual/iconos/subnodo16.png" ShowLines="True" NodeWrap="True"
+                                    Font-Size="Small" ShowExpandCollapse="True">
+                                    <NodeStyle ImageUrl="~/MarcaVisual/iconos/subnodo16.png" />
+                                    <RootNodeStyle ImageUrl="~/MarcaVisual/iconos/nodo_padre.png" />
+                                </asp:TreeView>
+                            </asp:Panel>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="SeparadorContenido">
+            </td>--%>
+            <td valign="top" style="width: 80%; height: 100%">
+                <asp:ContentPlaceHolder ID="cphContenido" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+        <tr style="height: 10px">
+            <td style="width: 20%">
+                <asp:Image ID="imgUsuario" ImageUrl="~/MarcaVisual/iconos/usuario.png" Width="12px"
+                    runat="server" />
+                <asp:Label ID="lbUsuario" runat="server" Font-Size="Small" Width="180px"></asp:Label>
+                <asp:ContentPlaceHolder ID="cphBarraEstado" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

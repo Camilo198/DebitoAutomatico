@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "RptDebitoAutomatico", "RptDebitoAutomatico\RptDebitoAutomatico.rptproj", "{CEAD91C1-F22F-4EB2-8B81-2B406C575C3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEAD91C1-F22F-4EB2-8B81-2B406C575C3D}.Debug|Default.ActiveCfg = Debug
+		{CEAD91C1-F22F-4EB2-8B81-2B406C575C3D}.Debug|Default.Build.0 = Debug
+		{CEAD91C1-F22F-4EB2-8B81-2B406C575C3D}.Debug|Default.Deploy.0 = Debug
+		{CEAD91C1-F22F-4EB2-8B81-2B406C575C3D}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{CEAD91C1-F22F-4EB2-8B81-2B406C575C3D}.DebugLocal|Default.Build.0 = DebugLocal
+		{CEAD91C1-F22F-4EB2-8B81-2B406C575C3D}.Release|Default.ActiveCfg = Release
+		{CEAD91C1-F22F-4EB2-8B81-2B406C575C3D}.Release|Default.Build.0 = Release
+		{CEAD91C1-F22F-4EB2-8B81-2B406C575C3D}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

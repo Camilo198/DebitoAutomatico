@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9A507298-C918-4CAE-A7DC-BC71C19C1D57}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DebitoAutomatico.AD</RootNamespace>
+    <AssemblyName>DebitoAutomatico.AD</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net20\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administracion\ConsultorXML.cs" />
+    <Compile Include="Conexion\ConectorBD.cs" />
+    <Compile Include="Conexion\Querys.cs" />
+    <Compile Include="Consultas\ActualizaClienteAD.cs" />
+    <Compile Include="Consultas\ArchivoManualAD.cs" />
+    <Compile Include="Consultas\BancoAD.cs" />
+    <Compile Include="Consultas\CalendarioAD.cs" />
+    <Compile Include="Consultas\CamposEquivalenciasAD.cs" />
+    <Compile Include="Consultas\ChevyplanAD.cs" />
+    <Compile Include="Consultas\ClienteSicoAD.cs" />
+    <Compile Include="Consultas\ConfiguracionAD.cs" />
+    <Compile Include="Consultas\ConvenioAD.cs" />
+    <Compile Include="Consultas\CorreosAD.cs" />
+    <Compile Include="Consultas\DatosDebitoAD.cs" />
+    <Compile Include="Consultas\DatosDebitoInconsistenteAD.cs" />
+    <Compile Include="Consultas\DebitoParcialAD.cs" />
+    <Compile Include="Consultas\DevolucionesAD.cs" />
+    <Compile Include="Consultas\EquivalenciasAD.cs" />
+    <Compile Include="Consultas\EstadosClientesAD.cs" />
+    <Compile Include="Consultas\EstructuraArchivoAD.cs" />
+    <Compile Include="Consultas\FechasAD.cs" />
+    <Compile Include="Consultas\FiduciasAD.cs" />
+    <Compile Include="Consultas\HistorialArchivosAD.cs" />
+    <Compile Include="Consultas\HistorialProcesoUsuarioAD.cs" />
+    <Compile Include="Consultas\JobAD.cs" />
+    <Compile Include="Consultas\LogsAD.cs" />
+    <Compile Include="Consultas\LogsParametrosAD.cs" />
+    <Compile Include="Consultas\LogsUsuarioAD.cs" />
+    <Compile Include="Consultas\MensajesAD.cs" />
+    <Compile Include="Consultas\PagoParcialAD.cs" />
+    <Compile Include="Consultas\PerfilAD.cs" />
+    <Compile Include="Consultas\ReanudacionAD.cs" />
+    <Compile Include="Consultas\RespuestaTransaccionAD.cs" />
+    <Compile Include="Consultas\RutasAD.cs" />
+    <Compile Include="Consultas\TablasEquivalenciasAD.cs" />
+    <Compile Include="Consultas\TipoArchivoAD.cs" />
+    <Compile Include="Consultas\TipoCausalesAD.cs" />
+    <Compile Include="Consultas\TipoDatoAD.cs" />
+    <Compile Include="Consultas\TipoFormatoAD.cs" />
+    <Compile Include="Consultas\TipoInconsistenciaAD.cs" />
+    <Compile Include="Consultas\TipoLineaAD.cs" />
+    <Compile Include="Consultas\TitularCuentaAD.cs" />
+    <Compile Include="Consultas\TipoCuentaAD.cs" />
+    <Compile Include="Consultas\TipoDocumentoAD.cs" />
+    <Compile Include="Consultas\TitularCuentaInconsistenteAD.cs" />
+    <Compile Include="Consultas\UsuarioAD.cs" />
+    <Compile Include="Convertidor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reportes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DebitoAutomatico.EN\DebitoAutomatico.EN.csproj">
+      <Project>{19BA7866-3141-4718-AB9F-3F4DD5C2710B}</Project>
+      <Name>DebitoAutomatico.EN</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

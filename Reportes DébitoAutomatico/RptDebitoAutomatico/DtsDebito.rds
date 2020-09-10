@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DtsDebito">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=SBOGCHE037V;Initial Catalog=DebitoAutomatico_PR</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>d59098d9-da86-4edd-8f7c-d6bc3e92f2f8</DataSourceID>
+</RptDataSource>
