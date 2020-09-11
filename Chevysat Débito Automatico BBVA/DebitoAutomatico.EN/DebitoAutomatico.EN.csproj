@@ -37,6 +37,12 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.9.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.9\lib\net40\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -118,6 +124,7 @@
     <Compile Include="Tablas\Perfil.cs" />
     <Compile Include="Tablas\Reanudacion.cs" />
     <Compile Include="Tablas\RespuestaTransaccion.cs" />
+    <Compile Include="Tablas\RptPagosEN.cs" />
     <Compile Include="Tablas\Rutas.cs" />
     <Compile Include="Tablas\TablasEquivalencias.cs" />
     <Compile Include="Tablas\TipoArchivo.cs" />

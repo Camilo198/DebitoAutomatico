@@ -15,6 +15,10 @@ using System.Globalization;
 using DebitoAutomatico.LN.Consulta;
 using System.Configuration;
 
+using Renci.SshNet;
+using SSH;
+
+
 namespace DebitoAutomatico.PS.Codigo.Interprete
 {
 
@@ -96,6 +100,14 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
         Int32 TipoDeCuenta = 0;
         String UsaFtp = String.Empty;
         String PassFtp = String.Empty;
+        String exporasico, RutaEpicor, NombreArchivoSico, RutaSico, comando,
+            ServidorSico = ConfigurationManager.AppSettings["server"].ToString(),            /*PAGOS*/
+            UsuarioSico = ConfigurationManager.AppSettings["user"].ToString(),
+            NombreComando = ConfigurationManager.AppSettings["comando"].ToString(),
+            NombrePrograma = ConfigurationManager.AppSettings["NombrePrograma"].ToString(),
+            PasswordSico = ConfigurationManager.AppSettings["password"].ToString(),
+            PathSystem = ConfigurationManager.AppSettings["PathSystem"].ToString(); // SAU 08.09.2020
+
         #endregion
         String LugarPago = String.Empty;
         #region TABLA CON LINEAS PARA GUARDAR EN LA BD
@@ -541,7 +553,7 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
 
         private string escribirArchivo(Banco objBanco, int Limite, DataSet tablaDebitos, Int32[,] camposBanco, String LugarPago)
         {
-
+            SSHConect Conexion = new SSHConect(); // Aplicar los pagos en SICO
             try
             {
 
@@ -613,7 +625,8 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                 #region ENVIAR CORREO Y EXPORTAR ARCHIVO AL FTP DE SICO
 
                 try
-                {
+                {   
+                    
 
                     String Mensaje = enviar.EnvioMail("", "PAGOS MASIVOS PARA DÉBITO AUTOMÁTICO DEL BANCO " + objBanco.pNombre,
                     "Buen día, \n\n" +
@@ -631,8 +644,40 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                     "de este mensaje es prohibida y será sancionada por la ley. Si por error recibe este mensaje, " +
                     "favor reenviarlo al remitente y borrar el mensaje recibido inmediatamente.", objBanco.pCorreoEnvio, objBanco.pRemitente, objBanco.pCorreoControl);
 
+                    ///SAU: Aplicar pago en SICO
                     MoverAFtp objFtp = new MoverAFtp();
-                    objFtp.enviarFtp(nombreArchivo, FtpSico, DirectorioSico + nombreArchivo, UsaFtp, PassFtp);
+                    exporasico = objFtp.enviarFtp(nombreArchivo, FtpSico, DirectorioSico + nombreArchivo, UsaFtp, PassFtp);
+                   
+                    if (exporasico == "OK")
+                    {
+                        //Se encarga de aplicar directamente en SICO
+                        comando = NombreComando + NombrePrograma + " " + nombreArchivo;
+                        try
+                        {
+                            Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                        }
+                        catch (Exception ex)
+                        {
+                            Mensaje = enviar.EnvioMail(" ", "OCURRIO UN ERROR AL Aplicar Los Pagos en Sico en la Libreria SSHConect " + objBanco.pCodigo + "\n\n",
+                                  "Se presento un error al aplicar los pagos en la libreria de Sico. Por favor validar." + ex.ToString(),
+                                 ConfigurationManager.AppSettings["CorreoTo"].ToString(), ConfigurationManager.AppSettings["CorreoFrom"].ToString(),
+                                 ConfigurationManager.AppSettings["CorreoCC"].ToString());
+                        }
+                        
+                        System.Threading.Thread.Sleep(5000);//Espera para aplicación de pago
+
+                        //Almacena pagos consistentes e inconsistentes de SICO                                
+                        //RptPagosLN pagosLN = new RptPagosLN();
+                        //pagosLN.almacenaRegistroSicoLN(Util, ServidorSico, NombreArchivoSico, PathSystem, UsuFTP, PassFTP,
+                                                    ////Convert.ToInt32(objt.pCodBanco), this.FechaRecaudo, FeModificacion);
+                    }
+                    else
+                    {
+                        Mensaje = enviar.EnvioMail(" ", "OCURRIO UN ERROR AL ENVIAR EL ARCHIVO " + NombreArchivoSico + " AL FTP DE SICO DEL BANCO " + objBanco.pNombre, "Buen día, \n\n" +
+                          "Se presento un error al crear el archivo a SICO. Por favor validar." + exporasico,
+                         ConfigurationManager.AppSettings["CorreoTo"].ToString(), ConfigurationManager.AppSettings["CorreoFrom"].ToString(),
+                         ConfigurationManager.AppSettings["CorreoCC"].ToString());
+                    }
 
                     return resultsuma;
                 }

@@ -24,6 +24,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,15 +55,25 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+    <Reference Include="log4net, Version=2.0.9.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.9\lib\net40\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroFocus.COBOL.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0412c5e0b2aaa8f0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\log4net.dll</HintPath>
+      <HintPath>Librerias\MicroFocus.COBOL.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>Librerias\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="SSHConect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=164a1ba778d87cda, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Librerias\SSHConect.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -87,7 +99,10 @@
     <Content Include="Librerias\es\jquery-1.10.2.min.js" />
     <Content Include="Librerias\es\Validaciones.js" />
     <Content Include="Librerias\log4net.dll" />
+    <Content Include="Librerias\MicroFocus.COBOL.Runtime.dll" />
     <Content Include="Librerias\Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="Librerias\Renci.SshNet.dll" />
+    <Content Include="Librerias\SSHConect.dll" />
     <Content Include="MarcaVisual\estilos\estilos.css" />
     <Content Include="MarcaVisual\iconos\abrir.png" />
     <Content Include="MarcaVisual\iconos\aceptar.png" />
@@ -187,11 +202,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Web References\wsenviocorreos\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
-    <Content Include="Web References\wsenviocorreos\service.wsdl" />
     <None Include="Web References\ServiceDebito\ServiceDebito.wsdl" />
     <None Include="Web References\ServiceDebito\ServiceDebito.xsd">
       <SubType>Designer</SubType>
@@ -389,11 +399,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\wsenviocorreos\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DebitoAutomatico.EN\DebitoAutomatico.EN.csproj">
@@ -419,17 +424,6 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>DebitoAutomatico_PS_ServiceDebito_ServiceDebito</CachedSettingsPropName>
-    </WebReferenceUrl>
-    <WebReferenceUrl Include="http://wsenviocorreos.chevyplan.col/service.asmx%3fwsdl">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\wsenviocorreos\</RelPath>
-      <UpdateFromURL>http://wsenviocorreos.chevyplan.col/service.asmx%3fwsdl</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>DebitoAutomatico_PS_wsenviocorreos_Service</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>

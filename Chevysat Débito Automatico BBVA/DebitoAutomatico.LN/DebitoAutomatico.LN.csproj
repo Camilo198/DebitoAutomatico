@@ -37,13 +37,17 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.9.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.9\lib\net40\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\wsenviocorreos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Consultas\ActualizaClienteLN.cs" />
     <Compile Include="Consultas\ArchivoManualLN.cs" />
     <Compile Include="Consultas\BancoLN.cs" />
@@ -78,6 +87,7 @@
     <Compile Include="Consultas\LogsUsuarioLN.cs" />
     <Compile Include="Consultas\MensajesLN.cs" />
     <Compile Include="Consultas\PagoParcialLN.cs" />
+    <Compile Include="Consultas\PagosRptLN.cs" />
     <Compile Include="Consultas\PerfilLN.cs" />
     <Compile Include="Consultas\ReanudacionLN.cs" />
     <Compile Include="Consultas\RespuestaTransaccionLN.cs" />
@@ -95,12 +105,16 @@
     <Compile Include="Consultas\TipoDocumentoLN.cs" />
     <Compile Include="Consultas\UsuarioLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\IWcfUtilidades.cs" />
+    <Compile Include="Servicios\WcfUtilidades.cs" />
     <Compile Include="Utilidades\Convertidor.cs" />
     <Compile Include="Utilidades\Encriptador.cs" />
     <Compile Include="Utilidades\LectorXML.cs" />
     <Compile Include="Utilidades\Registrador.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\wsenviocorreos\service.wsdl" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +126,27 @@
       <Project>{19BA7866-3141-4718-AB9F-3F4DD5C2710B}</Project>
       <Name>DebitoAutomatico.EN</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\wsenviocorreos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\wsenviocorreos\service.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\wsenviocorreos\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\wsenviocorreos\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\wsenviocorreos\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
