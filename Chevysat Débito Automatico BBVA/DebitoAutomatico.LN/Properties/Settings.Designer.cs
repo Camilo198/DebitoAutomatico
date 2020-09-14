@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DebitoAutomatico.PS.Properties {
+namespace DebitoAutomatico.LN.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,20 +26,10 @@ namespace DebitoAutomatico.PS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://sbogche010f:8087/ServiceDebito.svc")]
-        public string DebitoAutomatico_PS_ServiceDebito_ServiceDebito {
-            get {
-                return ((string)(this["DebitoAutomatico_PS_ServiceDebito_ServiceDebito"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://wsenviocorreos.chevyplan.col/service.asmx")]
-        public string DebitoAutomatico_PS_wsenviocorreos_Service {
+        public string DebitoAutomatico_LN_wsenviocorreos_Service {
             get {
-                return ((string)(this["DebitoAutomatico_PS_wsenviocorreos_Service"]));
+                return ((string)(this["DebitoAutomatico_LN_wsenviocorreos_Service"]));
             }
         }
     }

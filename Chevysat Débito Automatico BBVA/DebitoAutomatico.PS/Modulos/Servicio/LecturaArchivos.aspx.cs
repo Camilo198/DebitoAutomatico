@@ -202,6 +202,9 @@ namespace DebitoAutomatico.PS.Modulos.Servicio
 
                         ArrayList interprete = new ArrayList();
                         InterpreteArchivo objInterpreteA = new InterpreteArchivo();
+
+                        objInterpreteA.FeModificacion = File.GetLastWriteTime(rutaRecibidos + cargarArchivo.FileName);
+
                         String FechaProceso = Convert.ToString(DateTime.Now.ToString("yyyy-MM-dd") + " " + DateTime.Now.ToString("H:mm:ss"));
                         interprete = objInterpreteA.ServicioInterprete(Convert.ToInt32(this.ddlBancoDebito.SelectedValue),
                                                           Session["usuario"].ToString(), archivoR, Ruta, cargarArchivo.FileName,

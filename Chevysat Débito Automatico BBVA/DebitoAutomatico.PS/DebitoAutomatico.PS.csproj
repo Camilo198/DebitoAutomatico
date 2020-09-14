@@ -68,8 +68,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>Librerias\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
-    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
-      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    <Reference Include="Renci.SshNet, Version=2017.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Librerias\Renci.SshNet.dll</HintPath>
     </Reference>
     <Reference Include="SSHConect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=164a1ba778d87cda, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -209,6 +210,11 @@
     <None Include="Web References\ServiceDebito\ServiceDebito0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Web References\wsenviocorreos\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\wsenviocorreos\service.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Codigo\Correo\EnviarCorreo.cs" />
@@ -399,6 +405,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\wsenviocorreos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DebitoAutomatico.EN\DebitoAutomatico.EN.csproj">
@@ -424,6 +435,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>DebitoAutomatico_PS_ServiceDebito_ServiceDebito</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://wsenviocorreos.chevyplan.col/service.asmx%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\wsenviocorreos\</RelPath>
+      <UpdateFromURL>http://wsenviocorreos.chevyplan.col/service.asmx%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>DebitoAutomatico_PS_wsenviocorreos_Service</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>

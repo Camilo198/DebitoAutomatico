@@ -9,26 +9,27 @@ namespace DebitoAutomatico.LN.Consultas
 {
     public class PagosRptLN
     {
-        private String SP_ConsultarPagosBanco = "pa_BAN_CON_RPT_BANCO_PAGOS";
+        private String SP_ProcesarPagosDebito = "pa_BAN_CON_Procesa_Pagos_debito";
         private String SP_ActualizarRptPagoSico = "pa_BAN_CON_ACT_RPT_PAGOS_SICO";
         private String SP_InsertaLogErrores = "pa_BAN_RPT_ERROR_LOG";
-        public IList<RptPagosEN> ConsultarBancoFechaLN(RptPagosEN objEntidad)
+        public string insertarPagoDebitoLN(RptPagosEN objEntidad)
         {
 
-            IList<RptPagosEN> lista = new RptPagosAD().ConsultarBancoFechaAD(SP_ConsultarPagosBanco, objEntidad);
-            return lista;
-        }
-        public string insertarBancoFechaLN(RptPagosEN objEntidad)
-        {
-
-            string resultado = new RptPagosAD().insertaBancoFechaAD(SP_ConsultarPagosBanco, objEntidad);
+            string resultado = new RptPagosAD().insertaPagoDebitoAD(SP_ProcesarPagosDebito, objEntidad);
             return resultado;
 
         }
-        public string actualizarBancoCantPagosRecaudoLN(RptPagosEN objEntidad)
+        public IList<RptPagosEN> ConsultarPagoDebitoLN(RptPagosEN objEntidad)
         {
 
-            string resultado = new RptPagosAD().actualizaBancoCantPagosRecAD(SP_ConsultarPagosBanco, objEntidad);
+            IList<RptPagosEN> lista = new RptPagosAD().ConsultarPagoDebitoAD(SP_ProcesarPagosDebito, objEntidad);
+            return lista;
+        }
+       
+        public string actualizarPagoDebitoLN(RptPagosEN objEntidad)
+        {
+
+            string resultado = new RptPagosAD().actualizaPagoDebitoAD(SP_ProcesarPagosDebito, objEntidad);
             return resultado;
 
         }
@@ -38,22 +39,17 @@ namespace DebitoAutomatico.LN.Consultas
             return resultado;
         }
         public void almacenaRegistroSicoLN(WcfUtilidades Util, string ServidorSico, string NombreArchivoSico, string PathSystem,
-            string UsuFTP, string PassFTP, int codBanco, string fechaRecaudo, DateTime FeModificacion)
+            string UsuFTP, string PassFTP, RptPagosEN pagosEN)
         {
-            string error_mensaje;
+            String error_mensaje;
             IList<string> recaudoSico;
             IList<String> inconsistentes;
             IList<String> consistentes;
-            List<string> busquedaPago;
             //SAU Revisar fichero en SICO
             string[] stringSeparators = new string[] { " " };
-            RptPagosEN pagosEN = new RptPagosEN();
-
+    
             IList<RptPagosEN> arrPagos = null;
 
-            pagosEN.codigoBanco = codBanco;
-            pagosEN.fechaPago = fechaRecaudo;
-            pagosEN.fechaModificacionArch = FeModificacion;
             // Leo los resultados consistentes e inconsistentes de System
             try
             {
@@ -85,8 +81,8 @@ namespace DebitoAutomatico.LN.Consultas
             }
             catch (Exception ex)
             {
-                this.insertaLogErroresLN("Archivo " + NombreArchivoSico + " inexistente o cortado", pagosEN.fechaPago, codBanco);
-                this.insertaLogErroresLN(ex.Message.ToString(), pagosEN.fechaPago, codBanco);
+                this.insertaLogErroresLN("Archivo " + NombreArchivoSico + " inexistente o cortado", pagosEN.fechaPago, pagosEN.codigoBanco);
+                this.insertaLogErroresLN(ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco);
                 inconsistentes = new List<string>();
             }
             try
@@ -121,7 +117,7 @@ namespace DebitoAutomatico.LN.Consultas
                 this.insertaLogErroresLN(ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco);
                 consistentes = new List<string>();
             }
-            arrPagos = this.ConsultarBancoFechaLN(pagosEN);
+            arrPagos = this.ConsultarPagoDebitoLN(pagosEN);
             if (arrPagos.Count > 0) //Si existe
             {
                 try

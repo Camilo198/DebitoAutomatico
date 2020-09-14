@@ -12,14 +12,14 @@ namespace DebitoAutomatico.AD.Consultas
         WcfData wsc = new WcfData();
 
         //Retorna en una lista los parametros de la fecha de aplicacion del banco.
-        public IList<RptPagosEN> ConsultarBancoFechaAD(string Procedimiento, RptPagosEN objEntidad)
+        public IList<RptPagosEN> ConsultarPagoDebitoAD(string Procedimiento, RptPagosEN objEntidad)
         {
             List<RptPagosEN> listParametro = new List<RptPagosEN>();
             List<string[,]> lista = new List<string[,]>();
 
             try
             {
-                string[,,] Param = new string[6, 3, 1]; // solo cuando el procedimiento almacenado tiene parametros
+                string[,,] Param = new string[8, 3, 1]; // solo cuando el procedimiento almacenado tiene parametros
 
 
                 Param[0, 0, 0] = objEntidad.codigoBanco.ToString();
@@ -30,21 +30,29 @@ namespace DebitoAutomatico.AD.Consultas
                 Param[1, 1, 0] = "@inFechPago";
                 Param[1, 2, 0] = "date";
 
-                Param[2, 0, 0] = "C";
-                Param[2, 1, 0] = "@inOperacion";
-                Param[2, 2, 0] = "varchar(2)";
+                Param[2, 0, 0] = objEntidad.fechaProceso.ToString();
+                Param[2, 1, 0] = "@inFecProceso";
+                Param[2, 2, 0] = "datetime";
 
-                Param[3, 0, 0] = "0";
-                Param[3, 1, 0] = "@inMontoarchivo";
-                Param[3, 2, 0] = "numeric(18,0)";
+                Param[3, 0, 0] = objEntidad.cantPagosArchivo.ToString();
+                Param[3, 1, 0] = "@inCantPagosArch";
+                Param[3, 2, 0] = "int";
 
-                Param[4, 0, 0] = "0";
-                Param[4, 1, 0] = "@inPagosArchivo";
+                Param[4, 0, 0] = objEntidad.cantPagosReacudo.ToString();
+                Param[4, 1, 0] = "@inCantPagosRec";
                 Param[4, 2, 0] = "int";
 
-                Param[5, 0, 0] = objEntidad.fechaModificacionArch.ToString();
-                Param[5, 1, 0] = "@inFecModArch";
-                Param[5, 2, 0] = "datetime";
+                Param[5, 0, 0] = objEntidad.valorMontoArchivo.ToString();
+                Param[5, 1, 0] = "@inMontoarchivo";
+                Param[5, 2, 0] = "numeric(18,0)";
+
+                Param[6, 0, 0] = objEntidad.fechaModificacionArch.ToString();
+                Param[6, 1, 0] = "@inFecModArch";
+                Param[6, 2, 0] = "datetime";
+
+                Param[7, 0, 0] = "C";
+                Param[7, 1, 0] = "@inOperacion";
+                Param[7, 2, 0] = "varchar(2)";
 
                 lista = wsc.LlenarLista(Param, Procedimiento, "SQLBancos", "SP", "Sql");
                 string[,] Valida;
@@ -70,11 +78,11 @@ namespace DebitoAutomatico.AD.Consultas
                 return listParametro;
             }
         }
-        public string insertaBancoFechaAD(string procedimiento, RptPagosEN objEntidad)
+        public string insertaPagoDebitoAD(string procedimiento, RptPagosEN objEntidad)
         {
             try
             {
-                string[,,] Param = new string[6, 3, 1];
+                string[,,] Param = new string[8, 3, 1];
 
                 Param[0, 0, 0] = objEntidad.codigoBanco.ToString();
                 Param[0, 1, 0] = "@inCodBanco";
@@ -84,21 +92,29 @@ namespace DebitoAutomatico.AD.Consultas
                 Param[1, 1, 0] = "@inFechPago";
                 Param[1, 2, 0] = "date";
 
-                Param[2, 0, 0] = "I";
-                Param[2, 1, 0] = "@inOperacion";
-                Param[2, 2, 0] = "varchar(2)";
+                Param[2, 0, 0] = objEntidad.fechaProceso.ToString();
+                Param[2, 1, 0] = "@inFecProceso";
+                Param[2, 2, 0] = "datetime";
 
-                Param[3, 0, 0] = objEntidad.valorMontoArchivo.ToString();
-                Param[3, 1, 0] = "@inMontoarchivo";
-                Param[3, 2, 0] = "numeric(18,0)";
+                Param[3, 0, 0] = objEntidad.cantPagosArchivo.ToString();
+                Param[3, 1, 0] = "@inCantPagosArch";
+                Param[3, 2, 0] = "int";
 
-                Param[4, 0, 0] = objEntidad.cantPagosArchivo.ToString();
-                Param[4, 1, 0] = "@inPagosArchivo";
+                Param[4, 0, 0] = objEntidad.cantPagosReacudo.ToString();
+                Param[4, 1, 0] = "@inCantPagosRec";
                 Param[4, 2, 0] = "int";
 
-                Param[5, 0, 0] = objEntidad.fechaModificacionArch.ToString();
-                Param[5, 1, 0] = "@inFecModArch";
-                Param[5, 2, 0] = "datetime";
+                Param[5, 0, 0] = objEntidad.valorMontoArchivo.ToString();
+                Param[5, 1, 0] = "@inMontoarchivo";
+                Param[5, 2, 0] = "numeric(18,0)";
+
+                Param[6, 0, 0] = objEntidad.fechaModificacionArch.ToString();
+                Param[6, 1, 0] = "@inFecModArch";
+                Param[6, 2, 0] = "datetime";
+
+                Param[7, 0, 0] = "I";
+                Param[7, 1, 0] = "@inOperacion";
+                Param[7, 2, 0] = "varchar(2)";
 
                 return wsc.Ejecutar(Param, procedimiento, "SQLBancos");
             }
@@ -107,11 +123,11 @@ namespace DebitoAutomatico.AD.Consultas
                 throw new Exception(ex.Message);
             }
         }
-        public string actualizaBancoCantPagosRecAD(string procedimiento, RptPagosEN objEntidad)
+        public string actualizaPagoDebitoAD(string procedimiento, RptPagosEN objEntidad)
         {
             try
             {
-                string[,,] Param = new string[6, 3, 1];
+                string[,,] Param = new string[8, 3, 1];
 
                 Param[0, 0, 0] = objEntidad.codigoBanco.ToString();
                 Param[0, 1, 0] = "@inCodBanco";
@@ -121,21 +137,29 @@ namespace DebitoAutomatico.AD.Consultas
                 Param[1, 1, 0] = "@inFechPago";
                 Param[1, 2, 0] = "date";
 
-                Param[2, 0, 0] = "U";
-                Param[2, 1, 0] = "@inOperacion";
-                Param[2, 2, 0] = "varchar(2)";
+                Param[2, 0, 0] = objEntidad.fechaProceso.ToString();
+                Param[2, 1, 0] = "@inFecProceso";
+                Param[2, 2, 0] = "datetime";
 
-                Param[3, 0, 0] = objEntidad.valorMontoArchivo.ToString();
-                Param[3, 1, 0] = "@inMontoarchivo";
-                Param[3, 2, 0] = "numeric(18,0)";
+                Param[3, 0, 0] = objEntidad.cantPagosArchivo.ToString();
+                Param[3, 1, 0] = "@inCantPagosArch";
+                Param[3, 2, 0] = "int";
 
-                Param[4, 0, 0] = objEntidad.cantPagosArchivo.ToString();
-                Param[4, 1, 0] = "@inPagosArchivo";
+                Param[4, 0, 0] = objEntidad.cantPagosReacudo.ToString();
+                Param[4, 1, 0] = "@inCantPagosRec";
                 Param[4, 2, 0] = "int";
 
-                Param[5, 0, 0] = objEntidad.fechaModificacionArch.ToString();
-                Param[5, 1, 0] = "@inFecModArch";
-                Param[5, 2, 0] = "datetime";
+                Param[5, 0, 0] = objEntidad.valorMontoArchivo.ToString();
+                Param[5, 1, 0] = "@inMontoarchivo";
+                Param[5, 2, 0] = "numeric(18,0)";
+
+                Param[6, 0, 0] = objEntidad.fechaModificacionArch.ToString();
+                Param[6, 1, 0] = "@inFecModArch";
+                Param[6, 2, 0] = "datetime";
+
+                Param[7, 0, 0] = "U";
+                Param[7, 1, 0] = "@inOperacion";
+                Param[7, 2, 0] = "varchar(2)";
 
                 return wsc.Ejecutar(Param, procedimiento, "SQLBancos");
             }
@@ -144,32 +168,7 @@ namespace DebitoAutomatico.AD.Consultas
                 throw new Exception(ex.Message);
             }
         }
-        public string actualizaCantPagosArchPSEAD(string procedimiento, RptPagosEN objEntidad)
-        {
-            try
-            {
-                string[,,] Param = new string[3, 3, 1];
-
-                Param[0, 0, 0] = objEntidad.fechaPago.ToString();
-                Param[0, 1, 0] = "@inFechPago";
-                Param[0, 2, 0] = "date";
-
-                Param[1, 0, 0] = objEntidad.codigoBanco.ToString();
-                Param[1, 1, 0] = "@inCodBanco";
-                Param[1, 2, 0] = "int";
-
-                Param[2, 0, 0] = objEntidad.cantPagosArchivo.ToString();
-                Param[2, 1, 0] = "@inCantPagosArch";
-                Param[2, 2, 0] = "int";
-
-
-                return wsc.Ejecutar(Param, procedimiento, "SQLBancos");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        
         public string actualizarRptPagoSicoAD(string procedimiento, RptPagosEN objEntidad)
         {
             try

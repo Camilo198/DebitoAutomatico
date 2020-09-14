@@ -17,7 +17,7 @@ namespace DebitoAutomatico.LN
     // NOTA: puede usar el comando "Rename" del menú "Refactorizar" para cambiar el nombre de clase "WcfUtilidades" en el código y en el archivo de configuración a la vez.
     public class WcfUtilidades : IWcfUtilidades
     {
-        private wsenviocorreos.ServiceSoap EnvioCorreo;// = new wsenviocorreos.Service();
+        private wsenviocorreos.Service EnvioCorreo = new wsenviocorreos.Service();
         private DataRow rowC;
         DebitoAutomatico.AD.Servicios.WcfData wsc = new DebitoAutomatico.AD.Servicios.WcfData();
 

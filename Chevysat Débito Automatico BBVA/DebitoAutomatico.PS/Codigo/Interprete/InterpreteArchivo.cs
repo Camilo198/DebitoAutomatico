@@ -17,7 +17,8 @@ using System.Configuration;
 
 using Renci.SshNet;
 using SSH;
-
+using System.Web.UI.WebControls;
+using DebitoAutomatico.LN;
 
 namespace DebitoAutomatico.PS.Codigo.Interprete
 {
@@ -100,7 +101,7 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
         Int32 TipoDeCuenta = 0;
         String UsaFtp = String.Empty;
         String PassFtp = String.Empty;
-        String exporasico, RutaEpicor, NombreArchivoSico, RutaSico, comando,
+        String exporasico, RutaEpicor, RutaSico, comando,
             ServidorSico = ConfigurationManager.AppSettings["server"].ToString(),            /*PAGOS*/
             UsuarioSico = ConfigurationManager.AppSettings["user"].ToString(),
             NombreComando = ConfigurationManager.AppSettings["comando"].ToString(),
@@ -110,6 +111,7 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
 
         #endregion
         String LugarPago = String.Empty;
+        public DateTime FeModificacion;
         #region TABLA CON LINEAS PARA GUARDAR EN LA BD
         DataTable LineasArmadasdt = new DataTable();
         #endregion.
@@ -554,6 +556,7 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
         private string escribirArchivo(Banco objBanco, int Limite, DataSet tablaDebitos, Int32[,] camposBanco, String LugarPago)
         {
             SSHConect Conexion = new SSHConect(); // Aplicar los pagos en SICO
+            
             try
             {
 
@@ -613,11 +616,68 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                     ALineaArmada3DT = String.Empty;
                 }
 
+
                 double valor = Convert.ToDouble(valorarchivo);
                 string resultsuma = Convert.ToString(valorarchivo);
                 resultsuma = valor.ToString("0,0", CultureInfo.InvariantCulture);
                 resultsuma = String.Format(CultureInfo.InvariantCulture, "{0:0,0}", valor);
 
+                #endregion
+
+                #region Reporte pagos
+
+                String error_mensaje;
+
+                RptPagosEN pagosEN = new RptPagosEN();
+                PagosRptLN pagosLN = new PagosRptLN();
+
+                IList<RptPagosEN> arrPagos = null;
+
+                pagosEN.fechaModificacionArch = this.FeModificacion;
+                pagosEN.fechaProceso = Convert.ToDateTime(FechaTransaccion);
+                pagosEN.fechaPago = Fecha;
+                pagosEN.codigoBanco = Convert.ToInt32(LugarPago);
+                pagosEN.cantPagosArchivo = registrosLote;
+                pagosEN.valorMontoArchivo = valorarchivo;
+                pagosEN.cantPagosReacudo = registrosLote;
+
+                arrPagos = pagosLN.ConsultarPagoDebitoLN(pagosEN);
+                if (arrPagos.Count > 0) //Si existe
+                {
+                    try
+                    {
+                        int result = Convert.ToInt32(pagosLN.actualizarPagoDebitoLN(pagosEN));
+                        if (result == 0)
+                        {
+                            error_mensaje = "Error en la actualización Monto Archivo banco: " +
+                                pagosEN.codigoBanco + " " + pagosEN.fechaPago;
+                            pagosLN.insertaLogErroresLN(error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco);
+                            error_mensaje = String.Empty;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        pagosLN.insertaLogErroresLN(e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        int resultado = Convert.ToInt32(pagosLN.insertarPagoDebitoLN(pagosEN));
+                        if (resultado == 0)
+                        {
+                            error_mensaje = "Error en la inserción Monto Archivo banco: banco: " +
+                                pagosEN.codigoBanco + " " + pagosEN.fechaPago;
+                            pagosLN.insertaLogErroresLN(error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco);
+                            error_mensaje = String.Empty;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        pagosLN.insertaLogErroresLN(ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco);
+                    }
+                }
                 #endregion
 
                 sw.Close();
@@ -666,14 +726,14 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                         
                         System.Threading.Thread.Sleep(5000);//Espera para aplicación de pago
 
-                        //Almacena pagos consistentes e inconsistentes de SICO                                
-                        //RptPagosLN pagosLN = new RptPagosLN();
-                        //pagosLN.almacenaRegistroSicoLN(Util, ServidorSico, NombreArchivoSico, PathSystem, UsuFTP, PassFTP,
-                                                    ////Convert.ToInt32(objt.pCodBanco), this.FechaRecaudo, FeModificacion);
+                        //Almacena pagos consistentes e inconsistentes de SICO      
+                        WcfUtilidades Util = new WcfUtilidades();
+                        pagosLN.almacenaRegistroSicoLN(Util, ServidorSico, nombreArchivo, PathSystem, UsaFtp, PassFtp,
+                                                    pagosEN);
                     }
                     else
                     {
-                        Mensaje = enviar.EnvioMail(" ", "OCURRIO UN ERROR AL ENVIAR EL ARCHIVO " + NombreArchivoSico + " AL FTP DE SICO DEL BANCO " + objBanco.pNombre, "Buen día, \n\n" +
+                        Mensaje = enviar.EnvioMail(" ", "OCURRIO UN ERROR AL ENVIAR EL ARCHIVO " + nombreArchivo + " AL FTP DE SICO DEL BANCO " + objBanco.pNombre, "Buen día, \n\n" +
                           "Se presento un error al crear el archivo a SICO. Por favor validar." + exporasico,
                          ConfigurationManager.AppSettings["CorreoTo"].ToString(), ConfigurationManager.AppSettings["CorreoFrom"].ToString(),
                          ConfigurationManager.AppSettings["CorreoCC"].ToString());
