@@ -182,6 +182,7 @@
     <Content Include="Modulos\MenuPrincipal.aspx" />
     <Content Include="Modulos\Servicio\GenerarArchivoManual.aspx" />
     <Content Include="Modulos\Servicio\LecturaArchivos.aspx" />
+    <Content Include="Modulos\Servicio\Reporte_Pagos.aspx" />
     <Content Include="Modulos\Servicio\Reportes.aspx" />
     <Content Include="Modulos\Servicio\Reversiones.aspx" />
     <Content Include="Modulos\XML\Configuracion.xml">
@@ -367,6 +368,13 @@
     </Compile>
     <Compile Include="Modulos\Servicio\LecturaArchivos.aspx.designer.cs">
       <DependentUpon>LecturaArchivos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Servicio\Reporte_Pagos.aspx.cs">
+      <DependentUpon>Reporte_Pagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modulos\Servicio\Reporte_Pagos.aspx.designer.cs">
+      <DependentUpon>Reporte_Pagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Servicio\Reportes.aspx.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>
