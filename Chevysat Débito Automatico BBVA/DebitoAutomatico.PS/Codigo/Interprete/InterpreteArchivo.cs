@@ -625,12 +625,11 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                 #endregion
 
                 #region Reporte pagos
-
-                String error_mensaje;
-
                 RptPagosEN pagosEN = new RptPagosEN();
                 PagosRptLN pagosLN = new PagosRptLN();
-
+                List<String[,]> CodigoArchivos = new List<string[,]>();
+                string[,] parametro;
+                String error_mensaje;
                 IList<RptPagosEN> arrPagos = null;
 
                 pagosEN.fechaModificacionArch = this.FeModificacion;
@@ -641,6 +640,14 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                 pagosEN.valorMontoArchivo = valorarchivo;
                 pagosEN.cantPagosReacudo = registrosLote;
 
+                CodigoArchivos = pagosLN.ConsultaParteFijaLN("F1", "D", LugarPago);
+                //pagosEN.parteFija = parteFijaAbstracta;
+                if (CodigoArchivos.Count > 0)
+                {
+                    parametro = CodigoArchivos[0];
+                    pagosEN.parteFija = parametro[1, 1].ToString();
+                }
+                
                 arrPagos = pagosLN.ConsultarPagoDebitoLN(pagosEN);
                 if (arrPagos.Count > 0) //Si existe
                 {
@@ -657,7 +664,7 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                     }
                     catch (Exception e)
                     {
-                        pagosLN.insertaLogErroresLN(e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco);
+                        pagosLN.insertaLogErroresLN(e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                     }
                 }
                 else
@@ -669,13 +676,13 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                         {
                             error_mensaje = "Error en la inserción Monto Archivo banco: banco: " +
                                 pagosEN.codigoBanco + " " + pagosEN.fechaPago;
-                            pagosLN.insertaLogErroresLN(error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco);
+                            pagosLN.insertaLogErroresLN(error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                             error_mensaje = String.Empty;
                         }
                     }
                     catch (Exception ex)
                     {
-                        pagosLN.insertaLogErroresLN(ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco);
+                        pagosLN.insertaLogErroresLN(ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                     }
                 }
                 #endregion

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using DebitoAutomatico.EN.Tablas;
 using DebitoAutomatico.AD.Servicios;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace DebitoAutomatico.AD.Consultas
 {
@@ -19,7 +21,7 @@ namespace DebitoAutomatico.AD.Consultas
 
             try
             {
-                string[,,] Param = new string[8, 3, 1]; // solo cuando el procedimiento almacenado tiene parametros
+                string[,,] Param = new string[9, 3, 1]; // solo cuando el procedimiento almacenado tiene parametros
 
 
                 Param[0, 0, 0] = objEntidad.codigoBanco.ToString();
@@ -54,6 +56,10 @@ namespace DebitoAutomatico.AD.Consultas
                 Param[7, 1, 0] = "@inOperacion";
                 Param[7, 2, 0] = "varchar(2)";
 
+                Param[8, 0, 0] = objEntidad.parteFija.ToString();
+                Param[8, 1, 0] = "@inParteFija";
+                Param[8, 2, 0] = "varchar(20)";
+
                 lista = wsc.LlenarLista(Param, Procedimiento, "SQLBancos", "SP", "Sql");
                 string[,] Valida;
 
@@ -82,7 +88,7 @@ namespace DebitoAutomatico.AD.Consultas
         {
             try
             {
-                string[,,] Param = new string[8, 3, 1];
+                string[,,] Param = new string[9, 3, 1];
 
                 Param[0, 0, 0] = objEntidad.codigoBanco.ToString();
                 Param[0, 1, 0] = "@inCodBanco";
@@ -116,6 +122,10 @@ namespace DebitoAutomatico.AD.Consultas
                 Param[7, 1, 0] = "@inOperacion";
                 Param[7, 2, 0] = "varchar(2)";
 
+                Param[8, 0, 0] = objEntidad.parteFija.ToString();
+                Param[8, 1, 0] = "@inParteFija";
+                Param[8, 2, 0] = "varchar(20)";
+
                 return wsc.Ejecutar(Param, procedimiento, "SQLBancos");
             }
             catch (Exception ex)
@@ -127,7 +137,7 @@ namespace DebitoAutomatico.AD.Consultas
         {
             try
             {
-                string[,,] Param = new string[8, 3, 1];
+                string[,,] Param = new string[9, 3, 1];
 
                 Param[0, 0, 0] = objEntidad.codigoBanco.ToString();
                 Param[0, 1, 0] = "@inCodBanco";
@@ -161,6 +171,10 @@ namespace DebitoAutomatico.AD.Consultas
                 Param[7, 1, 0] = "@inOperacion";
                 Param[7, 2, 0] = "varchar(2)";
 
+                Param[8, 0, 0] = objEntidad.parteFija.ToString();
+                Param[8, 1, 0] = "@inParteFija";
+                Param[8, 2, 0] = "varchar(20)";
+
                 return wsc.Ejecutar(Param, procedimiento, "SQLBancos");
             }
             catch (Exception ex)
@@ -173,7 +187,7 @@ namespace DebitoAutomatico.AD.Consultas
         {
             try
             {
-                string[,,] Param = new string[6, 3, 1];
+                string[,,] Param = new string[7, 3, 1];
 
                 Param[0, 0, 0] = objEntidad.fechaPago.ToString();
                 Param[0, 1, 0] = "@inFechPago";
@@ -199,6 +213,10 @@ namespace DebitoAutomatico.AD.Consultas
                 Param[5, 1, 0] = "@inValorMontoSicoInc";
                 Param[5, 2, 0] = "numeric(18,0)";
 
+                Param[6, 0, 0] = objEntidad.parteFija.ToString();
+                Param[6, 1, 0] = "@inParteFija";
+                Param[6, 2, 0] = "varchar(20)";
+
                 return wsc.Ejecutar(Param, procedimiento, "SQLBancos");
             }
             catch (Exception ex)
@@ -206,11 +224,11 @@ namespace DebitoAutomatico.AD.Consultas
                 throw new Exception(ex.Message);
             }
         }
-        public string insertaLogErroresAD(string procedimiento, String mensaje, int codigoBanco, String fechaPago)
+        public string insertaLogErroresAD(string procedimiento, String mensaje, int codigoBanco, String fechaPago, String parteFija)
         {
             try
             {
-                string[,,] Param = new string[3, 3, 1];
+                string[,,] Param = new string[4, 3, 1];
 
                 Param[0, 0, 0] = codigoBanco.ToString();
                 Param[0, 1, 0] = "@inCodigoBanco";
@@ -224,12 +242,44 @@ namespace DebitoAutomatico.AD.Consultas
                 Param[2, 1, 0] = "@inFechaPago";
                 Param[2, 2, 0] = "date";
 
+                Param[3, 0, 0] = parteFija;
+                Param[3, 1, 0] = "@inParteFija";
+                Param[3, 2, 0] = "varchar(20)";
+
                 return wsc.Ejecutar(Param, procedimiento, "SQLBancos");
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+        }
+        public List<String[,]> ConsultaParteFijaAD(string Fiducia, string Recaudo, string LugarPago)
+        {
+            List<string[,]> lista = new List<string[,]>();
+            try
+            {
+                string[,,] Param = new string[3, 3, 1];
+
+                Param[0, 0, 0] = Fiducia;
+                Param[0, 1, 0] = "@inFiducia";
+                Param[0, 2, 0] = "varchar(3)";
+
+                Param[1, 0, 0] = LugarPago;
+                Param[1, 1, 0] = "@inLugarPago";
+                Param[1, 2, 0] = "int";
+
+                Param[2, 0, 0] = Recaudo;
+                Param[2, 1, 0] = "@inRecaudo";
+                Param[2, 2, 0] = "char(10)";
+
+                lista = wsc.LlenarLista(Param, "pa_BAN_CON_ConsultaBancosParteFija", "SQLBancos", "SP", "Sql");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+                
+            }
+            return lista;
         }
     }
 }
