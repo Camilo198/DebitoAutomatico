@@ -11,6 +11,7 @@ using System.Data;
 using Renci.SshNet;
 using Renci.SshNet.Sftp;
 using DebitoAutomatico.LN;
+using DebitoAutomatico.LN.Consultas;
 
 namespace DebitoAutomatico.LN
 {
@@ -588,10 +589,9 @@ namespace DebitoAutomatico.LN
             }
             catch (Exception ex)
             {
-                
-                //RptPagosLN pagosLN = new RptPagosLN();
-                //pagosLN.insertaLogErroresLN(ex.Message.ToString()+": "+NombreArchivo, fechaPago, codigoBanco);
-                //texto = new List<string>();
+                PagosRptLN pagosLN = new PagosRptLN();
+                pagosLN.insertaLogErroresLN("DA: "+ex.Message.ToString() + ": " + NombreArchivo, fechaPago, codigoBanco);
+                texto = new List<string>();
             }
             return texto;
         }

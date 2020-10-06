@@ -63,18 +63,18 @@ namespace DebitoAutomatico.LN.Consultas
                         if (txtPago != null)
                         {
                             recaudoSico = txtPago.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
-                            pagosEN.cantPagosSicoInc = Convert.ToInt32(recaudoSico.ElementAt(2));
-                            pagosEN.valorMontoSicoInc = Convert.ToDouble(recaudoSico.ElementAt(3).Replace(',', '.'));
+                            pagosEN.cantPagosSicoInc = Convert.ToInt32(recaudoSico.ElementAt(2)) + pagosEN.cantPagosSicoInc;
+                            pagosEN.valorMontoSicoInc = Convert.ToDouble(recaudoSico.ElementAt(3).Replace(',', '.')) + pagosEN.valorMontoSicoInc;
                             recaudoSico = null;
                         }
                         else
                         {
-                            this.insertaLogErroresLN("Archivo cortado o vacío", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                            this.insertaLogErroresLN("DA: " + "Archivo cortado o vacío", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                         }
                     }
                     catch (Exception e)
                     {
-                        this.insertaLogErroresLN(e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        this.insertaLogErroresLN("DA: " + e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                     }
 
                 }
@@ -82,8 +82,8 @@ namespace DebitoAutomatico.LN.Consultas
             }
             catch (Exception ex)
             {
-                this.insertaLogErroresLN("Archivo " + NombreArchivoSico + " inexistente o cortado", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
-                this.insertaLogErroresLN(ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                this.insertaLogErroresLN("DA: " + "Archivo " + NombreArchivoSico + " inexistente o cortado", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                this.insertaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                 inconsistentes = new List<string>();
             }
             try
@@ -97,25 +97,25 @@ namespace DebitoAutomatico.LN.Consultas
                         if (txtPago != null)
                         {
                             recaudoSico = txtPago.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
-                            pagosEN.cantPagosSicoCon = Convert.ToInt32(recaudoSico.ElementAt(2));
-                            pagosEN.valorMontoSicoCon = Convert.ToDouble(recaudoSico.ElementAt(3).Replace(',', '.'));
+                            pagosEN.cantPagosSicoCon = Convert.ToInt32(recaudoSico.ElementAt(2)) + pagosEN.cantPagosSicoCon;
+                            pagosEN.valorMontoSicoCon = Convert.ToDouble(recaudoSico.ElementAt(3).Replace(',', '.')) + pagosEN.valorMontoSicoCon;
                             recaudoSico = null;
                         }
                         else
                         {
-                            this.insertaLogErroresLN("Archivo cortado o vacío", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                            this.insertaLogErroresLN("DA: " + "Archivo cortado o vacío", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                         }
                     }
                     catch (Exception e)
                     {
-                        this.insertaLogErroresLN(e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        this.insertaLogErroresLN("DA: " + e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                     }
                 }
             }
             catch (Exception ex)
             {
-                this.insertaLogErroresLN("Archivo " + NombreArchivoSico + " inexistente o cortado", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
-                this.insertaLogErroresLN(ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                this.insertaLogErroresLN("DA: " + "Archivo " + NombreArchivoSico + " inexistente o cortado", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                this.insertaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                 consistentes = new List<string>();
             }
             arrPagos = this.ConsultarPagoDebitoLN(pagosEN);
@@ -128,13 +128,13 @@ namespace DebitoAutomatico.LN.Consultas
                     {
                         error_mensaje = "Error en la actualizacion Pagos/Montos Sico I/IR banco: " +
                                                 pagosEN.codigoBanco + " " + pagosEN.fechaPago;
-                        this.insertaLogErroresLN(error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        this.insertaLogErroresLN("DA: " + error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                         error_mensaje = String.Empty;
                     }
                 }
                 catch (Exception e)
                 {
-                    this.insertaLogErroresLN(e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                    this.insertaLogErroresLN("DA: " + e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                 }
             }
         }

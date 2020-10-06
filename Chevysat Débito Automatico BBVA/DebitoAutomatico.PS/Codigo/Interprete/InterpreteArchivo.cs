@@ -634,7 +634,7 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
 
                 pagosEN.fechaModificacionArch = this.FeModificacion;
                 pagosEN.fechaProceso = Convert.ToDateTime(FechaTransaccion);
-                pagosEN.fechaPago = Fecha;
+                pagosEN.fechaPago = DateTime.Now.ToString(); // Fecha
                 pagosEN.codigoBanco = Convert.ToInt32(LugarPago);
                 pagosEN.cantPagosArchivo = registrosLote;
                 pagosEN.valorMontoArchivo = valorarchivo;
@@ -653,18 +653,43 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                 {
                     try
                     {
+                        int contArch = 0;
+                        int contRec = 0;
+                        int contSicoCon = 0;
+                        int contSicoInc = 0;
+                        double contVlrSicoCon = 0;
+                        double contVlrSicoIncon = 0;
+                        double contVlrArch = 0;
+                        foreach (var item in arrPagos)
+                        {
+                            contVlrArch += item.valorMontoArchivo;
+                            contArch += item.cantPagosArchivo;
+                            contRec += item.cantPagosReacudo;
+                            contSicoCon += item.cantPagosSicoCon;
+                            contSicoInc += item.cantPagosSicoInc;
+                            contVlrSicoCon += item.valorMontoSicoCon;
+                            contVlrSicoIncon += item.valorMontoSicoInc;
+                        }
+                        pagosEN.cantPagosArchivo = contArch + pagosEN.cantPagosArchivo;
+                        pagosEN.cantPagosReacudo = contArch + pagosEN.cantPagosArchivo;
+                        pagosEN.cantPagosSicoCon = contSicoCon + pagosEN.cantPagosSicoCon;
+                        pagosEN.cantPagosSicoInc = contSicoInc + pagosEN.cantPagosSicoInc;
+                        pagosEN.valorMontoArchivo = contVlrArch + pagosEN.valorMontoArchivo;
+                        pagosEN.valorMontoSicoCon = contVlrSicoCon + pagosEN.valorMontoSicoCon;
+                        pagosEN.valorMontoSicoInc = contVlrSicoIncon + pagosEN.valorMontoSicoInc;
+
                         int result = Convert.ToInt32(pagosLN.actualizarPagoDebitoLN(pagosEN));
                         if (result == 0)
                         {
                             error_mensaje = "Error en la actualización Monto Archivo banco: " +
                                 pagosEN.codigoBanco + " " + pagosEN.fechaPago;
-                            pagosLN.insertaLogErroresLN(error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco);
+                            pagosLN.insertaLogErroresLN("DA: " + error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco);
                             error_mensaje = String.Empty;
                         }
                     }
                     catch (Exception e)
                     {
-                        pagosLN.insertaLogErroresLN(e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        pagosLN.insertaLogErroresLN("DA: "+e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                     }
                 }
                 else
@@ -676,13 +701,13 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                         {
                             error_mensaje = "Error en la inserción Monto Archivo banco: banco: " +
                                 pagosEN.codigoBanco + " " + pagosEN.fechaPago;
-                            pagosLN.insertaLogErroresLN(error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                            pagosLN.insertaLogErroresLN("DA: " + error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                             error_mensaje = String.Empty;
                         }
                     }
                     catch (Exception ex)
                     {
-                        pagosLN.insertaLogErroresLN(ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        pagosLN.insertaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                     }
                 }
                 #endregion

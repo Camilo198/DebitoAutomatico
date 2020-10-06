@@ -26,20 +26,20 @@ namespace DebitoAutomatico.PS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://sbogche010f:8087/ServiceDebito.svc")]
-        public string DebitoAutomatico_PS_ServiceDebito_ServiceDebito {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://wsenviocorreos.chevyplan.col/service.asmx")]
+        public string DebitoAutomatico_PS_wsenviocorreos_Service {
             get {
-                return ((string)(this["DebitoAutomatico_PS_ServiceDebito_ServiceDebito"]));
+                return ((string)(this["DebitoAutomatico_PS_wsenviocorreos_Service"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://wsenviocorreos.chevyplan.col/service.asmx")]
-        public string DebitoAutomatico_PS_wsenviocorreos_Service {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sbogche048v:8041/ServiceDebito.svc")]
+        public string DebitoAutomatico_PS_ServiceDebito_ServiceDebito {
             get {
-                return ((string)(this["DebitoAutomatico_PS_wsenviocorreos_Service"]));
+                return ((string)(this["DebitoAutomatico_PS_ServiceDebito_ServiceDebito"]));
             }
         }
     }

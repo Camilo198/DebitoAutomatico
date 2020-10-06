@@ -190,11 +190,6 @@
     </Content>
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Perfil1.pubxml" />
-    <None Include="Web References\ServiceDebito\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ServiceDebito\ServiceDebito.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -204,6 +199,14 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Web References\wsenviocorreos\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\ServiceDebito\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <None Include="Web References\ServiceDebito\ServiceDebito.wsdl" />
     <None Include="Web References\ServiceDebito\ServiceDebito.xsd">
       <SubType>Designer</SubType>
@@ -211,10 +214,6 @@
     <None Include="Web References\ServiceDebito\ServiceDebito0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Web References\wsenviocorreos\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
     <None Include="Web References\wsenviocorreos\service.wsdl" />
   </ItemGroup>
   <ItemGroup>
@@ -433,10 +432,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://sbogche010f:8087/ServiceDebito.svc">
+    <WebReferenceUrl Include="http://sbogche048v:8041/ServiceDebito.svc%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ServiceDebito\</RelPath>
-      <UpdateFromURL>http://sbogche010f:8087/ServiceDebito.svc</UpdateFromURL>
+      <UpdateFromURL>http://sbogche048v:8041/ServiceDebito.svc%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
