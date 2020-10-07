@@ -43,6 +43,9 @@
     <Reference Include="Renci.SshNet">
       <HintPath>..\DebitoAutomatico.PS\Librerias\Renci.SshNet.dll</HintPath>
     </Reference>
+    <Reference Include="SSHConect">
+      <HintPath>Librerias\SSHConect.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />

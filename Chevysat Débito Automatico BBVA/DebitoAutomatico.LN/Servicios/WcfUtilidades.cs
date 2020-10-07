@@ -12,6 +12,8 @@ using Renci.SshNet;
 using Renci.SshNet.Sftp;
 using DebitoAutomatico.LN;
 using DebitoAutomatico.LN.Consultas;
+using System.Configuration;
+using SSH;
 
 namespace DebitoAutomatico.LN
 {
@@ -594,6 +596,50 @@ namespace DebitoAutomatico.LN
                 texto = new List<string>();
             }
             return texto;
+        }
+        public IList<String> LeerFicheroFTP(string NombreArchivo, string UsuFTP, string PassFTP, string RutaFTP, string fechaPago = "", int codigoBanco = 0)
+        {
+            string RutaSico = ConfigurationManager.AppSettings["RutaFTP"].ToString();
+
+            string Repositorio = ConfigurationManager.AppSettings["Repositorio"].ToString();
+
+            string ServidorSico = ConfigurationManager.AppSettings["server"].ToString();            /*PAGOS*/
+            string UsuarioSico = ConfigurationManager.AppSettings["user"].ToString();               /*PAGOS*/
+            string PasswordSico = ConfigurationManager.AppSettings["password"].ToString();          /*PAGOS*/
+
+            string MegaPlanos = ConfigurationManager.AppSettings["MegaPlanos"].ToString(); // SAU 08.09.2020
+
+            String comando = "";
+            IList<String> texto = null;
+            SSHConect CON = new SSHConect();
+            try
+            {
+                // Copiar archivo de export/home/system a megaplanos
+                comando = "cp " + RutaFTP + NombreArchivo + " " + MegaPlanos;
+                CON.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                // Bajar archivo consistente e inconsistente de megaplanos
+                string res = DownloadFTP(Repositorio, NombreArchivo, RutaSico, UsuFTP, PassFTP);
+                if (res == "S")
+                {
+                    texto = File.ReadAllLines(Repositorio + NombreArchivo);
+                }
+                else
+                {
+                    texto = new List<string>();
+                }
+                // Borrar archivo consistente e inconsistente de carpeta local y de megaplanos
+                comando = "rm " + MegaPlanos + NombreArchivo;
+                CON.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                File.Delete(Repositorio + NombreArchivo);
+                return texto;
+            }
+            catch (Exception)
+            {
+                comando = "rm " + MegaPlanos + NombreArchivo;
+                CON.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                File.Delete(Repositorio + NombreArchivo);
+                return new List<string>();
+            }
         }
     }
 }
