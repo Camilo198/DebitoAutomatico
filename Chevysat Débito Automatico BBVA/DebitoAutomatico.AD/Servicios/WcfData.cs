@@ -201,7 +201,7 @@ namespace DebitoAutomatico.AD.Servicios
                 return "OK";
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return "NO";
             }

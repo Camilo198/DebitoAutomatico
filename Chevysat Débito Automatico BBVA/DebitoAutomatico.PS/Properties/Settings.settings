@@ -8,5 +8,8 @@
     <Setting Name="DebitoAutomatico_PS_ServiceDebito_ServiceDebito" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://sbogche048v:8041/ServiceDebito.svc</Value>
     </Setting>
+    <Setting Name="DebitoAutomatico_PS_ServMetodosSICO_ServMetodosSICO" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://sdatche005vp:8012/ServMetodosSICO.svc</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

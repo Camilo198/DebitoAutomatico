@@ -214,6 +214,17 @@
     <None Include="Web References\ServiceDebito\ServiceDebito0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Web References\ServMetodosSICO\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\ServMetodosSICO\ServMetodosSICO.wsdl" />
+    <None Include="Web References\ServMetodosSICO\ServMetodosSICO.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ServMetodosSICO\ServMetodosSICO0.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web References\wsenviocorreos\service.wsdl" />
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +423,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\ServMetodosSICO\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\wsenviocorreos\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -442,6 +458,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>DebitoAutomatico_PS_ServiceDebito_ServiceDebito</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://sdatche005vp:8012/ServMetodosSICO.svc%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ServMetodosSICO\</RelPath>
+      <UpdateFromURL>http://sdatche005vp:8012/ServMetodosSICO.svc%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>DebitoAutomatico_PS_ServMetodosSICO_ServMetodosSICO</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="http://wsenviocorreos.chevyplan.col/service.asmx%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>

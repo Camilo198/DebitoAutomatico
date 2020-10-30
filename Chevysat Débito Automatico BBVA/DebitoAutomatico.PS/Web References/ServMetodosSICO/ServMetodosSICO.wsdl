@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServMetodosSICO" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://sdatche005vp:8012/ServMetodosSICO.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://sdatche005vp:8012/ServMetodosSICO.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServMetodosSICO_MetodoDevoluciones_InputMessage">
+    <wsdl:part name="parameters" element="tns:MetodoDevoluciones" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_MetodoDevoluciones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MetodoDevolucionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_Permanencia_InputMessage">
+    <wsdl:part name="parameters" element="tns:Permanencia" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_Permanencia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PermanenciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_DatosBasicos_InputMessage">
+    <wsdl:part name="parameters" element="tns:DatosBasicos" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_DatosBasicos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DatosBasicosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_FechaActualizacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:FechaActualizacion" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_FechaActualizacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FechaActualizacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ActualizarDatosBasicos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarDatosBasicos" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ActualizarDatosBasicos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarDatosBasicosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ConsultaAsesor_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaAsesor" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ConsultaAsesor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaAsesorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_Itfvtasf3au_InputMessage">
+    <wsdl:part name="parameters" element="tns:Itfvtasf3au" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_Itfvtasf3au_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Itfvtasf3auResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_Proappaau_InputMessage">
+    <wsdl:part name="parameters" element="tns:Proappaau" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_Proappaau_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProappaauResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServMetodosSICO">
+    <wsdl:operation name="MetodoDevoluciones">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/MetodoDevoluciones" message="tns:IServMetodosSICO_MetodoDevoluciones_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/MetodoDevolucionesResponse" message="tns:IServMetodosSICO_MetodoDevoluciones_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Permanencia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/Permanencia" message="tns:IServMetodosSICO_Permanencia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/PermanenciaResponse" message="tns:IServMetodosSICO_Permanencia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DatosBasicos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/DatosBasicos" message="tns:IServMetodosSICO_DatosBasicos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/DatosBasicosResponse" message="tns:IServMetodosSICO_DatosBasicos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FechaActualizacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/FechaActualizacion" message="tns:IServMetodosSICO_FechaActualizacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/FechaActualizacionResponse" message="tns:IServMetodosSICO_FechaActualizacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarDatosBasicos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/ActualizarDatosBasicos" message="tns:IServMetodosSICO_ActualizarDatosBasicos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/ActualizarDatosBasicosResponse" message="tns:IServMetodosSICO_ActualizarDatosBasicos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAsesor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/ConsultaAsesor" message="tns:IServMetodosSICO_ConsultaAsesor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/ConsultaAsesorResponse" message="tns:IServMetodosSICO_ConsultaAsesor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Itfvtasf3au">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/Itfvtasf3au" message="tns:IServMetodosSICO_Itfvtasf3au_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/Itfvtasf3auResponse" message="tns:IServMetodosSICO_Itfvtasf3au_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Proappaau">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/Proappaau" message="tns:IServMetodosSICO_Proappaau_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/ProappaauResponse" message="tns:IServMetodosSICO_Proappaau_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServMetodosSICO" type="tns:IServMetodosSICO">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MetodoDevoluciones">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/MetodoDevoluciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Permanencia">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/Permanencia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DatosBasicos">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/DatosBasicos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FechaActualizacion">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/FechaActualizacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarDatosBasicos">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/ActualizarDatosBasicos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAsesor">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/ConsultaAsesor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Itfvtasf3au">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/Itfvtasf3au" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Proappaau">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/Proappaau" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServMetodosSICO">
+    <wsdl:port name="BasicHttpBinding_IServMetodosSICO" binding="tns:BasicHttpBinding_IServMetodosSICO">
+      <soap:address location="http://sdatche005vp:8012/ServMetodosSICO.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

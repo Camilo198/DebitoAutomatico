@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MetodoDevoluciones">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FechaInicial" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="FechaFinal" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MetodoDevolucionesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MetodoDevolucionesResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Permanencia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Estructura" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="FechaInicial" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="FechaFinal" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PermanenciaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PermanenciaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DatosBasicos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Cupo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DatosBasicosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DatosBasicosResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FechaActualizacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Cupo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FechaActualizacionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FechaActualizacionResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarDatosBasicos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Cupo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DireccionResidencia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DireccionResidencia2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Departamento" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Ciudad" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Celular" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DireccionEnv" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="EnviaFactura" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DireccionOficina" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DireccionOficina2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DepartamentoOficina" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CiudadOficina" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="TelefonoOficina" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarDatosBasicosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActualizarDatosBasicosResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaAsesor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaAsesorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConsultaAsesorResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Itfvtasf3au">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Lote" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Itfvtasf3auResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Itfvtasf3auResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Proappaau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Archivo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProappaauResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProappaauResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

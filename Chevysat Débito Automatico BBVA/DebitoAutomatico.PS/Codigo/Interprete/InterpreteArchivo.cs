@@ -743,10 +743,12 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                     if (exporasico == "OK")
                     {
                         //Se encarga de aplicar directamente en SICO
-                        comando = NombreComando + NombrePrograma + " " + nombreArchivo;
+                        ServMetodosSICO.ServMetodosSICO smsico = new ServMetodosSICO.ServMetodosSICO(); 
+                       // comando = NombreComando + NombrePrograma + " " + nombreArchivo;
                         try
                         {
-                            Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                            smsico.Proappaau(nombreArchivo);
+                           // Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
                         }
                         catch (Exception ex)
                         {
