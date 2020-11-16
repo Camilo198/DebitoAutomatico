@@ -12,7 +12,7 @@ namespace DebitoAutomatico.PS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -36,20 +36,20 @@ namespace DebitoAutomatico.PS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://sbogche048v:8041/ServiceDebito.svc")]
-        public string DebitoAutomatico_PS_ServiceDebito_ServiceDebito {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sdatche005vp:8012/ServMetodosSICO.svc")]
+        public string DebitoAutomatico_PS_ServMetodosSICO_ServMetodosSICO {
             get {
-                return ((string)(this["DebitoAutomatico_PS_ServiceDebito_ServiceDebito"]));
+                return ((string)(this["DebitoAutomatico_PS_ServMetodosSICO_ServMetodosSICO"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://sdatche005vp:8012/ServMetodosSICO.svc")]
-        public string DebitoAutomatico_PS_ServMetodosSICO_ServMetodosSICO {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sbogche048vp:9041/ServiceDebito.svc")]
+        public string DebitoAutomatico_PS_ServiceDebito_ServiceDebito {
             get {
-                return ((string)(this["DebitoAutomatico_PS_ServMetodosSICO_ServMetodosSICO"]));
+                return ((string)(this["DebitoAutomatico_PS_ServiceDebito_ServiceDebito"]));
             }
         }
     }
