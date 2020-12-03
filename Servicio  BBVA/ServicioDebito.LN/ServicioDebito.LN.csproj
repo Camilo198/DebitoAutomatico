@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Consulta\ActualizaClienteLN.cs" />
     <Compile Include="Consulta\BancoLN.cs" />
+    <Compile Include="Consulta\ClienteContratoDigitalLN.cs" />
     <Compile Include="Consulta\ClienteSICOLN.cs" />
     <Compile Include="Consulta\DatosDebitoInconsistenteLN.cs" />
     <Compile Include="Consulta\DatosDebitoLN.cs" />

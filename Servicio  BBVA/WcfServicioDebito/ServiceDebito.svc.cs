@@ -79,10 +79,12 @@ namespace WcfServicioDebito
             DataTable DtXml = new DataTable();
             DataSet objCliente = new DataSet();
 
+            //Consulta información en SICO
             ClienteSico objS = new ClienteSico();
             objS.pContrato = NroContrato;
             objCliente = new ClienteSICOLN().consultarClienteSICO(objS, "pa_DEB_Consulta_Clientes");
 
+            //Consulta información de un cliente inconsistente en débito
             objDatosDI.pContrato = Convert.ToString(NroContrato);
             ClienteDIn = new DatosDebitoInconsistenteLN().consultarDatos(objDatosDI);
 
@@ -90,6 +92,7 @@ namespace WcfServicioDebito
             {
                 objDatosD.pIdTitularCuenta = IdTitularCuenta;
             }
+            //Consulta información si cuenta con débito
             objDatosD.pContrato = Convert.ToString(NroContrato);
             ClienteD = new DatosDebitoLN().consultarDatos(objDatosD);
 
@@ -1372,5 +1375,32 @@ namespace WcfServicioDebito
             }
 
         }
+
+        #region CONTRATO DIGITAL
+        /// <summary>
+        /// Consulta la información del cliente en contrato digital
+        /// </summary>
+        /// <param name="Contrato"></param>
+        /// <param name="Usuario"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
+        public string ConsultaContratoDigital(int Contrato, string Usuario, string Password)
+        {
+            DataTable DtXml = new DataTable();
+            DataSet objCliente = new DataSet();
+            ClienteSico objS = new ClienteSico();
+
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                objCliente.Tables.Add(DtXml);
+                return objCliente.GetXml();
+            }
+        }
+        #endregion
     }
 }

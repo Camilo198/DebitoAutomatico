@@ -37,5 +37,8 @@ namespace WcfServicioDebito
 
         [OperationContract]
         string ConsultaClientePrenota(int Contrato);
+
+        [OperationContract]
+        string ConsultaContratoDigital(int Contrato, string Usuario, string Password);
     }
 }

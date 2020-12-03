@@ -48,6 +48,7 @@
     <Compile Include="Conexion\Querys.cs" />
     <Compile Include="Consultas\ActualizaClienteAD.cs" />
     <Compile Include="Consultas\BancoAD.cs" />
+    <Compile Include="Consultas\ClienteContratoDigitalAD.cs" />
     <Compile Include="Consultas\ClienteSICOAD.cs" />
     <Compile Include="Consultas\DatosDebitoAD.cs" />
     <Compile Include="Consultas\DatosDebitoInconsistenteAD.cs" />
