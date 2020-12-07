@@ -39,6 +39,10 @@ namespace WcfServicioDebito
         string ConsultaClientePrenota(int Contrato);
 
         [OperationContract]
-        string ConsultaContratoDigital(int Contrato, string Usuario, string Password);
+        string ConsultaClienteContratoDigital(int Contrato, string Usuario, string Password);
+        [OperationContract]
+        string ModificarDatosContratoDigital(int Contrato, string NumeroCuenta, int TipoCuenta, int IdBanco, string DireccionIp, int FechaDebito, string Usuario, string Password);
+        [OperationContract]
+        string GuardarClienteContratoDigital(int Contrato, int IdBanco, int TipoCuenta, string NumeroCuenta, int CanalIngreso, string DireccionIp, int FechaDebito, string Usuario, string Password);
     }
 }

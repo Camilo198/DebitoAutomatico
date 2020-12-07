@@ -126,6 +126,9 @@
   <data name="Contrato" xml:space="preserve">
     <value>Contrato N°:</value>
   </data>
+  <data name="ContratoDigitalNoexistente" xml:space="preserve">
+    <value>El Contrato Digital Consultado No Existe, por favor validar de nuevo.</value>
+  </data>
   <data name="ContratoEstados" xml:space="preserve">
     <value>Solo se pueden ingresar contratos a Débito Automático en Estados Vigente, Mora o Reemplazado.</value>
   </data>

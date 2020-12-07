@@ -110,6 +110,39 @@ namespace WcfServicioDebito
         }
 
         /// <summary>
+        /// Metodo interno que consulta en la base CHEVYPLAN Para contrato Digital la existencia de un cliente
+        /// </summary>
+        /// <param name="NroContrato"></param>
+        /// <param name="Usuario"></param>
+        /// <returns></returns>
+        private DataSet ExisteClienteContratoDigital(int NroContrato)
+        {
+            DataTable DtXml = new DataTable();
+            DataSet objCliente = new DataSet();
+
+            //Consulta información en ContratoDigital
+            ClienteContratoDigitalEN objS = new ClienteContratoDigitalEN();
+            objS.pContrato = NroContrato;
+            objCliente = new ClienteContratoDigitalLN().consultarClienteContratoDigitalLN(objS, "pa_DEB_Consulta_Cliente_Contrato_Digital");
+
+
+
+            if (objCliente.Tables["ClienteContratoDigital"].Rows.Count > 0)
+            {
+                DtXml = wfu.AgregarTabla(Recursos.ContratoPuedeCrearse, "1");
+                objCliente.Tables.Add(DtXml);
+            }
+            else 
+            {
+                DtXml = wfu.AgregarTabla(Recursos.ContratoDigitalNoexistente, "0");
+                objCliente.Tables.Add(DtXml);
+            }
+            return objCliente;
+        }
+
+       
+
+        /// <summary>
         /// Metodo interno que homologa los codigos de banco
         /// </summary>
         /// <param name="CodigoBanco"></param>
@@ -1384,21 +1417,665 @@ namespace WcfServicioDebito
         /// <param name="Usuario"></param>
         /// <param name="Password"></param>
         /// <returns></returns>
-        public string ConsultaContratoDigital(int Contrato, string Usuario, string Password)
+        public string ConsultaClienteContratoDigital(int Contrato, string Usuario, string Password)
         {
+            DataSet ConsultaClienteCD = new DataSet();
             DataTable DtXml = new DataTable();
-            DataSet objCliente = new DataSet();
+            
             ClienteSico objS = new ClienteSico();
 
             try
             {
+                objUsuario.pUsuario = Usuario;
+                objUsuario.pPassword = objEncriptador.encriptar(Password);
 
+                List<ServicioDebito.EN.Tablas.Usuario> listaU = new UsuarioLN().consultar(objUsuario);
+                if (listaU.Count > 0)
+                {
+                    ConsultaClienteCD = ExisteClienteContratoDigital(Contrato);
+                    return ConsultaClienteCD.GetXml();
+                }
+                else
+                {
+                    DtXml = wfu.AgregarTabla(Recursos.AutenticacionErrada, "0");
+                    ConsultaClienteCD.Tables.Add(DtXml);
+                    return ConsultaClienteCD.GetXml();
+                }
             }
             catch (Exception)
             {
                 DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
-                objCliente.Tables.Add(DtXml);
-                return objCliente.GetXml();
+                ConsultaClienteCD.Tables.Add(DtXml);
+                return ConsultaClienteCD.GetXml();
+            }
+        }
+        /// <summary>
+        /// Guarda la informacion del cliente
+        /// </summary>
+        /// <param name="Contrato"></param>
+        /// <param name="IdBanco"></param>
+        /// <param name="TipoCuenta"></param>
+        /// <param name="NumeroCuenta"></param>
+        /// <param name="CanalIngreso"></param>
+        /// <param name="DireccionIp"></param>
+        /// <param name="Usuario"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
+        public string GuardarClienteContratoDigital(int Contrato, int IdBanco, int TipoCuenta, string NumeroCuenta, int CanalIngreso, string DireccionIp, int FechaDebito, string Usuario, string Password)
+        {
+            DataSet ConsultClient = new DataSet();
+            DataSet ConsultClientDigital= new DataSet();
+            DataSet ConsultTitular = new DataSet();
+            DataSet ConsultDebito = new DataSet();
+            DataSet ConsultError = new DataSet();
+            DataTable DtXml = new DataTable();
+            String PasswordCall = String.Empty;
+         
+            try
+            {
+                objUsuario.pUsuario = Usuario;
+                objUsuario.pPassword = objEncriptador.encriptar(Password);
+
+                List<ServicioDebito.EN.Tablas.Usuario> listaU = new UsuarioLN().consultar(objUsuario);
+
+                if (listaU.Count > 0)
+                {
+                    objUsuario = listaU[0];
+                    PasswordCall = objEncriptador.desencriptar(objUsuario.pPassword);
+                    TitularCuenta objT = new TitularCuenta();
+
+                    ConsultClientDigital = ExisteClienteContratoDigital(Contrato);
+
+                    if (ConsultClientDigital.Tables[0].Rows.Count > 0)
+                    {                     
+
+                            objT.pNombre = ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["NOMBRE_CLIENTE"].ToString().TrimStart('0');
+                            objT.pNumeroIdentificacion = ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["NUMERO_DOCUMENTO_CLIENTE"].ToString().TrimStart('0');
+                            objT.pTipoIdentificacion = Convert.ToInt32(ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["TIPO_DOCUMENTO"].ToString());
+
+
+                        //Consulta información en Titular
+
+                        TitularCuentaLN tcl = new TitularCuentaLN();
+                        ConsultTitular = tcl.consultarTerceros(objT);
+                        int valorT = 0;
+                        if (ConsultTitular.Tables["Titular"].Rows.Count == 0)
+                        { valorT = new TitularCuentaLN().insertar(objT); }
+                        else { valorT = ConsultTitular.Tables["Titular"].Rows.Count; }
+
+                            
+
+                        if (valorT <= 0)
+                        {
+                            DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                            ConsultClient.Tables.Add(DtXml);
+                            return ConsultClient.GetXml();
+                        }
+                        else
+                        {
+                            DatosDebito objD = new DatosDebito();
+                            DatosDebito objD2 = new DatosDebito();
+                            objD.pContrato = Convert.ToString(Contrato);
+                            objD2.pContrato= Convert.ToString(Contrato);
+                            objD.pDigito = Convert.ToInt32(UtilidadesWeb.calculoDigito(objD.pContrato));
+                            objD.pIdBanco = IdBanco;
+                            objD.pEstado = 16; //CLIENTE INICIA EL ESTADO CONTRATO DIGITAL (ESTADO 16)
+                            objD.pIntentos = 0;
+                            objD.pTipoCuenta = TipoCuenta;
+                            objD.pNumeroCuenta = NumeroCuenta;
+                            objD.pIdFormatoDebito = CanalIngreso;//CANAL DE INGRESO 24 PARA CONTRATO DIGITAL
+                            objD.pIdFormatoCancelacion = 0;
+                            objD.pDireccionIp = DireccionIp;
+                            objD.pFechaDebito = FechaDebito;
+
+                            objD.pSuspendido = false;
+                            objD.pFechaInicioSus = String.Empty;
+                            objD.pFechaFinSus = String.Empty;
+
+                            int valorD = 0;
+                            ConsultDebito = new DatosDebitoLN().consultarDatos(objD2);
+
+                            if (ConsultDebito.Tables["ClienteDebito"].Rows.Count > 0)
+                            {
+                                DtXml = wfu.AgregarTabla(Recursos.ContratoIngresado, "0");
+                                ConsultClient.Tables.Add(DtXml);
+                                return ConsultClient.GetXml();
+                            }
+                            objD.pIdTitularCuenta = valorT;
+                            valorD = new DatosDebitoLN().insertar(objD);
+                            
+
+                            if (valorD > 0)
+                            {
+                                DataSet dsBanco = new DataSet();
+                                DataSet dsTipoC = new DataSet();
+                                DataSet dsTipoF = new DataSet();
+                                DataSet dsFecha = new DataSet();
+                                dsBanco = HomologarBanco(IdBanco, true);
+                                dsTipoC = HomologarTipoCuenta(TipoCuenta);
+                                dsTipoF = HomologarCanalIngreso(CanalIngreso);
+                                dsFecha = HomologarFechaDebito(FechaDebito, true);
+
+                                int logueo = 0;
+                                #region (INFORMACION PARA LOG)
+                                campos = string.Concat(objD.pContrato,
+                                    " con BANCO:", Convert.ToString(dsBanco.Tables[0].Rows[0]["NOMBRE"].ToString()).ToUpper(),
+                                    ", TIPO DE CUENTA:", Convert.ToString(dsTipoC.Tables[0].Rows[0]["VALOR"].ToString()),
+                                    ", NÚMERO DE CUENTA:", Convert.ToString(objD.pNumeroCuenta),
+                                    ", FORMATO DEBITO:", Convert.ToString(dsTipoF.Tables[0].Rows[0]["VALOR"].ToString()),
+                                    ", CUENTA TERCERO:", Convert.ToString(objD.pTercero).ToUpper(),
+                                    ", NOMBRE:", Convert.ToString(objT.pNombre),
+                                    ", TIPO DE IDENTIFICACIÓN:", UtilidadesWeb.homologarDocumentoAbrebiatura(Convert.ToInt32(objT.pTipoIdentificacion)),
+                                    ", IDENTIFICACIÓN:", Convert.ToString(objT.pNumeroIdentificacion),
+                                    ", DÉBITO A PARTIR DEL:", Convert.ToString(dsFecha.Tables[0].Rows[0]["VALOR"].ToString()),
+                                    ", DIRECCION_IP:", Convert.ToString(objD.pDireccionIp));
+                                #endregion
+                                logueo = Log(1, objD.pContrato, Usuario, "Se creó el contrato N°: ");
+
+                                if (logueo > 0)
+                                {
+                                    String Correo = String.Empty;
+                                    String Mensaje = String.Empty;
+                                    int LongitudNroCuenta = 0;
+
+                                    if (IdBanco == 27) //Banco BBVA
+                                    {
+                                        DtXml = wfu.AgregarTabla("!Hola " + getNombrePropio(ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["PRIMERNOMBRE"].ToString()) + " " +
+                                        ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["PRONOMBRE"].ToString() + " " + Recursos.InscripcionClienteNuevoBBVA, "1");
+                                        ConsultClient.Tables.Add(DtXml);
+                                    }
+                                    else
+                                    {
+                                        DtXml = wfu.AgregarTabla("!Hola " + getNombrePropio(ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["PRIMERNOMBRE"].ToString()) + " " +
+                                        ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["PRONOMBRE"].ToString() + " " + Recursos.InscripcionClienteNuevo, "1");
+                                        ConsultClient.Tables.Add(DtXml);
+                                    }
+
+                                    Mensajes objM = new Mensajes();
+                                    objM.pTipoContrato = ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["TIPO_CUPO"].ToString().Substring(0, 1);
+                                    objM.pEstadoDebito = 1;
+                                    objM.pMotivo = 1;
+                                    List<ServicioDebito.EN.Tablas.Mensajes> listaM = new MensajesLN().consultar(objM);
+
+                                    if (ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["EMAIL_CLIENTE"].ToString() != String.Empty)
+                                    {
+                                        if (listaM.Count > 0)
+                                        {
+                                            if (ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["LeydPcorreo"].ToString() == "SI")
+                                            {
+                                                DataSet DsCorreoBanco = new DataSet();
+                                                DsCorreoBanco = ConsultarCorreosBancos();
+                                                String Remitente = String.Empty;
+                                                String ConCopia = String.Empty;
+                                                String CorreoCliente = String.Empty;
+
+                                                if (DsCorreoBanco.Tables.Contains("tabla"))
+                                                {
+                                                    Remitente = DsCorreoBanco.Tables["tabla"].Rows[0]["REMITENTE"].ToString();
+                                                    ConCopia = DsCorreoBanco.Tables["tabla"].Rows[0]["CORREOS_CONTROL"].ToString();
+                                                }
+
+                                                objM = listaM[0];
+                                                LongitudNroCuenta = objD.pNumeroCuenta.Length;
+                                                Mensaje = objM.pMensaje
+                                                .Replace("@FechaActual_", Convert.ToString(DateTime.Now))
+                                                .Replace("@Nombrecliente_", objT.pNombre)
+                                                .Replace("@NroContrato_", objD.pContrato)
+                                                .Replace("@Ciudad_", ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["CIUDAD"].ToString())
+                                                .Replace("@Banco_", dsBanco.Tables[0].Rows[0]["NOMBRE"].ToString().ToUpper())
+                                                .Replace("@TipoCuenta_", dsTipoC.Tables[0].Rows[0]["VALOR"].ToString())
+                                                .Replace("@NroCuenta_", "".PadLeft(5, '*') + objD.pNumeroCuenta.Substring((LongitudNroCuenta - 4), 4))
+                                                .Replace("@Debito_", dsFecha.Tables[0].Rows[0]["VALOR"].ToString());
+
+                                                CorreoCliente = ConsultClientDigital.Tables["ClienteContratoDigital"].Rows[0]["EMAIL_CLIENTE"].ToString();
+
+                                                if (ConfigurationManager.AppSettings["CorreoCliente"].ToString() == "Si")
+                                                {
+                                                    Correo = wfu.EnvioMail("", objM.pAsunto, Mensaje, CorreoCliente, Remitente, ConCopia);
+                                                }
+                                                else
+                                                {
+                                                    Correo = wfu.EnvioMail("", objM.pAsunto, Mensaje, ConCopia, Remitente, "");
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                                            ConsultClient.Tables.Add(DtXml);
+                                            return ConsultClient.GetXml();
+                                        }
+                                    }
+
+                                    return ConsultClient.GetXml();
+                                }
+                                else
+                                {
+                                    DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                                    ConsultClient.Tables.Add(DtXml);
+                                    return ConsultClient.GetXml();
+                                }
+                            }
+                            else
+                            {
+                                DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                                ConsultClient.Tables.Add(DtXml);
+                                return ConsultClient.GetXml();
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        DtXml = wfu.AgregarTabla(Recursos.UsuarioNoExiste, "0");
+                        ConsultClient.Tables.Add(DtXml);
+                        return ConsultClient.GetXml();
+                    }
+                }
+                else
+                {
+                    DtXml = wfu.AgregarTabla(Recursos.AutenticacionErrada, "0");
+                    ConsultClient.Tables.Add(DtXml);
+                    return ConsultClient.GetXml();
+                }
+            }
+            catch (Exception)
+            {  
+                DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                ConsultError.Tables.Add(DtXml);
+                return ConsultClient.GetXml();
+            }
+        }
+
+        /// <summary>
+        /// Modificacion de datos del cliente que realiza desde el APP o la Pagina web
+        /// </summary>
+        /// <param name="Contrato"></param>
+        /// <param name="NumeroCuenta"></param>
+        /// <param name="TipoCuenta"></param>
+        /// <param name="IdBanco"></param>
+        /// <param name="DireccionIp"></param>
+        /// <param name="Usuario"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
+        public string ModificarDatosContratoDigital(int Contrato, string NumeroCuenta, int TipoCuenta, int IdBanco, string DireccionIp, int FechaDebito, string Usuario, string Password)
+        {
+            DataSet ConsultClient = new DataSet();
+            DataSet ConsultClientContratoDigital = new DataSet();
+            DataTable DtXml = new DataTable();
+            try
+            {
+                objUsuario.pUsuario = Usuario;
+                objUsuario.pPassword = objEncriptador.encriptar(Password);
+
+                List<ServicioDebito.EN.Tablas.Usuario> listaU = new UsuarioLN().consultar(objUsuario);
+
+                if (listaU.Count > 0)
+                {
+                    DatosDebito objD2 = new DatosDebito();
+                    objD2.pContrato = Convert.ToString(Contrato);
+                    ConsultClient = new DatosDebitoLN().consultarDatos(objD2);
+                    ConsultClientContratoDigital = ExisteClienteContratoDigital(Contrato);
+                    if (ConsultClient.Tables.Contains("ClienteDebito"))
+                    {
+                        TitularCuenta objTerc = new TitularCuenta();
+                        DataSet ConTerceros = new DataSet();
+                        DataTable DtTerceros = new DataTable();
+
+                        objTerc.pId = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID_TITULAR_CUENTA"].ToString());
+                        ConTerceros = new TitularCuentaLN().consultarTerceros(objTerc);
+
+                        if (ConTerceros.Tables["Titular"].Rows.Count > 0)
+                        {
+                            int actuaclient = 0;
+                            if (//Si esta en prenota en proceso ó debito en proceso
+                                (Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ESTADO"].ToString()) == 2 ||
+                                Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ESTADO"].ToString()) == 5)
+                                && //Y si el banco ó el tipo de cuenta ó el número de cuenta son diferentes
+                                (Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID_BANCO"].ToString()) != IdBanco ||
+                                Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["TIPO_CUENTA"].ToString()) != TipoCuenta ||
+                                ConsultClient.Tables["ClienteDebito"].Rows[0]["NUMERO_CUENTA"].ToString() != NumeroCuenta)
+                                )
+                            {
+
+                                ActualizaCliente objAc = new ActualizaCliente();
+                                objAc.pContrato = ConsultClient.Tables["ClienteDebito"].Rows[0]["CONTRATO"].ToString();
+                                objAc.pIdTitularCuenta = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID_TITULAR_CUENTA"].ToString());
+                                objAc.pIdBanco = IdBanco;
+                                objAc.pIdTipoCuenta = TipoCuenta;
+                                objAc.pNumeroCuenta = NumeroCuenta;
+                                objAc.pDireccionIp = DireccionIp;
+                                objAc.pUsuario = Usuario;
+                                List<ServicioDebito.EN.Tablas.ActualizaCliente> listaB = new ActualizaClienteLN().consultarDatos(objAc);
+
+                                int logvalor = 0;
+                                string MensajeLog = String.Empty;
+                                if (listaB.Count > 0)
+                                {
+                                    actuaclient = new ActualizaClienteLN().actualizar(objAc);
+                                    logvalor = 2;
+                                    MensajeLog = "Se actualizó temporalmente el contrato N°: ";
+                                }
+                                else
+                                {
+                                    actuaclient = new ActualizaClienteLN().insertar(objAc);
+                                    logvalor = 1;
+                                    MensajeLog = "Se creo temporalmente el contrato N°: ";
+                                }
+
+                                int actua = 0;
+                                DatosDebito ObjDat = new DatosDebito();
+                                ObjDat.pId = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID"].ToString());
+                                ObjDat.pContrato = ConsultClient.Tables["ClienteDebito"].Rows[0]["CONTRATO"].ToString();
+                                ObjDat.pFechaDebito = FechaDebito;
+
+                                actua = new DatosDebitoLN().actualizarFecha(ObjDat);
+
+                                if (actuaclient > 0 && actua > 0)
+                                {
+                                    DataSet dsBanco = new DataSet();
+                                    DataSet dsTipoC = new DataSet();
+                                    DataSet dsFecha = new DataSet();
+                                    dsBanco = HomologarBanco(IdBanco, true);
+                                    dsTipoC = HomologarTipoCuenta(TipoCuenta);
+                                    dsFecha = HomologarFechaDebito(FechaDebito, true);
+
+                                    int logueo = 0;
+                                    #region (INFORMACION PARA LOG)
+                                    campos = string.Concat(objAc.pContrato,
+                                        " con BANCO:", Convert.ToString(dsBanco.Tables[0].Rows[0]["NOMBRE"].ToString()).ToUpper(),
+                                        ", TIPO DE CUENTA:", Convert.ToString(dsTipoC.Tables[0].Rows[0]["VALOR"].ToString()),
+                                        ", NUMERO DE CUENTA:", Convert.ToString(objAc.pNumeroCuenta),
+                                        ", DÉBITO A PARTIR DEL:", Convert.ToString(dsFecha.Tables[0].Rows[0]["VALOR"].ToString()),
+                                        ", DIRECCION_IP:", Convert.ToString(objAc.pDireccionIp));
+                                    #endregion
+                                    logueo = Log(logvalor, objAc.pContrato, Usuario, MensajeLog);
+
+                                    if (logueo > 0)
+                                    {
+                                        String Correo = String.Empty;
+                                        int LongitudNroCuenta = 0;
+                                        String Mensaje = String.Empty;
+                                        Mensajes objM = new Mensajes();
+                                        objM.pTipoContrato = ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["TIPO_CUPO"].ToString().Substring(0, 1);
+                                        objM.pEstadoDebito = 1;
+                                        objM.pMotivo = 2;
+                                        List<ServicioDebito.EN.Tablas.Mensajes> listaM = new MensajesLN().consultar(objM);
+
+                                        if (listaM.Count > 0)
+                                        {
+                                            if (ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["EMAIL_CLIENTE"].ToString() != String.Empty)
+                                            {
+                                                if (ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["LeydPcorreo"].ToString() == "SI")
+                                                {
+                                                    DataSet DsCorreoBanco = new DataSet();
+                                                    DsCorreoBanco = ConsultarCorreosBancos();
+                                                    String Remitente = String.Empty;
+                                                    String ConCopia = String.Empty;
+                                                    String CorreoCliente = String.Empty;
+
+                                                    if (DsCorreoBanco.Tables.Contains("tabla"))
+                                                    {
+                                                        Remitente = DsCorreoBanco.Tables["tabla"].Rows[0]["REMITENTE"].ToString();
+                                                        ConCopia = DsCorreoBanco.Tables["tabla"].Rows[0]["CORREOS_CONTROL"].ToString();
+                                                    }
+
+                                                    LongitudNroCuenta = objAc.pNumeroCuenta.Length;
+                                                    Mensajes objMen = new Mensajes();
+                                                    objMen = listaM[0];
+                                                    Mensaje = objMen.pMensaje
+                                                    .Replace("@FechaActual_", Convert.ToString(DateTime.Now))
+                                                    .Replace("@Nombrecliente_", ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["NOMBRE_CLIENTE"].ToString())
+                                                    .Replace("@NroContrato_", ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["CONTRATO"].ToString())
+                                                    .Replace("@Ciudad_", ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["CIUDAD"].ToString())
+                                                    .Replace("@Banco_", dsBanco.Tables[0].Rows[0]["NOMBRE"].ToString().ToUpper())
+                                                    .Replace("@TipoCuenta_", dsTipoC.Tables[0].Rows[0]["VALOR"].ToString())
+                                                    .Replace("@NroCuenta_", "".PadLeft(5, '*') + objAc.pNumeroCuenta.Substring((LongitudNroCuenta - 4), 4))
+                                                    .Replace("@Debito_", dsFecha.Tables[0].Rows[0]["VALOR"].ToString());
+
+                                                    CorreoCliente = ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["EMAIL_CLIENTE"].ToString();
+
+                                                    if (ConfigurationManager.AppSettings["CorreoCliente"].ToString() == "Si")
+                                                    {
+                                                        Correo = wfu.EnvioMail("", objMen.pAsunto, Mensaje, CorreoCliente, Remitente, ConCopia);
+                                                    }
+                                                    else
+                                                    {
+                                                        Correo = wfu.EnvioMail("", objMen.pAsunto, Mensaje, ConCopia, Remitente, "");
+                                                    }
+
+                                                }
+                                            }
+
+                                            if (IdBanco == 27) //Banco BBVA
+                                            {
+                                                DtXml = wfu.AgregarTabla("!Hola " + getNombrePropio(ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["PRIMERNOMBRE"].ToString()) + " " +
+                                                Recursos.UsuarioActualizadoBBVA, "1");
+                                                ConsultClient.Tables.Add(DtXml);
+                                                return ConsultClient.GetXml();
+                                            }
+                                            else
+                                            {
+                                                DtXml = wfu.AgregarTabla("!Hola " + getNombrePropio(ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["PRIMERNOMBRE"].ToString()) + " " +
+                                                Recursos.UsuarioActualizado, "1");
+                                                ConsultClient.Tables.Add(DtXml);
+                                                return ConsultClient.GetXml();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                                            ConsultClient.Tables.Add(DtXml);
+                                            return ConsultClient.GetXml();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                                        ConsultClient.Tables.Add(DtXml);
+                                        return ConsultClient.GetXml();
+                                    }
+                                }
+                                else
+                                {
+                                    DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                                    ConsultClient.Tables.Add(DtXml);
+                                    return ConsultClient.GetXml();
+                                }
+                            }
+                            else
+                            {
+                                DatosDebito objD = new DatosDebito();
+                                TitularCuenta objT = new TitularCuenta();
+                                int valorT = 0;
+                                objD.pId = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID"].ToString());
+                                objD.pContrato = ConsultClient.Tables["ClienteDebito"].Rows[0]["CONTRATO"].ToString();
+                                objD.pDigito = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["DIGITO"].ToString());
+                                objD.pIdBanco = IdBanco;
+                                objD.pTipoCuenta = TipoCuenta;
+                                objD.pNumeroCuenta = NumeroCuenta;
+                                objD.pIdFormatoDebito = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID_FORMATO_DEBITO"].ToString());
+                                objD.pIdFormatoCancelacion = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID_FORMATO_CANCELACION"].ToString());
+
+                                if (Convert.ToBoolean(ConsultClient.Tables["ClienteDebito"].Rows[0]["TERCERO"].ToString()) == true)
+                                {
+                                    objD.pTercero = false;
+                                    objT.pId = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID_TITULAR_CUENTA"].ToString());
+                                    objT.pNombre = ConsultClient.Tables["ClienteSICO"].Rows[0]["NOMBRE_CLIENTE"].ToString().TrimStart('0');
+                                    objT.pNumeroIdentificacion = ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["NUMERO_DOCUMENTO_CLIENTE"].ToString().TrimStart('0');
+                                    objT.pTipoIdentificacion = UtilidadesWeb.homologarDocumento(ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["TIPO_DOCUMENTO"].ToString());
+                                    valorT = new TitularCuentaLN().actualizar(objT);
+                                }
+                                else
+                                {
+                                    objD.pTercero = Convert.ToBoolean(ConsultClient.Tables["ClienteDebito"].Rows[0]["TERCERO"].ToString());
+                                    valorT++;
+                                }
+
+                                objD.pIdTitularCuenta = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID_TITULAR_CUENTA"].ToString());
+                                objD.pDireccionIp = DireccionIp;
+                                objD.pSuspendido = false;
+                                objD.pFechaInicioSus = String.Empty;
+                                objD.pFechaFinSus = String.Empty;
+                                objD.pFechaDebito = FechaDebito;
+
+                                if (Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ID_BANCO"].ToString()) != IdBanco ||
+                                    Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["TIPO_CUENTA"].ToString()) != TipoCuenta ||
+                                    ConsultClient.Tables["ClienteDebito"].Rows[0]["NUMERO_CUENTA"].ToString() != NumeroCuenta)
+                                {
+                                    objD.pEstado = 1;
+                                }
+                                else
+                                {
+                                    objD.pEstado = Convert.ToInt32(ConsultClient.Tables["ClienteDebito"].Rows[0]["ESTADO"].ToString());
+                                }
+
+                                int valorD = 0;
+
+                                valorD = new DatosDebitoLN().actualizar(objD);
+
+                                if (valorD > 0 && valorT > 0)
+                                {
+                                    DataSet dsBanco = new DataSet();
+                                    DataSet dsTipoC = new DataSet();
+                                    DataSet dsFecha = new DataSet();
+                                    dsBanco = HomologarBanco(IdBanco, true);
+                                    dsTipoC = HomologarTipoCuenta(TipoCuenta);
+                                    dsFecha = HomologarFechaDebito(FechaDebito, true);
+
+
+
+                                    int logueo = 0;
+                                    #region (INFORMACION PARA LOG)
+                                    campos = string.Concat(objD.pContrato,
+                                        " con BANCO:", Convert.ToString(dsBanco.Tables[0].Rows[0]["NOMBRE"].ToString()).ToUpper(),
+                                        ", TIPO DE CUENTA:", Convert.ToString(dsTipoC.Tables[0].Rows[0]["VALOR"].ToString()),
+                                        ", NÚMERO DE CUENTA:", Convert.ToString(objD.pNumeroCuenta),
+                                        ", DÉBITO A PARTIR DEL: ", Convert.ToString(dsFecha.Tables[0].Rows[0]["VALOR"].ToString()),
+                                        ", DIRECCION_IP:", Convert.ToString(objD.pDireccionIp));
+                                    #endregion
+                                    logueo = Log(2, objD.pContrato, Usuario, "Se actualizó el contrato N°: ");
+
+                                    if (logueo > 0)
+                                    {
+                                        String Correo = String.Empty;
+                                        int LongitudNroCuenta = 0;
+                                        String Mensaje = String.Empty;
+                                        Mensajes objM = new Mensajes();
+                                        objM.pTipoContrato = ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["TIPO_CUPO"].ToString().Substring(0, 1);
+                                        objM.pEstadoDebito = 1;
+                                        objM.pMotivo = 2;
+                                        List<ServicioDebito.EN.Tablas.Mensajes> listaM = new MensajesLN().consultar(objM);
+
+
+                                        if (listaM.Count > 0)
+                                        {
+                                            if (ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["EMAIL_CLIENTE"].ToString() != String.Empty)
+                                            {
+                                                if (ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["LeydPcorreo"].ToString() == "SI")
+                                                {
+                                                    DataSet DsCorreoBanco = new DataSet();
+                                                    DsCorreoBanco = ConsultarCorreosBancos();
+                                                    String Remitente = String.Empty;
+                                                    String ConCopia = String.Empty;
+                                                    String CorreoCliente = String.Empty;
+
+                                                    if (DsCorreoBanco.Tables.Contains("tabla"))
+                                                    {
+                                                        Remitente = DsCorreoBanco.Tables["tabla"].Rows[0]["REMITENTE"].ToString();
+                                                        ConCopia = DsCorreoBanco.Tables["tabla"].Rows[0]["CORREOS_CONTROL"].ToString();
+                                                    }
+
+                                                    LongitudNroCuenta = objD.pNumeroCuenta.Length;
+                                                    Mensajes objMen = new Mensajes();
+                                                    objMen = listaM[0];
+                                                    Mensaje = objMen.pMensaje
+                                                    .Replace("@FechaActual_", Convert.ToString(DateTime.Now))
+                                                    .Replace("@Nombrecliente_", ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["NOMBRE_CLIENTE"].ToString())
+                                                    .Replace("@NroContrato_", ConsultClient.Tables["ClienteDebito"].Rows[0]["CONTRATO"].ToString())
+                                                    .Replace("@Ciudad_", ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["CIUDAD"].ToString())
+                                                    .Replace("@Banco_", dsBanco.Tables[0].Rows[0]["NOMBRE"].ToString().ToUpper())
+                                                    .Replace("@TipoCuenta_", dsTipoC.Tables[0].Rows[0]["VALOR"].ToString())
+                                                    .Replace("@NroCuenta_", "".PadLeft(5, '*') + objD.pNumeroCuenta.Substring((LongitudNroCuenta - 4), 4))
+                                                    .Replace("@Debito_", dsFecha.Tables[0].Rows[0]["VALOR"].ToString());
+
+                                                    CorreoCliente = ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["EMAIL_CLIENTE"].ToString();
+
+                                                    if (ConfigurationManager.AppSettings["CorreoCliente"].ToString() == "Si")
+                                                    {
+                                                        Correo = wfu.EnvioMail("", objMen.pAsunto, Mensaje, CorreoCliente, Remitente, ConCopia);
+                                                    }
+                                                    else
+                                                    {
+                                                        Correo = wfu.EnvioMail("", objMen.pAsunto, Mensaje, ConCopia, Remitente, "");
+                                                    }
+
+                                                }
+                                            }
+
+                                            if (IdBanco == 27)
+                                            {
+                                                DtXml = wfu.AgregarTabla("!Hola " + getNombrePropio(ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["PRIMERNOMBRE"].ToString()) + " " +
+                                                Recursos.UsuarioActualizadoBBVA, "1");
+                                                ConsultClient.Tables.Add(DtXml);
+                                                return ConsultClient.GetXml();
+                                            }
+                                            else
+                                            {
+                                                DtXml = wfu.AgregarTabla("!Hola " + getNombrePropio(ConsultClientContratoDigital.Tables["ClienteContratoDigital"].Rows[0]["PRIMERNOMBRE"].ToString()) + " " +
+                                                Recursos.UsuarioActualizado, "1");
+                                                ConsultClient.Tables.Add(DtXml);
+                                                return ConsultClient.GetXml();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                                            ConsultClient.Tables.Add(DtXml);
+                                            return ConsultClient.GetXml();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                                        ConsultClient.Tables.Add(DtXml);
+                                        return ConsultClient.GetXml();
+                                    }
+                                }
+                                else
+                                {
+                                    DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                                    ConsultClient.Tables.Add(DtXml);
+                                    return ConsultClient.GetXml();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            DtXml = wfu.AgregarTabla(Recursos.UsuarioNoExiste, "0");
+                            ConsultClient.Tables.Add(DtXml);
+                            return ConsultClient.GetXml();
+                        }
+                    }
+                    else
+                    {
+                        DtXml = wfu.AgregarTabla(Recursos.UsuarioNoExiste, "0");
+                        ConsultClient.Tables.Add(DtXml);
+                        return ConsultClient.GetXml();
+                    }
+                }
+                else
+                {
+                    DtXml = wfu.AgregarTabla(Recursos.AutenticacionErrada, "0");
+                    ConsultClient.Tables.Add(DtXml);
+                    return ConsultClient.GetXml();
+                }
+            }
+            catch (Exception)
+            {
+                DtXml = wfu.AgregarTabla(Recursos.ErrorProceso, "0");
+                ConsultClient.Tables.Add(DtXml);
+                return ConsultClient.GetXml();
             }
         }
         #endregion

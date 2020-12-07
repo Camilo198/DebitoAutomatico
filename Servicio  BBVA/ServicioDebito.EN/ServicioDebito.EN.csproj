@@ -50,7 +50,7 @@
     <Compile Include="Tablas\ActualizaCliente.cs" />
     <Compile Include="Tablas\Banco.cs" />
     <Compile Include="Tablas\Cesion.cs" />
-    <Compile Include="Tablas\ClienteContratoDigital.cs" />
+    <Compile Include="Tablas\ClienteContratoDigitalEN.cs" />
     <Compile Include="Tablas\ClienteSico.cs" />
     <Compile Include="Tablas\DatosDebito.cs" />
     <Compile Include="Tablas\DatosDebitoInconsistente.cs" />
