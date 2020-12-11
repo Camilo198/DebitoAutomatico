@@ -39,8 +39,7 @@ namespace DebitoAutomatico.LN.Consultas
             string resultado = new RptPagosAD().actualizarRptPagoSicoAD(SP_ActualizarRptPagoSico, objEntidad);
             return resultado;
         }
-        public void almacenaRegistroSicoLN(WcfUtilidades Util, string ServidorSico, string NombreArchivoSico, string PathSystem,
-            string UsuFTP, string PassFTP, RptPagosEN pagosEN)
+        public void almacenaRegistroSicoLN(WcfUtilidades Util, string NombreArchivoSico, string UsuFTP, string PassFTP, RptPagosEN pagosEN)
         {
             String error_mensaje;
             IList<string> recaudoSico;
@@ -55,7 +54,7 @@ namespace DebitoAutomatico.LN.Consultas
             try
             {
                 //inconsistentes = Util.LeerFicheroFTP(ServidorSico, "IR" + NombreArchivoSico, PathSystem, UsuFTP, PassFTP, pagosEN.fechaPago, pagosEN.codigoBanco);
-                inconsistentes = Util.LeerFicheroFTP("IR" + NombreArchivoSico, UsuFTP, PassFTP, PathSystem, pagosEN.fechaPago, pagosEN.codigoBanco);
+                inconsistentes = Util.LeerFicheroFTP("IR" + NombreArchivoSico, UsuFTP, PassFTP, pagosEN.fechaPago, pagosEN.codigoBanco);
                 if (inconsistentes.Count > 0)
                 {
                     try
@@ -90,7 +89,7 @@ namespace DebitoAutomatico.LN.Consultas
             try
             {
                 //consistentes = Util.LeerFicheroFTP(ServidorSico, "R" + NombreArchivoSico, PathSystem, UsuFTP, PassFTP, pagosEN.fechaPago, pagosEN.codigoBanco);
-                consistentes = Util.LeerFicheroFTP("R" + NombreArchivoSico, UsuFTP, PassFTP, PathSystem, pagosEN.fechaPago, pagosEN.codigoBanco);
+                consistentes = Util.LeerFicheroFTP("R" + NombreArchivoSico, UsuFTP, PassFTP, pagosEN.fechaPago, pagosEN.codigoBanco);
                 if (consistentes.Count > 0)
                 {
                     try

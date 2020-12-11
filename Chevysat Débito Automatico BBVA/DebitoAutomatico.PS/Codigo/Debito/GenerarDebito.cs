@@ -88,6 +88,7 @@ namespace DebitoAutomatico.PS.Codigo.Debito
                                      Dictionary<String, String> contratosDeb, String FechaProceso)
         {
 
+            //Se comentarea para pruebas
             #region EJECUCION JOB DEBITO
 
             if (esManual == false)

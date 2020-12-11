@@ -52,7 +52,7 @@ namespace DebitoAutomatico.PS.Modulos.Servicio
             try
             {
                 Usuario objUsuario = new Usuario();
-                Session["usuario"] = "nicolas.larrotta";
+             
                 if (Session["usuario"] == null)
                     objUsuario.pUsuario = Request.QueryString[0].ToString();
                 else
@@ -145,7 +145,7 @@ namespace DebitoAutomatico.PS.Modulos.Servicio
             }
 
 
-            
+            //Se comentarea para pruebas
             if (!String.IsNullOrEmpty(this.txbFechaInicial.Text))
             {
                 if (DateTime.Now > Convert.ToDateTime(this.txbFechaInicial.Text).AddHours(24))

@@ -54,6 +54,6 @@ namespace DebitoAutomatico.LN
         string EnvioMail(string _Adjunto, string _Asunto, string _Mensaje, string _Para, string _Desde, string _Copia);
 
         [OperationContract]
-        IList<String> LeerFicheroFTP(string Ip, string NombreArchivo, string RutaFTP, string Login, string Password, string fechaPago = "", int codigoBanco = 0);
+        IList<String> LeerFicheroFTP(string NombreArchivo, string Login, string Password, string fechaPago = "", int codigoBanco = 0);
     }
 }

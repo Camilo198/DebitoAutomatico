@@ -2,8 +2,8 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServMetodosSICO" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://sdatche005vp:8012/ServMetodosSICO.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://sdatche005vp:8012/ServMetodosSICO.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://sdatche005v:8015/ServMetodosSICO.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://sdatche005v:8015/ServMetodosSICO.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServMetodosSICO_MetodoDevoluciones_InputMessage">
@@ -54,6 +54,36 @@
   <wsdl:message name="IServMetodosSICO_Proappaau_OutputMessage">
     <wsdl:part name="parameters" element="tns:ProappaauResponse" />
   </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ConsultaPlanes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaPlanes" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ConsultaPlanes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaPlanesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ValordePlan_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValordePlan" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ValordePlan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValordePlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_LineaPlan_InputMessage">
+    <wsdl:part name="parameters" element="tns:LineaPlan" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_LineaPlan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LineaPlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ListaDePlanes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListaDePlanes" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_ListaDePlanes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListaDePlanesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_CambioDePlan_InputMessage">
+    <wsdl:part name="parameters" element="tns:CambioDePlan" />
+  </wsdl:message>
+  <wsdl:message name="IServMetodosSICO_CambioDePlan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CambioDePlanResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServMetodosSICO">
     <wsdl:operation name="MetodoDevoluciones">
       <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/MetodoDevoluciones" message="tns:IServMetodosSICO_MetodoDevoluciones_InputMessage" />
@@ -86,6 +116,26 @@
     <wsdl:operation name="Proappaau">
       <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/Proappaau" message="tns:IServMetodosSICO_Proappaau_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/ProappaauResponse" message="tns:IServMetodosSICO_Proappaau_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaPlanes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/ConsultaPlanes" message="tns:IServMetodosSICO_ConsultaPlanes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/ConsultaPlanesResponse" message="tns:IServMetodosSICO_ConsultaPlanes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValordePlan">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/ValordePlan" message="tns:IServMetodosSICO_ValordePlan_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/ValordePlanResponse" message="tns:IServMetodosSICO_ValordePlan_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LineaPlan">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/LineaPlan" message="tns:IServMetodosSICO_LineaPlan_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/LineaPlanResponse" message="tns:IServMetodosSICO_LineaPlan_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaDePlanes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/ListaDePlanes" message="tns:IServMetodosSICO_ListaDePlanes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/ListaDePlanesResponse" message="tns:IServMetodosSICO_ListaDePlanes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CambioDePlan">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServMetodosSICO/CambioDePlan" message="tns:IServMetodosSICO_CambioDePlan_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServMetodosSICO/CambioDePlanResponse" message="tns:IServMetodosSICO_CambioDePlan_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServMetodosSICO" type="tns:IServMetodosSICO">
@@ -162,10 +212,55 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ConsultaPlanes">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/ConsultaPlanes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValordePlan">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/ValordePlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LineaPlan">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/LineaPlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaDePlanes">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/ListaDePlanes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CambioDePlan">
+      <soap:operation soapAction="http://tempuri.org/IServMetodosSICO/CambioDePlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ServMetodosSICO">
     <wsdl:port name="BasicHttpBinding_IServMetodosSICO" binding="tns:BasicHttpBinding_IServMetodosSICO">
-      <soap:address location="http://sdatche005vp:8012/ServMetodosSICO.svc" />
+      <soap:address location="http://sdatche005v:8015/ServMetodosSICO.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

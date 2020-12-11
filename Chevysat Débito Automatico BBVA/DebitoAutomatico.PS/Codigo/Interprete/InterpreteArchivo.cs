@@ -101,13 +101,10 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
         Int32 TipoDeCuenta = 0;
         String UsaFtp = String.Empty;
         String PassFtp = String.Empty;
-        String exporasico, RutaEpicor, RutaSico, comando,
-            ServidorSico = ConfigurationManager.AppSettings["server"].ToString(),            /*PAGOS*/
-            UsuarioSico = ConfigurationManager.AppSettings["user"].ToString(),
-            NombreComando = ConfigurationManager.AppSettings["comando"].ToString(),
-            NombrePrograma = ConfigurationManager.AppSettings["NombrePrograma"].ToString(),
-            PasswordSico = ConfigurationManager.AppSettings["password"].ToString(),
-            PathSystem = ConfigurationManager.AppSettings["PathSystem"].ToString(); // SAU 08.09.2020
+        String exporasico, RutaEpicor, RutaSico, comando;
+
+        string UsuFTPSystem = ConfigurationManager.AppSettings["LoginSystem"].ToString();
+        string PassFTPSystem = ConfigurationManager.AppSettings["passwordSystem"].ToString();
 
         #endregion
         String LugarPago = String.Empty;
@@ -762,7 +759,7 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
 
                         //Almacena pagos consistentes e inconsistentes de SICO      
                         WcfUtilidades Util = new WcfUtilidades();
-                        pagosLN.almacenaRegistroSicoLN(Util, ServidorSico, nombreArchivo, PathSystem, UsaFtp, PassFtp,
+                        pagosLN.almacenaRegistroSicoLN(Util, nombreArchivo, UsuFTPSystem, PassFTPSystem,
                                                     pagosEN);
                     }
                     else

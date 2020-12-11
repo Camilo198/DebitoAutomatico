@@ -45,6 +45,16 @@ namespace DebitoAutomatico.PS.ServMetodosSICO {
         
         private System.Threading.SendOrPostCallback ProappaauOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ConsultaPlanesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ValordePlanOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LineaPlanOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListaDePlanesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CambioDePlanOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -106,6 +116,21 @@ namespace DebitoAutomatico.PS.ServMetodosSICO {
         
         /// <remarks/>
         public event ProappaauCompletedEventHandler ProappaauCompleted;
+        
+        /// <remarks/>
+        public event ConsultaPlanesCompletedEventHandler ConsultaPlanesCompleted;
+        
+        /// <remarks/>
+        public event ValordePlanCompletedEventHandler ValordePlanCompleted;
+        
+        /// <remarks/>
+        public event LineaPlanCompletedEventHandler LineaPlanCompleted;
+        
+        /// <remarks/>
+        public event ListaDePlanesCompletedEventHandler ListaDePlanesCompleted;
+        
+        /// <remarks/>
+        public event CambioDePlanCompletedEventHandler CambioDePlanCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServMetodosSICO/MetodoDevoluciones", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -443,6 +468,172 @@ namespace DebitoAutomatico.PS.ServMetodosSICO {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServMetodosSICO/ConsultaPlanes", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ConsultaPlanes([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string TipoDocumento, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Documento) {
+            object[] results = this.Invoke("ConsultaPlanes", new object[] {
+                        TipoDocumento,
+                        Documento});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ConsultaPlanesAsync(string TipoDocumento, string Documento) {
+            this.ConsultaPlanesAsync(TipoDocumento, Documento, null);
+        }
+        
+        /// <remarks/>
+        public void ConsultaPlanesAsync(string TipoDocumento, string Documento, object userState) {
+            if ((this.ConsultaPlanesOperationCompleted == null)) {
+                this.ConsultaPlanesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConsultaPlanesOperationCompleted);
+            }
+            this.InvokeAsync("ConsultaPlanes", new object[] {
+                        TipoDocumento,
+                        Documento}, this.ConsultaPlanesOperationCompleted, userState);
+        }
+        
+        private void OnConsultaPlanesOperationCompleted(object arg) {
+            if ((this.ConsultaPlanesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ConsultaPlanesCompleted(this, new ConsultaPlanesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServMetodosSICO/ValordePlan", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ValordePlan([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Linea) {
+            object[] results = this.Invoke("ValordePlan", new object[] {
+                        Linea});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ValordePlanAsync(string Linea) {
+            this.ValordePlanAsync(Linea, null);
+        }
+        
+        /// <remarks/>
+        public void ValordePlanAsync(string Linea, object userState) {
+            if ((this.ValordePlanOperationCompleted == null)) {
+                this.ValordePlanOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValordePlanOperationCompleted);
+            }
+            this.InvokeAsync("ValordePlan", new object[] {
+                        Linea}, this.ValordePlanOperationCompleted, userState);
+        }
+        
+        private void OnValordePlanOperationCompleted(object arg) {
+            if ((this.ValordePlanCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ValordePlanCompleted(this, new ValordePlanCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServMetodosSICO/LineaPlan", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string LineaPlan([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Tipo, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Clase, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Codigo) {
+            object[] results = this.Invoke("LineaPlan", new object[] {
+                        Tipo,
+                        Clase,
+                        Codigo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LineaPlanAsync(string Tipo, string Clase, string Codigo) {
+            this.LineaPlanAsync(Tipo, Clase, Codigo, null);
+        }
+        
+        /// <remarks/>
+        public void LineaPlanAsync(string Tipo, string Clase, string Codigo, object userState) {
+            if ((this.LineaPlanOperationCompleted == null)) {
+                this.LineaPlanOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLineaPlanOperationCompleted);
+            }
+            this.InvokeAsync("LineaPlan", new object[] {
+                        Tipo,
+                        Clase,
+                        Codigo}, this.LineaPlanOperationCompleted, userState);
+        }
+        
+        private void OnLineaPlanOperationCompleted(object arg) {
+            if ((this.LineaPlanCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LineaPlanCompleted(this, new LineaPlanCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServMetodosSICO/ListaDePlanes", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ListaDePlanes([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Linea, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ValorInicial, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string ValorFinal) {
+            object[] results = this.Invoke("ListaDePlanes", new object[] {
+                        Linea,
+                        ValorInicial,
+                        ValorFinal});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListaDePlanesAsync(string Linea, string ValorInicial, string ValorFinal) {
+            this.ListaDePlanesAsync(Linea, ValorInicial, ValorFinal, null);
+        }
+        
+        /// <remarks/>
+        public void ListaDePlanesAsync(string Linea, string ValorInicial, string ValorFinal, object userState) {
+            if ((this.ListaDePlanesOperationCompleted == null)) {
+                this.ListaDePlanesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListaDePlanesOperationCompleted);
+            }
+            this.InvokeAsync("ListaDePlanes", new object[] {
+                        Linea,
+                        ValorInicial,
+                        ValorFinal}, this.ListaDePlanesOperationCompleted, userState);
+        }
+        
+        private void OnListaDePlanesOperationCompleted(object arg) {
+            if ((this.ListaDePlanesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListaDePlanesCompleted(this, new ListaDePlanesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServMetodosSICO/CambioDePlan", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string CambioDePlan([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Cupo, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string PlanCodigo, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string CuoPorCob, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string FechaVencimiento) {
+            object[] results = this.Invoke("CambioDePlan", new object[] {
+                        Cupo,
+                        PlanCodigo,
+                        CuoPorCob,
+                        FechaVencimiento});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CambioDePlanAsync(string Cupo, string PlanCodigo, string CuoPorCob, string FechaVencimiento) {
+            this.CambioDePlanAsync(Cupo, PlanCodigo, CuoPorCob, FechaVencimiento, null);
+        }
+        
+        /// <remarks/>
+        public void CambioDePlanAsync(string Cupo, string PlanCodigo, string CuoPorCob, string FechaVencimiento, object userState) {
+            if ((this.CambioDePlanOperationCompleted == null)) {
+                this.CambioDePlanOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCambioDePlanOperationCompleted);
+            }
+            this.InvokeAsync("CambioDePlan", new object[] {
+                        Cupo,
+                        PlanCodigo,
+                        CuoPorCob,
+                        FechaVencimiento}, this.CambioDePlanOperationCompleted, userState);
+        }
+        
+        private void OnCambioDePlanOperationCompleted(object arg) {
+            if ((this.CambioDePlanCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CambioDePlanCompleted(this, new CambioDePlanCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -656,6 +847,136 @@ namespace DebitoAutomatico.PS.ServMetodosSICO {
         private object[] results;
         
         internal ProappaauCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ConsultaPlanesCompletedEventHandler(object sender, ConsultaPlanesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ConsultaPlanesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ConsultaPlanesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ValordePlanCompletedEventHandler(object sender, ValordePlanCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ValordePlanCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ValordePlanCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void LineaPlanCompletedEventHandler(object sender, LineaPlanCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LineaPlanCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LineaPlanCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ListaDePlanesCompletedEventHandler(object sender, ListaDePlanesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListaDePlanesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListaDePlanesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void CambioDePlanCompletedEventHandler(object sender, CambioDePlanCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CambioDePlanCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CambioDePlanCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

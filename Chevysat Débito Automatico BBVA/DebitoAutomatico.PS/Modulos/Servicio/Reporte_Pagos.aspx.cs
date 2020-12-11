@@ -30,7 +30,7 @@ namespace DebitoAutomatico.PS.Modulos.Servicio
             try
             {
                 Usuario objUsuario = new Usuario();
-                //Session["usuario"] = "nicolas.larrotta";
+                
 
                 if (Session["usuario"] == null)
                     objUsuario.pUsuario = Request.QueryString[0].ToString();
