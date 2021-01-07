@@ -628,6 +628,7 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                 string[,] parametro;
                 String error_mensaje;
                 IList<RptPagosEN> arrPagos = null;
+                String resQueryLog = "";
 
                 pagosEN.fechaModificacionArch = this.FeModificacion;
                 pagosEN.fechaProceso = Convert.ToDateTime(FechaTransaccion);
@@ -680,13 +681,33 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                         {
                             error_mensaje = "Error en la actualización Monto Archivo banco: " +
                                 pagosEN.codigoBanco + " " + pagosEN.fechaPago;
-                            pagosLN.insertaLogErroresLN("DA: " + error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco);
+
+                            resQueryLog = pagosLN.consultaLogErroresLN("", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                            if (resQueryLog == "1")
+                            {
+                                pagosLN.actualizaLogErroresLN("DA: " + error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                            }
+                            else
+                            {
+                                pagosLN.insertaLogErroresLN("DA: " + error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                            }
+                            resQueryLog = String.Empty;
+
                             error_mensaje = String.Empty;
                         }
                     }
                     catch (Exception e)
                     {
-                        pagosLN.insertaLogErroresLN("DA: "+e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        resQueryLog = pagosLN.consultaLogErroresLN("", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        if (resQueryLog == "1")
+                        {
+                            pagosLN.actualizaLogErroresLN("DA: " + e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        }
+                        else
+                        {
+                            pagosLN.insertaLogErroresLN("DA: " + e.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        }
+                        resQueryLog = String.Empty;
                     }
                 }
                 else
@@ -698,13 +719,33 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                         {
                             error_mensaje = "Error en la inserción Monto Archivo banco: banco: " +
                                 pagosEN.codigoBanco + " " + pagosEN.fechaPago;
-                            pagosLN.insertaLogErroresLN("DA: " + error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+
+                            resQueryLog = pagosLN.consultaLogErroresLN("", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                            if (resQueryLog == "1")
+                            {
+                                pagosLN.actualizaLogErroresLN("DA: " + error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                            }
+                            else
+                            {
+                                pagosLN.insertaLogErroresLN("DA: " + error_mensaje, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                            }
+                            resQueryLog = String.Empty;
+
                             error_mensaje = String.Empty;
                         }
                     }
                     catch (Exception ex)
                     {
-                        pagosLN.insertaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        resQueryLog = pagosLN.consultaLogErroresLN("", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        if (resQueryLog == "1")
+                        {
+                            pagosLN.actualizaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        }
+                        else
+                        {
+                            pagosLN.insertaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        }
+                        resQueryLog = String.Empty;
                     }
                 }
                 #endregion
@@ -715,8 +756,6 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
 
                 try
                 {   
-                    
-
                     String Mensaje = enviar.EnvioMail("", "PAGOS MASIVOS PARA DÉBITO AUTOMÁTICO DEL BANCO " + objBanco.pNombre,
                     "Buen día, \n\n" +
                     "A continuación se envia un detallado de los pagos procesados a traves del banco " + objBanco.pNombre +
@@ -768,6 +807,19 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                           "Se presento un error al crear el archivo a SICO. Por favor validar." + exporasico,
                          ConfigurationManager.AppSettings["CorreoTo"].ToString(), ConfigurationManager.AppSettings["CorreoFrom"].ToString(),
                          ConfigurationManager.AppSettings["CorreoCC"].ToString());
+
+                        String msg_err = "OCURRIO UN ERROR AL ENVIAR EL ARCHIVO " + nombreArchivo + " AL FTP DE SICO DEL BANCO " + objBanco.pNombre + " " + exporasico;
+
+                        resQueryLog = pagosLN.consultaLogErroresLN("", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        if (resQueryLog == "1")
+                        {
+                            pagosLN.actualizaLogErroresLN("DA: " + msg_err, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        }
+                        else
+                        {
+                            pagosLN.insertaLogErroresLN("DA: " + msg_err, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                        }
+                        resQueryLog = String.Empty;
                     }
 
                     return resultsuma;
