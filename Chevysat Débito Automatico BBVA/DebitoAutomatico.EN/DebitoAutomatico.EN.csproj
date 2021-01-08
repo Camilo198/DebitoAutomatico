@@ -118,6 +118,7 @@
     <Compile Include="Tablas\LogsUsuario.cs" />
     <Compile Include="Tablas\Mensajes.cs" />
     <Compile Include="Tablas\PagoParcial.cs" />
+    <Compile Include="Tablas\ParametrosEN.cs" />
     <Compile Include="Tablas\Perfil.cs" />
     <Compile Include="Tablas\Reanudacion.cs" />
     <Compile Include="Tablas\RespuestaTransaccion.cs" />

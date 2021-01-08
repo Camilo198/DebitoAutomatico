@@ -81,6 +81,7 @@
     <Compile Include="Consultas\LogsUsuarioAD.cs" />
     <Compile Include="Consultas\MensajesAD.cs" />
     <Compile Include="Consultas\PagoParcialAD.cs" />
+    <Compile Include="Consultas\ParametrosAD.cs" />
     <Compile Include="Consultas\PerfilAD.cs" />
     <Compile Include="Consultas\ReanudacionAD.cs" />
     <Compile Include="Consultas\RespuestaTransaccionAD.cs" />

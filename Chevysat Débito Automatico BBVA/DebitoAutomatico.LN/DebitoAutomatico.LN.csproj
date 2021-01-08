@@ -88,6 +88,7 @@
     <Compile Include="Consultas\MensajesLN.cs" />
     <Compile Include="Consultas\PagoParcialLN.cs" />
     <Compile Include="Consultas\PagosRptLN.cs" />
+    <Compile Include="Consultas\ParametrosLN.cs" />
     <Compile Include="Consultas\PerfilLN.cs" />
     <Compile Include="Consultas\ReanudacionLN.cs" />
     <Compile Include="Consultas\RespuestaTransaccionLN.cs" />

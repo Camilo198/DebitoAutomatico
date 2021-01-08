@@ -19,6 +19,7 @@ using Renci.SshNet;
 using SSH;
 using System.Web.UI.WebControls;
 using DebitoAutomatico.LN;
+using System.Linq;
 
 namespace DebitoAutomatico.PS.Codigo.Interprete
 {
@@ -779,11 +780,38 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                     if (exporasico == "OK")
                     {
                         //Se encarga de aplicar directamente en SICO
-                        ServMetodosSICO.ServMetodosSICO smsico = new ServMetodosSICO.ServMetodosSICO(); 
-                       // comando = NombreComando + NombrePrograma + " " + nombreArchivo;
+                        ServMetodosSICO.ServMetodosSICO smsico = new ServMetodosSICO.ServMetodosSICO();
+                        // Lectura de constantes 
+                        ParametrosEN parametrosEN = new ParametrosEN();
+                        ParametrosLN parametrosLN = new ParametrosLN();
+                        // comando = NombreComando + NombrePrograma + " " + nombreArchivo;
                         try
                         {
-                            smsico.Proappaau(nombreArchivo);
+                            parametrosEN.NombreParametro = "APLICACION_SICO";
+                            parametrosEN.Tipo = parametrosEN.Descripcion = parametrosEN.ValorParametro = "";
+                            List<ParametrosEN> listaParamSico = parametrosLN.ConsultarParametrosLN(parametrosEN).ToList();
+                            if (listaParamSico != null)
+                            {
+                                if (listaParamSico.Count > 0)
+                                {
+                                    String Aplicar = listaParamSico[0].ValorParametro;
+                                    if (Aplicar == "SI")
+                                    {
+                                        //Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                                        smsico.Proappaau(nombreArchivo);
+                                    }
+
+                                }
+                                else
+                                {
+                                    smsico.Proappaau(nombreArchivo);
+                                }
+                            }
+                            else
+                            {
+                                smsico.Proappaau(nombreArchivo);
+                            }
+                            
                            // Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
                         }
                         catch (Exception ex)
