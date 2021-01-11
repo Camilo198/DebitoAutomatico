@@ -352,5 +352,47 @@ namespace DebitoAutomatico.AD.Consultas
             }
             return lista;
         }
+        public string InsertarArchNoAplicadosSICOAD(String procedimiento, ArchNoAPSICOEN objEntidad)
+        {
+            try
+            {
+                string[,,] Param = new string[7, 3, 1];
+
+                Param[0, 0, 0] = objEntidad.codBanco.ToString();
+                Param[0, 1, 0] = "@codBanco";
+                Param[0, 2, 0] = "int";
+
+                Param[1, 0, 0] = objEntidad.fechaRecaudo;
+                Param[1, 1, 0] = "@fechaRecaudo";
+                Param[1, 2, 0] = "date";
+
+                Param[2, 0, 0] = objEntidad.fechaModificacion.ToString();
+                Param[2, 1, 0] = "@fechaModificacion";
+                Param[2, 2, 0] = "datetime";
+
+                Param[3, 0, 0] = objEntidad.parteFija;
+                Param[3, 1, 0] = "@parteFija";
+                Param[3, 2, 0] = "varchar(255)";
+
+                Param[4, 0, 0] = objEntidad.rutaArchivo;
+                Param[4, 1, 0] = "@rutaArchivo";
+                Param[4, 2, 0] = "varchar(max)";
+
+                Param[5, 0, 0] = objEntidad.nombreArchivo;
+                Param[5, 1, 0] = "@nombreArchivo";
+                Param[5, 2, 0] = "varchar(MAX)";
+
+                Param[6, 0, 0] = "I";
+                Param[6, 1, 0] = "@pOperacion";
+                Param[6, 2, 0] = "varchar(3)";
+
+                return wsc.Ejecutar(Param, procedimiento, "SQLBancos");
+            }
+            catch (Exception ex)
+            {
+                return "0" + ex.Message;
+            }
+
+        }
     }
 }

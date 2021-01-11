@@ -94,6 +94,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tablas\ActualizaCliente.cs" />
     <Compile Include="Tablas\ArchivoManual.cs" />
+    <Compile Include="Tablas\ArchNoAPSICOEN.cs" />
     <Compile Include="Tablas\Banco.cs" />
     <Compile Include="Tablas\Calendario.cs" />
     <Compile Include="Tablas\CamposEquivalencias.cs" />

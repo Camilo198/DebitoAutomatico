@@ -779,6 +779,10 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                    
                     if (exporasico == "OK")
                     {
+                        String ServidorSico = "172.16.30.7";
+                        string UsuarioSico = "userbackend";
+                        string PasswordSico = "chevy123";
+                        string comando = "/bin/sh /usr2/sico_crm/backend/run_util.sh " + "proappaauS" + " " + nombreArchivo;
                         //Se encarga de aplicar directamente en SICO
                         ServMetodosSICO.ServMetodosSICO smsico = new ServMetodosSICO.ServMetodosSICO();
                         // Lectura de constantes 
@@ -797,19 +801,21 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                                     String Aplicar = listaParamSico[0].ValorParametro;
                                     if (Aplicar == "SI")
                                     {
-                                        //Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
-                                        smsico.Proappaau(nombreArchivo);
+                                        Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                                        //smsico.Proappaau(nombreArchivo);
                                     }
 
                                 }
                                 else
                                 {
-                                    smsico.Proappaau(nombreArchivo);
+                                    //smsico.Proappaau(nombreArchivo);
+                                    Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
                                 }
                             }
                             else
                             {
-                                smsico.Proappaau(nombreArchivo);
+                                //smsico.Proappaau(nombreArchivo);
+                                Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
                             }
                             
                            // Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
@@ -848,6 +854,17 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                             pagosLN.insertaLogErroresLN("DA: " + msg_err, pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
                         }
                         resQueryLog = String.Empty;
+
+                        ArchNoAPSICOEN archNoAPSICOEN = new ArchNoAPSICOEN();
+
+                        archNoAPSICOEN.codBanco = pagosEN.codigoBanco;
+                        archNoAPSICOEN.fechaRecaudo = pagosEN.fechaPago;
+                        archNoAPSICOEN.fechaModificacion = FeModificacion;
+                        archNoAPSICOEN.parteFija = pagosEN.parteFija;
+                        archNoAPSICOEN.rutaArchivo = DirectorioSico;
+                        archNoAPSICOEN.nombreArchivo = nombreArchivo;
+
+                        pagosLN.InsertarArchNoAplicadosSICOLN(archNoAPSICOEN);
                     }
 
                     return resultsuma;

@@ -13,6 +13,7 @@ namespace DebitoAutomatico.LN.Consultas
         private String SP_ProcesarPagosDebito = "pa_BAN_CON_Procesa_Pagos_debito";
         private String SP_ActualizarRptPagoSico = "pa_BAN_CON_ACT_RPT_PAGOS_SICO";
         private String SP_LogErrores = "pa_BAN_RPT_ERROR_LOG";
+        private string SP_ArchNoAplicadosSICO = "pa_Ban_FTP_ArchNoAplicadosSICO";
         public string insertarPagoDebitoLN(RptPagosEN objEntidad)
         {
 
@@ -228,6 +229,10 @@ namespace DebitoAutomatico.LN.Consultas
             {
                 return null;
             }
+        }
+        public String InsertarArchNoAplicadosSICOLN(ArchNoAPSICOEN objEntidad)
+        {
+            return new RptPagosAD().InsertarArchNoAplicadosSICOAD(SP_ArchNoAplicadosSICO, objEntidad);
         }
     }
 }
