@@ -505,7 +505,7 @@ namespace DebitoAutomatico.PS.Modulos.Configuracion
 
         protected void txbNumCuenta_TextChanged(object sender, EventArgs e)
         {
-           string er = @"1{5,}|2{5,}|3{5,}|4{5,}|5{5,}|6{5,}|7{5,}|8{5,}|9{5,}|0{5,}";
+           string er = @"1{10,}|2{10,}|3{10,}|4{10,}|5{10,}|6{10,}|7{10,}|8{10,}|9{10,}|0{10,}";
 
            if (Regex.IsMatch(txbNumCuenta.Text, er))
            {
