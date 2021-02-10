@@ -553,8 +553,10 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
 
         private string escribirArchivo(Banco objBanco, int Limite, DataSet tablaDebitos, Int32[,] camposBanco, String LugarPago)
         {
-            SSHConect Conexion = new SSHConect(); // Aplicar los pagos en SICO
-            
+            //SSHConect Conexion = new SSHConect(); // Aplicar los pagos en SICO
+            String resLogGeneral = "";
+            RptPagosEN pagosEN = new RptPagosEN();
+            PagosRptLN pagosLN = new PagosRptLN();
             try
             {
 
@@ -623,8 +625,7 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                 #endregion
 
                 #region Reporte pagos
-                RptPagosEN pagosEN = new RptPagosEN();
-                PagosRptLN pagosLN = new PagosRptLN();
+                
                 List<String[,]> CodigoArchivos = new List<string[,]>();
                 string[,] parametro;
                 String error_mensaje;
@@ -779,10 +780,10 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                    
                     if (exporasico == "OK")
                     {
-                        String ServidorSico = "172.16.30.7";
-                        string UsuarioSico = "userbackend";
-                        string PasswordSico = "chevy123";
-                        string comando = "/bin/sh /usr2/sico_crm/backend/run_util.sh " + "proappaauS" + " " + nombreArchivo;
+                        //String ServidorSico = "172.16.30.7";
+                        //string UsuarioSico = "userbackend";
+                        //string PasswordSico = "chevy123";
+                        //string comando = "/bin/sh /usr2/sico_crm/backend/run_util.sh " + "proappaauS" + " " + nombreArchivo;
                         //Se encarga de aplicar directamente en SICO
                         ServMetodosSICO.ServMetodosSICO smsico = new ServMetodosSICO.ServMetodosSICO();
                         // Lectura de constantes 
@@ -801,21 +802,21 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                                     String Aplicar = listaParamSico[0].ValorParametro;
                                     if (Aplicar == "SI")
                                     {
-                                        Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
-                                        //smsico.Proappaau(nombreArchivo);
+                                        //Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                                        smsico.Proappaau(nombreArchivo);
                                     }
 
                                 }
                                 else
                                 {
-                                    //smsico.Proappaau(nombreArchivo);
-                                    Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                                    smsico.Proappaau(nombreArchivo);
+                                    //Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
                                 }
                             }
                             else
                             {
-                                //smsico.Proappaau(nombreArchivo);
-                                Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
+                                smsico.Proappaau(nombreArchivo);
+                                //Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
                             }
                             
                            // Conexion.conecta_Server(ServidorSico, UsuarioSico, PasswordSico, comando);
@@ -869,8 +870,23 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
 
                     return resultsuma;
                 }
-                catch
+                catch(Exception ex)
                 {
+                    resQueryLog = pagosLN.consultaLogErroresLN("", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                    if (resQueryLog == "1")
+                    {
+                        pagosLN.actualizaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                    }
+                    else
+                    {
+                        pagosLN.insertaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                    }
+                    resQueryLog = String.Empty;
+
+                    string email = ConfigurationManager.AppSettings["correoSoporte"];
+
+                    enviar.EnvioMail("", "Error en generación de archivo plano Débito Automático " + LugarPago, ex.ToString(), email, email, email);
+
                     sw.Close();
                     File.Delete(DirectorioSico + nombreArchivo);
                     throw new System.Exception("Ocurrio un error al crear archivo plano");
@@ -878,8 +894,28 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                 #endregion
 
             }
-            catch
+            catch(Exception ex)
             {
+                if (pagosEN.fechaPago == null || pagosEN.fechaPago == String.Empty || pagosEN.fechaPago == "")
+                {
+                    pagosEN.fechaPago = DateTime.Now.ToString();
+                }
+
+                resLogGeneral = pagosLN.consultaLogErroresLN("", pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                if (resLogGeneral == "1")
+                {
+                    pagosLN.actualizaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                }
+                else
+                {
+                    pagosLN.insertaLogErroresLN("DA: " + ex.Message.ToString(), pagosEN.fechaPago, pagosEN.codigoBanco, pagosEN.parteFija);
+                }
+                resLogGeneral = String.Empty;
+
+                string email = ConfigurationManager.AppSettings["correoSoporte"];
+
+                enviar.EnvioMail("", "Error en generación de archivo plano Débito Automático " + LugarPago, ex.ToString(), email, email, email);
+
                 sw.Close();
                 File.Delete(DirectorioSico + nombreArchivo);
                 throw new System.Exception("Ocurrio un error al crear archivo plano");
