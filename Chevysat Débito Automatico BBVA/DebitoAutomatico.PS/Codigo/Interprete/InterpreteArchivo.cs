@@ -633,8 +633,8 @@ namespace DebitoAutomatico.PS.Codigo.Interprete
                 String resQueryLog = "";
 
                 pagosEN.fechaModificacionArch = this.FeModificacion;
-                pagosEN.fechaProceso = Convert.ToDateTime(FechaTransaccion);
-                pagosEN.fechaPago = DateTime.Now.ToString(); // Fecha
+                pagosEN.fechaProceso = DateTime.Now; // Fecha
+                pagosEN.fechaPago = FechaTransaccion; 
                 pagosEN.codigoBanco = Convert.ToInt32(LugarPago);
                 pagosEN.cantPagosArchivo = registrosLote;
                 pagosEN.valorMontoArchivo = valorarchivo;
