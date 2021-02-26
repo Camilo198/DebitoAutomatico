@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.OleDb;
 using System.IO;
 using System.Text;
+using DebitoAutomatico.PS.Codigo.Correo;
 using Excel;
 
 namespace DebitoAutomatico.PS.Codigo
@@ -62,8 +64,13 @@ namespace DebitoAutomatico.PS.Codigo
                 }
                 
             }
-            catch
+            catch(Exception ex)
             {
+                EnviarCorreo enviar = new EnviarCorreo();
+                string email = ConfigurationManager.AppSettings["correoSoporte"];
+
+                enviar.EnvioMail("", "Error en lectura de archivo plano Débito Automático ", ex.ToString(), email, email, email);
+
                 throw new System.Exception("Archivo se encuentra ubicado en una ruta diferente a la parametrizada para este banco.");
             }
             return listaLineas;
