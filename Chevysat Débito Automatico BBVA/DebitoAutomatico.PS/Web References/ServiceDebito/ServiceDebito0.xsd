@@ -138,4 +138,63 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ConsultaClienteContratoDigital">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Contrato" type="xs:int" />
+        <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaClienteContratoDigitalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConsultaClienteContratoDigitalResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModificarDatosContratoDigital">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Contrato" type="xs:int" />
+        <xs:element minOccurs="0" name="NumeroCuenta" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="TipoCuenta" type="xs:int" />
+        <xs:element minOccurs="0" name="IdBanco" type="xs:int" />
+        <xs:element minOccurs="0" name="DireccionIp" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="FechaDebito" type="xs:int" />
+        <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModificarDatosContratoDigitalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ModificarDatosContratoDigitalResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarClienteContratoDigital">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Contrato" type="xs:int" />
+        <xs:element minOccurs="0" name="IdBanco" type="xs:int" />
+        <xs:element minOccurs="0" name="TipoCuenta" type="xs:int" />
+        <xs:element minOccurs="0" name="NumeroCuenta" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CanalIngreso" type="xs:int" />
+        <xs:element minOccurs="0" name="DireccionIp" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="FechaDebito" type="xs:int" />
+        <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarClienteContratoDigitalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GuardarClienteContratoDigitalResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

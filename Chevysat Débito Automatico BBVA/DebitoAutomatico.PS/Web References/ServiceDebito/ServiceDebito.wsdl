@@ -54,6 +54,24 @@
   <wsdl:message name="IServicioDebito_ConsultaClientePrenota_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConsultaClientePrenotaResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioDebito_ConsultaClienteContratoDigital_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaClienteContratoDigital" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_ConsultaClienteContratoDigital_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaClienteContratoDigitalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_ModificarDatosContratoDigital_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarDatosContratoDigital" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_ModificarDatosContratoDigital_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarDatosContratoDigitalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_GuardarClienteContratoDigital_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarClienteContratoDigital" />
+  </wsdl:message>
+  <wsdl:message name="IServicioDebito_GuardarClienteContratoDigital_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarClienteContratoDigitalResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicioDebito">
     <wsdl:operation name="IdBanco">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/IdBanco" message="tns:IServicioDebito_IdBanco_InputMessage" />
@@ -86,6 +104,18 @@
     <wsdl:operation name="ConsultaClientePrenota">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/ConsultaClientePrenota" message="tns:IServicioDebito_ConsultaClientePrenota_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/ConsultaClientePrenotaResponse" message="tns:IServicioDebito_ConsultaClientePrenota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaClienteContratoDigital">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/ConsultaClienteContratoDigital" message="tns:IServicioDebito_ConsultaClienteContratoDigital_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/ConsultaClienteContratoDigitalResponse" message="tns:IServicioDebito_ConsultaClienteContratoDigital_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDatosContratoDigital">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/ModificarDatosContratoDigital" message="tns:IServicioDebito_ModificarDatosContratoDigital_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/ModificarDatosContratoDigitalResponse" message="tns:IServicioDebito_ModificarDatosContratoDigital_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarClienteContratoDigital">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioDebito/GuardarClienteContratoDigital" message="tns:IServicioDebito_GuardarClienteContratoDigital_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioDebito/GuardarClienteContratoDigitalResponse" message="tns:IServicioDebito_GuardarClienteContratoDigital_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicioDebito" type="tns:IServicioDebito">
@@ -155,6 +185,33 @@
     </wsdl:operation>
     <wsdl:operation name="ConsultaClientePrenota">
       <soap:operation soapAction="http://tempuri.org/IServicioDebito/ConsultaClientePrenota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaClienteContratoDigital">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/ConsultaClienteContratoDigital" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDatosContratoDigital">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/ModificarDatosContratoDigital" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarClienteContratoDigital">
+      <soap:operation soapAction="http://tempuri.org/IServicioDebito/GuardarClienteContratoDigital" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
