@@ -36,7 +36,7 @@ namespace DebitoAutomatico.PS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://sdatche005vp:9015/ServMetodosSICO.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sdatche005v:8015/ServMetodosSICO.svc")]
         public string DebitoAutomatico_PS_ServMetodosSICO_ServMetodosSICO {
             get {
                 return ((string)(this["DebitoAutomatico_PS_ServMetodosSICO_ServMetodosSICO"]));

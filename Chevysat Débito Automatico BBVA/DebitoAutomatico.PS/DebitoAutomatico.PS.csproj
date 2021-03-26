@@ -459,10 +459,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>DebitoAutomatico_PS_ServiceDebito_ServiceDebito</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://sdatche005vp:9015/ServMetodosSICO.svc%3fwsdl">
+    <WebReferenceUrl Include="http://sdatche005v:8015/ServMetodosSICO.svc%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ServMetodosSICO\</RelPath>
-      <UpdateFromURL>http://sdatche005vp:9015/ServMetodosSICO.svc%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>http://sdatche005v:8015/ServMetodosSICO.svc%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
