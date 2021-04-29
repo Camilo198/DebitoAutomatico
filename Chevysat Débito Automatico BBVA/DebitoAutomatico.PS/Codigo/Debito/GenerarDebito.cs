@@ -91,42 +91,42 @@ namespace DebitoAutomatico.PS.Codigo.Debito
             //Se comentarea para pruebas
             #region EJECUCION JOB DEBITO
 
-            if (esManual == false)
-            {
-                if (ConsultaJob.Tables.Contains("ConsultaJob"))
-                    ConsultaJob.Tables["ConsultaJob"].Rows.Clear();
+            //if (esManual == false)
+            //{
+            //    if (ConsultaJob.Tables.Contains("ConsultaJob"))
+            //        ConsultaJob.Tables["ConsultaJob"].Rows.Clear();
 
-                ConsultaJob = new JobLN().JobConsultaTiempo();
+            //    ConsultaJob = new JobLN().JobConsultaTiempo();
 
-                if (EjecucionJob.Tables.Contains("EjecucionJob"))
-                    EjecucionJob.Tables["EjecucionJob"].Rows.Clear();
+            //    if (EjecucionJob.Tables.Contains("EjecucionJob"))
+            //        EjecucionJob.Tables["EjecucionJob"].Rows.Clear();
 
 
-                EjecucionJob = new JobLN().JobConsulta();
-                FecHorEje = Convert.ToInt64(EjecucionJob.Tables["EjecucionJob"].Rows[0]["FechaHora"].ToString());
-                FecHorDesEje = 0;
+            //    EjecucionJob = new JobLN().JobConsulta();
+            //    FecHorEje = Convert.ToInt64(EjecucionJob.Tables["EjecucionJob"].Rows[0]["FechaHora"].ToString());
+            //    FecHorDesEje = 0;
 
-                Job = new JobLN().TareaJob();
+            //    Job = new JobLN().TareaJob();
 
-                while (FecHorDesEje <= FecHorEje)
-                {
-                    System.Threading.Thread.Sleep(Convert.ToInt32(ConsultaJob.Tables["ConsultaJob"].Rows[0]["Promedio"]));
+            //    while (FecHorDesEje <= FecHorEje)
+            //    {
+            //        System.Threading.Thread.Sleep(Convert.ToInt32(ConsultaJob.Tables["ConsultaJob"].Rows[0]["Promedio"]));
 
-                    if (EjecucionJob.Tables.Contains("EjecucionJob"))
-                        EjecucionJob.Tables["EjecucionJob"].Rows.Clear();
+            //        if (EjecucionJob.Tables.Contains("EjecucionJob"))
+            //            EjecucionJob.Tables["EjecucionJob"].Rows.Clear();
 
-                    EjecucionJob = new JobLN().JobConsulta();
+            //        EjecucionJob = new JobLN().JobConsulta();
 
-                    FecHorDesEje = Convert.ToInt64(EjecucionJob.Tables["EjecucionJob"].Rows[0]["FechaHora"].ToString());
-                    EstadoDesEje = Convert.ToInt32(EjecucionJob.Tables["EjecucionJob"].Rows[0]["run_status"]);
-                }
+            //        FecHorDesEje = Convert.ToInt64(EjecucionJob.Tables["EjecucionJob"].Rows[0]["FechaHora"].ToString());
+            //        EstadoDesEje = Convert.ToInt32(EjecucionJob.Tables["EjecucionJob"].Rows[0]["run_status"]);
+            //    }
 
-                if (EstadoDesEje != 1)
-                {
-                    retornoMetodo.Add("Ocurrio un error al actualizar la tabla debito");
-                    return retornoMetodo;
-                }
-            }
+            //    if (EstadoDesEje != 1)
+            //    {
+            //        retornoMetodo.Add("Ocurrio un error al actualizar la tabla debito");
+            //        return retornoMetodo;
+            //    }
+            //}
 
             #endregion
 

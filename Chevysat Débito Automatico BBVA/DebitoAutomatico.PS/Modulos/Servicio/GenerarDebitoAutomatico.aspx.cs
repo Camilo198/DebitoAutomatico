@@ -145,15 +145,15 @@ namespace DebitoAutomatico.PS.Modulos.Servicio
             }
 
 
-            //Se comentarea para pruebas
-            if (!String.IsNullOrEmpty(this.txbFechaInicial.Text))
-            {
-                if (DateTime.Now > Convert.ToDateTime(this.txbFechaInicial.Text).AddHours(24))
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Guid.NewGuid().ToString(), "<script type='text/javascript'>alert('Fecha Incorrecta!!!');</script>", false);
-                    return;
-                }
-            }
+            //////Se comentarea para pruebas
+            //if (!String.IsNullOrEmpty(this.txbFechaInicial.Text))
+            //{
+            //    if (DateTime.Now > Convert.ToDateTime(this.txbFechaInicial.Text).AddHours(24))
+            //    {
+            //        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Guid.NewGuid().ToString(), "<script type='text/javascript'>alert('Fecha Incorrecta!!!');</script>", false);
+            //        return;
+            //    }
+            //}
 
             ArrayList men = new ArrayList();
             GenerarDebito debito = new GenerarDebito();
