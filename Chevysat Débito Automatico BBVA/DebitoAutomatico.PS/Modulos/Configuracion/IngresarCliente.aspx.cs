@@ -465,7 +465,7 @@ namespace DebitoAutomatico.PS.Modulos.Configuracion
                                                              Convert.ToInt32(this.ddlFormaDebito.SelectedValue), true, //Formato
                                                              true, true, //Tercero
                                                              this.txbNombreTercero.Text.Trim(), //Nombre del tercero
-                                                             Convert.ToInt32(this.txbIdentificacionT.Text.Trim()), true, //Nombre del tercero
+                                                             Convert.ToInt64(this.txbIdentificacionT.Text.Trim()), true, //Nombre del tercero
                                                              Convert.ToInt32(this.ddlTipoIdentificacionT.SelectedValue), true, //Tipo ident tercero
                                                              Request.UserHostName.ToString(),
                                                              Convert.ToInt32(this.ddlFechaDebito.SelectedValue), true, //Fecha débito

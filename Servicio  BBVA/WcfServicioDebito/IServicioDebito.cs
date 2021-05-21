@@ -30,7 +30,7 @@ namespace WcfServicioDebito
 
         [OperationContract]
         string GuardarCliente(int Contrato, int IdBanco, int TipoCuenta, string NumeroCuenta, int CanalIngreso, bool Tercero, string NombreTercero,
-                              int IdentificacionTercero, int TipoIdTercero, string DireccionIp, int FechaDebito, string Usuario, string Password);
+                              long IdentificacionTercero, int TipoIdTercero, string DireccionIp, int FechaDebito, string Usuario, string Password);
 
         [OperationContract]
         string ModificarDatos(int Contrato, string NumeroCuenta, int TipoCuenta, int IdBanco, string DireccionIp, int FechaDebito, string Usuario, string Password);

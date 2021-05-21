@@ -544,7 +544,7 @@ namespace WcfServicioDebito
                             DataTable DtSicoCesion = new DataTable();
 
                             ObjCesion.pTipoDocumento = UtilidadesWeb.homologarDocumentoSico(Convert.ToInt32(ConsultClient.Tables["Titular"].Rows[0]["TIPO_IDENTIFICACION"].ToString()));
-                            ObjCesion.pNroDocumento = Convert.ToInt32(ConsultClient.Tables["Titular"].Rows[0]["NUMERO_IDENTIFICACION"].ToString());
+                            ObjCesion.pNroDocumento = Convert.ToInt64(ConsultClient.Tables["Titular"].Rows[0]["NUMERO_IDENTIFICACION"].ToString());
                             ObjCesion.pContrato = Contrato;
 
                             DataCesion = new ClienteSICOLN().consultarClienteCesion(ObjCesion, "pa_DEB_Consulta_Cesion");
@@ -681,7 +681,7 @@ namespace WcfServicioDebito
         /// <param name="Usuario"></param>
         /// <param name="Password"></param>
         /// <returns></returns>
-        public string GuardarCliente(int Contrato, int IdBanco, int TipoCuenta, string NumeroCuenta, int CanalIngreso, bool Tercero, string NombreTercero, int IdentificacionTercero, int TipoIdTercero, string DireccionIp, int FechaDebito, string Usuario, string Password)
+        public string GuardarCliente(int Contrato, int IdBanco, int TipoCuenta, string NumeroCuenta, int CanalIngreso, bool Tercero, string NombreTercero, long IdentificacionTercero, int TipoIdTercero, string DireccionIp, int FechaDebito, string Usuario, string Password)
         {
             DataSet ConsultClient = new DataSet();
             DataTable DtXml = new DataTable();
