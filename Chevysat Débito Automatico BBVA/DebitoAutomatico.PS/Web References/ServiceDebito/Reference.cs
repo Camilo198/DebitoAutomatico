@@ -23,7 +23,7 @@ namespace DebitoAutomatico.PS.ServiceDebito {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_IServicioDebito", Namespace="http://tempuri.org/")]
@@ -44,6 +44,12 @@ namespace DebitoAutomatico.PS.ServiceDebito {
         private System.Threading.SendOrPostCallback ModificarDatosOperationCompleted;
         
         private System.Threading.SendOrPostCallback ConsultaClientePrenotaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ConsultaClienteContratoDigitalOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ModificarDatosContratoDigitalOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GuardarClienteContratoDigitalOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -106,6 +112,15 @@ namespace DebitoAutomatico.PS.ServiceDebito {
         
         /// <remarks/>
         public event ConsultaClientePrenotaCompletedEventHandler ConsultaClientePrenotaCompleted;
+        
+        /// <remarks/>
+        public event ConsultaClienteContratoDigitalCompletedEventHandler ConsultaClienteContratoDigitalCompleted;
+        
+        /// <remarks/>
+        public event ModificarDatosContratoDigitalCompletedEventHandler ModificarDatosContratoDigitalCompleted;
+        
+        /// <remarks/>
+        public event GuardarClienteContratoDigitalCompletedEventHandler GuardarClienteContratoDigitalCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicioDebito/IdBanco", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -291,7 +306,7 @@ namespace DebitoAutomatico.PS.ServiceDebito {
                     bool Tercero, 
                     [System.Xml.Serialization.XmlIgnoreAttribute()] bool TerceroSpecified, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string NombreTercero, 
-                    int IdentificacionTercero, 
+                    long IdentificacionTercero, 
                     [System.Xml.Serialization.XmlIgnoreAttribute()] bool IdentificacionTerceroSpecified, 
                     int TipoIdTercero, 
                     [System.Xml.Serialization.XmlIgnoreAttribute()] bool TipoIdTerceroSpecified, 
@@ -339,7 +354,7 @@ namespace DebitoAutomatico.PS.ServiceDebito {
                     bool Tercero, 
                     bool TerceroSpecified, 
                     string NombreTercero, 
-                    int IdentificacionTercero, 
+                    long IdentificacionTercero, 
                     bool IdentificacionTerceroSpecified, 
                     int TipoIdTercero, 
                     bool TipoIdTerceroSpecified, 
@@ -365,7 +380,7 @@ namespace DebitoAutomatico.PS.ServiceDebito {
                     bool Tercero, 
                     bool TerceroSpecified, 
                     string NombreTercero, 
-                    int IdentificacionTercero, 
+                    long IdentificacionTercero, 
                     bool IdentificacionTerceroSpecified, 
                     int TipoIdTercero, 
                     bool TipoIdTerceroSpecified, 
@@ -494,6 +509,150 @@ namespace DebitoAutomatico.PS.ServiceDebito {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicioDebito/ConsultaClienteContratoDigital", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ConsultaClienteContratoDigital(int Contrato, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ContratoSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Usuario, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Password) {
+            object[] results = this.Invoke("ConsultaClienteContratoDigital", new object[] {
+                        Contrato,
+                        ContratoSpecified,
+                        Usuario,
+                        Password});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ConsultaClienteContratoDigitalAsync(int Contrato, bool ContratoSpecified, string Usuario, string Password) {
+            this.ConsultaClienteContratoDigitalAsync(Contrato, ContratoSpecified, Usuario, Password, null);
+        }
+        
+        /// <remarks/>
+        public void ConsultaClienteContratoDigitalAsync(int Contrato, bool ContratoSpecified, string Usuario, string Password, object userState) {
+            if ((this.ConsultaClienteContratoDigitalOperationCompleted == null)) {
+                this.ConsultaClienteContratoDigitalOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConsultaClienteContratoDigitalOperationCompleted);
+            }
+            this.InvokeAsync("ConsultaClienteContratoDigital", new object[] {
+                        Contrato,
+                        ContratoSpecified,
+                        Usuario,
+                        Password}, this.ConsultaClienteContratoDigitalOperationCompleted, userState);
+        }
+        
+        private void OnConsultaClienteContratoDigitalOperationCompleted(object arg) {
+            if ((this.ConsultaClienteContratoDigitalCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ConsultaClienteContratoDigitalCompleted(this, new ConsultaClienteContratoDigitalCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicioDebito/ModificarDatosContratoDigital", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ModificarDatosContratoDigital(int Contrato, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ContratoSpecified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string NumeroCuenta, [System.Xml.Serialization.XmlElementAttribute("TipoCuenta")] int TipoCuenta1, [System.Xml.Serialization.XmlElementAttribute("TipoCuenta")] [System.Xml.Serialization.XmlIgnoreAttribute()] bool TipoCuenta1Specified, [System.Xml.Serialization.XmlElementAttribute("IdBanco")] int IdBanco1, [System.Xml.Serialization.XmlElementAttribute("IdBanco")] [System.Xml.Serialization.XmlIgnoreAttribute()] bool IdBanco1Specified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string DireccionIp, [System.Xml.Serialization.XmlElementAttribute("FechaDebito")] int FechaDebito1, [System.Xml.Serialization.XmlElementAttribute("FechaDebito")] [System.Xml.Serialization.XmlIgnoreAttribute()] bool FechaDebito1Specified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Usuario, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Password) {
+            object[] results = this.Invoke("ModificarDatosContratoDigital", new object[] {
+                        Contrato,
+                        ContratoSpecified,
+                        NumeroCuenta,
+                        TipoCuenta1,
+                        TipoCuenta1Specified,
+                        IdBanco1,
+                        IdBanco1Specified,
+                        DireccionIp,
+                        FechaDebito1,
+                        FechaDebito1Specified,
+                        Usuario,
+                        Password});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ModificarDatosContratoDigitalAsync(int Contrato, bool ContratoSpecified, string NumeroCuenta, int TipoCuenta1, bool TipoCuenta1Specified, int IdBanco1, bool IdBanco1Specified, string DireccionIp, int FechaDebito1, bool FechaDebito1Specified, string Usuario, string Password) {
+            this.ModificarDatosContratoDigitalAsync(Contrato, ContratoSpecified, NumeroCuenta, TipoCuenta1, TipoCuenta1Specified, IdBanco1, IdBanco1Specified, DireccionIp, FechaDebito1, FechaDebito1Specified, Usuario, Password, null);
+        }
+        
+        /// <remarks/>
+        public void ModificarDatosContratoDigitalAsync(int Contrato, bool ContratoSpecified, string NumeroCuenta, int TipoCuenta1, bool TipoCuenta1Specified, int IdBanco1, bool IdBanco1Specified, string DireccionIp, int FechaDebito1, bool FechaDebito1Specified, string Usuario, string Password, object userState) {
+            if ((this.ModificarDatosContratoDigitalOperationCompleted == null)) {
+                this.ModificarDatosContratoDigitalOperationCompleted = new System.Threading.SendOrPostCallback(this.OnModificarDatosContratoDigitalOperationCompleted);
+            }
+            this.InvokeAsync("ModificarDatosContratoDigital", new object[] {
+                        Contrato,
+                        ContratoSpecified,
+                        NumeroCuenta,
+                        TipoCuenta1,
+                        TipoCuenta1Specified,
+                        IdBanco1,
+                        IdBanco1Specified,
+                        DireccionIp,
+                        FechaDebito1,
+                        FechaDebito1Specified,
+                        Usuario,
+                        Password}, this.ModificarDatosContratoDigitalOperationCompleted, userState);
+        }
+        
+        private void OnModificarDatosContratoDigitalOperationCompleted(object arg) {
+            if ((this.ModificarDatosContratoDigitalCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ModificarDatosContratoDigitalCompleted(this, new ModificarDatosContratoDigitalCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicioDebito/GuardarClienteContratoDigital", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GuardarClienteContratoDigital(int Contrato, [System.Xml.Serialization.XmlIgnoreAttribute()] bool ContratoSpecified, [System.Xml.Serialization.XmlElementAttribute("IdBanco")] int IdBanco1, [System.Xml.Serialization.XmlElementAttribute("IdBanco")] [System.Xml.Serialization.XmlIgnoreAttribute()] bool IdBanco1Specified, [System.Xml.Serialization.XmlElementAttribute("TipoCuenta")] int TipoCuenta1, [System.Xml.Serialization.XmlElementAttribute("TipoCuenta")] [System.Xml.Serialization.XmlIgnoreAttribute()] bool TipoCuenta1Specified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string NumeroCuenta, [System.Xml.Serialization.XmlElementAttribute("CanalIngreso")] int CanalIngreso1, [System.Xml.Serialization.XmlElementAttribute("CanalIngreso")] [System.Xml.Serialization.XmlIgnoreAttribute()] bool CanalIngreso1Specified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string DireccionIp, [System.Xml.Serialization.XmlElementAttribute("FechaDebito")] int FechaDebito1, [System.Xml.Serialization.XmlElementAttribute("FechaDebito")] [System.Xml.Serialization.XmlIgnoreAttribute()] bool FechaDebito1Specified, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Usuario, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Password) {
+            object[] results = this.Invoke("GuardarClienteContratoDigital", new object[] {
+                        Contrato,
+                        ContratoSpecified,
+                        IdBanco1,
+                        IdBanco1Specified,
+                        TipoCuenta1,
+                        TipoCuenta1Specified,
+                        NumeroCuenta,
+                        CanalIngreso1,
+                        CanalIngreso1Specified,
+                        DireccionIp,
+                        FechaDebito1,
+                        FechaDebito1Specified,
+                        Usuario,
+                        Password});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GuardarClienteContratoDigitalAsync(int Contrato, bool ContratoSpecified, int IdBanco1, bool IdBanco1Specified, int TipoCuenta1, bool TipoCuenta1Specified, string NumeroCuenta, int CanalIngreso1, bool CanalIngreso1Specified, string DireccionIp, int FechaDebito1, bool FechaDebito1Specified, string Usuario, string Password) {
+            this.GuardarClienteContratoDigitalAsync(Contrato, ContratoSpecified, IdBanco1, IdBanco1Specified, TipoCuenta1, TipoCuenta1Specified, NumeroCuenta, CanalIngreso1, CanalIngreso1Specified, DireccionIp, FechaDebito1, FechaDebito1Specified, Usuario, Password, null);
+        }
+        
+        /// <remarks/>
+        public void GuardarClienteContratoDigitalAsync(int Contrato, bool ContratoSpecified, int IdBanco1, bool IdBanco1Specified, int TipoCuenta1, bool TipoCuenta1Specified, string NumeroCuenta, int CanalIngreso1, bool CanalIngreso1Specified, string DireccionIp, int FechaDebito1, bool FechaDebito1Specified, string Usuario, string Password, object userState) {
+            if ((this.GuardarClienteContratoDigitalOperationCompleted == null)) {
+                this.GuardarClienteContratoDigitalOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGuardarClienteContratoDigitalOperationCompleted);
+            }
+            this.InvokeAsync("GuardarClienteContratoDigital", new object[] {
+                        Contrato,
+                        ContratoSpecified,
+                        IdBanco1,
+                        IdBanco1Specified,
+                        TipoCuenta1,
+                        TipoCuenta1Specified,
+                        NumeroCuenta,
+                        CanalIngreso1,
+                        CanalIngreso1Specified,
+                        DireccionIp,
+                        FechaDebito1,
+                        FechaDebito1Specified,
+                        Usuario,
+                        Password}, this.GuardarClienteContratoDigitalOperationCompleted, userState);
+        }
+        
+        private void OnGuardarClienteContratoDigitalOperationCompleted(object arg) {
+            if ((this.GuardarClienteContratoDigitalCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GuardarClienteContratoDigitalCompleted(this, new GuardarClienteContratoDigitalCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -513,11 +672,11 @@ namespace DebitoAutomatico.PS.ServiceDebito {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void IdBancoCompletedEventHandler(object sender, IdBancoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IdBancoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -539,11 +698,11 @@ namespace DebitoAutomatico.PS.ServiceDebito {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void TipoCuentaCompletedEventHandler(object sender, TipoCuentaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TipoCuentaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -565,11 +724,11 @@ namespace DebitoAutomatico.PS.ServiceDebito {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void FechaDebitoCompletedEventHandler(object sender, FechaDebitoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FechaDebitoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -591,11 +750,11 @@ namespace DebitoAutomatico.PS.ServiceDebito {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void CanalIngresoCompletedEventHandler(object sender, CanalIngresoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CanalIngresoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -617,11 +776,11 @@ namespace DebitoAutomatico.PS.ServiceDebito {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void ConsultaClienteCompletedEventHandler(object sender, ConsultaClienteCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConsultaClienteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -643,11 +802,11 @@ namespace DebitoAutomatico.PS.ServiceDebito {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void GuardarClienteCompletedEventHandler(object sender, GuardarClienteCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GuardarClienteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -669,11 +828,11 @@ namespace DebitoAutomatico.PS.ServiceDebito {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void ModificarDatosCompletedEventHandler(object sender, ModificarDatosCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ModificarDatosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -695,11 +854,11 @@ namespace DebitoAutomatico.PS.ServiceDebito {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void ConsultaClientePrenotaCompletedEventHandler(object sender, ConsultaClientePrenotaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConsultaClientePrenotaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -707,6 +866,84 @@ namespace DebitoAutomatico.PS.ServiceDebito {
         private object[] results;
         
         internal ConsultaClientePrenotaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void ConsultaClienteContratoDigitalCompletedEventHandler(object sender, ConsultaClienteContratoDigitalCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ConsultaClienteContratoDigitalCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ConsultaClienteContratoDigitalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void ModificarDatosContratoDigitalCompletedEventHandler(object sender, ModificarDatosContratoDigitalCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ModificarDatosContratoDigitalCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ModificarDatosContratoDigitalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void GuardarClienteContratoDigitalCompletedEventHandler(object sender, GuardarClienteContratoDigitalCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GuardarClienteContratoDigitalCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GuardarClienteContratoDigitalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -203,11 +203,6 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
-    <None Include="Web References\ServMetodosSICO\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ServMetodosSICO\ServMetodosSICO.wsdl" />
     <None Include="Web References\ServiceDebito\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -219,6 +214,11 @@
     <None Include="Web References\ServiceDebito\ServiceDebito0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Web References\ServMetodosSICO\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ServMetodosSICO\ServMetodosSICO.wsdl" />
     <None Include="Web References\ServMetodosSICO\ServMetodosSICO.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -448,10 +448,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://sbogche048v:8041/ServiceDebito.svc%3fwsdl">
+    <WebReferenceUrl Include="http://sbogche048vp:9041/ServiceDebito.svc%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ServiceDebito\</RelPath>
-      <UpdateFromURL>http://sbogche048v:8041/ServiceDebito.svc%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>http://sbogche048vp:9041/ServiceDebito.svc%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -459,10 +459,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>DebitoAutomatico_PS_ServiceDebito_ServiceDebito</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://sdatche005v:8015/ServMetodosSICO.svc%3fwsdl">
+    <WebReferenceUrl Include="http://sdatche005vp:9038/ServMetodosSICO.svc%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ServMetodosSICO\</RelPath>
-      <UpdateFromURL>http://sdatche005v:8015/ServMetodosSICO.svc%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>http://sdatche005vp:9038/ServMetodosSICO.svc%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

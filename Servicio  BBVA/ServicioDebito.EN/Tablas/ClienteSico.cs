@@ -12,7 +12,7 @@ namespace ServicioDebito.EN.Tablas
         public String pOperacion { get; set; }
         public int? pContrato { get; set; }
         public String pTipoDocumento { get; set; }
-        public int? pNroDocumento { get; set; }
+        public Int64 pNroDocumento { get; set; }
         public String pNombreCliente { get; set; }
         public String pEstado { get; set; }
         public String pTipo { get; set; }
