@@ -11,10 +11,10 @@ namespace WcfServicioDebito
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ServiceDebito client = new ServiceDebito();
-            string Resultado = "";
-            String Usuario = "APP";
-            String Password = "APP";
+            //ServiceDebito client = new ServiceDebito();
+            //string Resultado = "";
+            //String Usuario = "APP";
+            //String Password = "APP";
 
            //Resultado = client.ModificarDatos(1002318, "2347542054", 1, 34, "172.16.29.9", 12, Usuario, Password);
             // Resultado = client.ConsultaCliente(1028280, 0, Usuario, Password);
